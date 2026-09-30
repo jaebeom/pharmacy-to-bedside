@@ -17,6 +17,7 @@ verified는 검토한 범위의 결론이다. 다른 환경 적용은 재검증�
 
 | 문서 | 무엇 |
 | --- | --- |
+| [2026-09-30-jaebeom-improvement-candidates.md](2026-09-30-jaebeom-improvement-candidates.md) | 우리 빈자리(도킹·동적 장애물·다중 AMR·인식 깊이·재전송 안전·참값 의존)별 개선안 32건과 추천 순서. unreviewed, 정적 점검이다 |
 | [2026-09-30-jaebeom-documentation-audit.md](2026-09-30-jaebeom-documentation-audit.md) | 코드·리하·234개 문서와 열린 PR 14개 대조. README·API 누락 보완, 기존 PR 충돌·링크 후속 2건. unreviewed |
 | [2026-09-29-master01-workcell-fixture-diff.md](2026-09-29-master01-workcell-fixture-diff.md) | master01 v1.0.0 리하 회차 workcell.json 과 integrated-09 fixture 대조(9/29). pill_offset·브래킷·RoundBin 이동·source_sha256 이 다르다. unreviewed, 파일 대조만 |
 | [2026-09-25-v050-scorecard-evidence-map.md](2026-09-25-v050-scorecard-evidence-map.md) | v0.5.0 용으로 점수판 110점 항목마다 요구 증거 · protocol attempt · 있는 회차 · 빈 곳을 맞췄다(9/25). protocol 수정 제안 7건이다. 제안이다 |
