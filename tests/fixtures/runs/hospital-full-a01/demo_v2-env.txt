@@ -1,0 +1,3 @@
+P3_WORLD             hospital
+P3_DECK_VISION       1
+P3_CONTAINER_QR      1

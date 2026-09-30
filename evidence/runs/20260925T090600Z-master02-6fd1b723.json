@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "run_id": "20260925T090600Z-master02-6fd1b723",
+  "created_at": "2026-09-25T09:06:00Z",
+  "code": {
+    "commit": "0b1319b053166cdd0dca39aae3c40bd41b0f407f",
+    "dirty": false
+  },
+  "host_id": "master02",
+  "environment": {
+    "versions": {
+      "os": "Ubuntu 24.04.4 LTS kernel 6.14.0-27-generic",
+      "ros": "jazzy",
+      "isaac_sim": "5.1.0-rc.19+release.26219.9c81211b.gl",
+      "rmw": "rmw_fastrtps_cpp",
+      "gpu_driver": "580.173.02",
+      "cuda": "13.0"
+    },
+    "fingerprints": {
+      "config": {
+        "sha256": "edcf16c1551cb877ab2ab39c5e842a473deed7e8e8fb6875f1ad41ff556c79b4"
+      },
+      "scene": {
+        "sha256": "ce4c955d7cb061a11791b9aab57eb836d75d5a3adfdf86b485b5fccca1a1e100"
+      },
+      "model": {
+        "not_applicable": "학습 모델을 쓰지 않았다. 판독은 OpenCV QR, 집기 좌표는 시뮬 센서다."
+      },
+      "dataset": {
+        "not_applicable": "학습 · 평가 데이터셋을 쓰지 않았다."
+      }
+    }
+  },
+  "clocks": {
+    "duration": "simulation",
+    "timeout": "monotonic"
+  },
+  "seed": 7,
+  "repetition_index": 13,
+  "protocol": {
+    "path": "experiments/protocols/hospital-full-acceptance-v1.json",
+    "sha256": "6cbd564a73388ba930ba3f72a38470e16ba4cf7a65eefde0b15f4af8854b286a"
+  },
+  "phase": "acceptance",
+  "outcome": "failed",
+  "artifacts": [
+    {
+      "uri": "sha256/acd4a8d7b2554542a71b0e05f3589067323910e6ad1016889614e7d1d323dbbd/env.sh",
+      "sha256": "acd4a8d7b2554542a71b0e05f3589067323910e6ad1016889614e7d1d323dbbd",
+      "size_bytes": 1571
+    },
+    {
+      "uri": "sha256/db36e467a334841ddd8bc71e10b790ce55b6f441ca2bcf91a820daa6ff7649d6/up.console",
+      "sha256": "db36e467a334841ddd8bc71e10b790ce55b6f441ca2bcf91a820daa6ff7649d6",
+      "size_bytes": 2420
+    },
+    {
+      "uri": "sha256/731ce5219c0bc5da219d086a1e9d92d60d3ae7634e507b1e29911dbb8ce418a0/orders.log",
+      "sha256": "731ce5219c0bc5da219d086a1e9d92d60d3ae7634e507b1e29911dbb8ce418a0",
+      "size_bytes": 1587
+    },
+    {
+      "uri": "sha256/0f359cbd6d087ad933945ce4920ec49fcc2ee4e823e507c9eba858e132bae228/dryrun.log",
+      "sha256": "0f359cbd6d087ad933945ce4920ec49fcc2ee4e823e507c9eba858e132bae228",
+      "size_bytes": 558
+    },
+    {
+      "uri": "sha256/2b92f7858049930989b8d9d748e157f5d0d9e57ffd6af686a4ec89f3c351638e/clip-1.mkv",
+      "sha256": "2b92f7858049930989b8d9d748e157f5d0d9e57ffd6af686a4ec89f3c351638e",
+      "size_bytes": 442248668
+    },
+    {
+      "uri": "sha256/40990aa3669c00410a7b0eab04bf86a7f4756aec93611068fc0c63baa8a241d0/gpu.csv",
+      "sha256": "40990aa3669c00410a7b0eab04bf86a7f4756aec93611068fc0c63baa8a241d0",
+      "size_bytes": 344782
+    },
+    {
+      "uri": "sha256/5d74ac86211e969bfc89b776c3d87e5cc59510cf4fbd00e59f7cd70e73cb274b/top.txt",
+      "sha256": "5d74ac86211e969bfc89b776c3d87e5cc59510cf4fbd00e59f7cd70e73cb274b",
+      "size_bytes": 39629260
+    },
+    {
+      "uri": "sha256/ae3dcf1a8681d5c00b7b8df3d7e5e8df9abb4396b9bcbf49e252b6e7e8ca819a/logs/20260925-165607-arm.log",
+      "sha256": "ae3dcf1a8681d5c00b7b8df3d7e5e8df9abb4396b9bcbf49e252b6e7e8ca819a",
+      "size_bytes": 16868
+    },
+    {
+      "uri": "sha256/75f72943305e0e4f106fc4f532d50c100f1d7d74ffb2ea7779e2cf90f092a9be/logs/20260925-165607-nav.log",
+      "sha256": "75f72943305e0e4f106fc4f532d50c100f1d7d74ffb2ea7779e2cf90f092a9be",
+      "size_bytes": 334867
+    },
+    {
+      "uri": "sha256/d09b5f0e948faf2b06e8f731a6f4cc4eda3809fc5b0586b7abfc4f50e427c3c5/logs/20260925-165607-stack.log",
+      "sha256": "d09b5f0e948faf2b06e8f731a6f4cc4eda3809fc5b0586b7abfc4f50e427c3c5",
+      "size_bytes": 136613
+    },
+    {
+      "uri": "sha256/0407c9c8e819b2d065191d39c6fb52b614ced8f419cf814346d65d4a7de0b53c/logs/20260925-165607-tree.txt",
+      "sha256": "0407c9c8e819b2d065191d39c6fb52b614ced8f419cf814346d65d4a7de0b53c",
+      "size_bytes": 125
+    },
+    {
+      "uri": "sha256/d8d9fb2d586d57d0f1fa98d14fe43e36d485d519fb25bc3e790bb9251ffacba7/logs/20260925-165607-web.log",
+      "sha256": "d8d9fb2d586d57d0f1fa98d14fe43e36d485d519fb25bc3e790bb9251ffacba7",
+      "size_bytes": 884078
+    }
+  ],
+  "metrics": [
+    {
+      "name": "attempt_success",
+      "value": 0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_workcell_ready",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_refill_both",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_container_qr",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "pouch_to_end_s",
+      "value": 33.53,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_pouch_at_end",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_pick_in_slot",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_delivered_docked",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "amr_touch_count",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_margin_lines",
+      "value": 691,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_full_speed_lines",
+      "value": 85,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_unknown_lines",
+      "value": 21,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "boot_check_pass",
+      "value": 0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "orders10_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "orders_beds_all_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "orders10_multipc_delivered",
+      "value": 10,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_fps_min",
+      "value": 30.0,
+      "unit": "fps",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_drop_ratio_max",
+      "value": 0.0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_corrupt_sum",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "unplanned_intervention_count",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "avoidance_encounters",
+      "value": 26,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_limit_lines_during_encounters",
+      "value": 110,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "vision_detect_rate",
+      "value": 0.7,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "vision_latency_ms",
+      "value": 0.0,
+      "unit": "ms",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "fresh_clone_step_wall_s",
+      "value": null,
+      "unit": "s",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "fresh_clone_asset_sha_ok",
+      "value": null,
+      "unit": "ratio",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "rtf",
+      "value": 0.479,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "attempt_wall_s",
+      "value": 4149.71,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "reset_dock_pose_error_m",
+      "value": null,
+      "unit": "m",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "reset_arm_park_error_rad",
+      "value": null,
+      "unit": "rad",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "pouch_spawn_records",
+      "value": 10,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    }
+  ],
+  "notes": "campaign 2 · attempt 13 · 원문 #240 5847695711, 5833920864, 5848373269. 원본은 master02 ~/markle_tmp/m2-c2-a13-mpten-0b1319b 다(호스트 IsaacSim07). SHA256SUMS 파일의 sha256 은 20202ff2d6c552402de5e22b4b8f164384f837ff531147cf1a047d2c8ede93e6 다. artifacts 에는 크기(ls -l)와 전체 sha256 이 함께 보고된 파일만 넣었다. config 지문은 release 트리의 deployment.json, scene 지문은 master02 워크셀 준비 base.usda 다. created_at 은 ls 의 분 단위 시각(SHA256SUMS 18:06 KST)에서 초를 0 으로 둔 값이다. 녹화는 웹 창을 포함한 전체 화면 1파일이다. metrics 는 tools/aggregate_runs.py(#709 b38b74b) --attempt 13 --json 출력 그대로다.  phase E 다중 PC 다: master01 = stage, master02 = arm · nav · stack · web, 도메인 131. 한 시행의 canonical run 은 판정 본문을 쓴 master02 로 두고, master01 stage 폴더는 합산 집계로 이 run 에 묶었다(두 성공 표본으로 세지 않는다). metrics 는 tools/aggregate_runs.py(#725 6819d93) --run <master01 stage 폴더> --run <master02 폴더> --attempt N --json 합산 출력 그대로다(#240 5848373269). master02 폴더는 재범 결정 ① 대로 Draft 릴리즈 evidence-transfer-c2-multipc 로 전달됐다(tar sha256 86cfa4e80f319408ce49c1b8111318e7b6695b0b8da3d0b2a34f0269b0ea8c3c, 마클1 대조 OK). attempt_success 0 의 원인은 purpose 4(c) boot_check 게이트다 — master02 boot_check 에 viewport SKIP(허용은 window 뿐). 두 host 모두 [boot_check] OK · FAIL 없음, amr_touch 0, scene_delivered_docked 1(원문). viewport SKIP 은 master02 가 stage 를 맡지 않아서로 보인다는 것은 관측자 해석이고, protocol (c) 문구가 phase E 를 반영하지 못한 것인지는 검증 판단이다. master01 스테이지 녹화 screen.mp4 는 크기 · sha256 이 보고되지 않아 artifacts 에 넣지 않았다(원본 m1-camp2-a13-mpc10-0b1319b-136)."
+}

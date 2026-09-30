@@ -1,0 +1,38 @@
+# UR5 팔 노드 현장값 — AMR 합본, 봉투 검출을 카메라로(P3_CAMERA_POUCHES=1).
+# ur5_arm.amr-combined.yaml(lap14–16)과 다른 줄은 아래 표시한 것뿐이다(주석의 hand_camera_frame 은 기본값이라 줄이 없다).
+# - pouch_source: camera (launch 인자가 이기므로 기록용이다)
+# - belt_pick_lock_wrist: 카메라 벨트 파지 동안 손목 관절을 고정한다.
+# - tool_frame: 합본 손목. 합본에는 tool0 프림이 없고 wrist_3 = tool0(항등, sim p3sim/amr_base.py)이다.
+#   관측 자세(벨트·인식표·안착 확인)에서만 쓰인다. 파지 TCP 는 바꾸지 않는다(test_ur5_pick_characterization).
+# - tcp_offset_m: 흡착 그리퍼 자산(스테이지 --amr-hand-camera)의 흡착점. 손목 +Z 0.1555 m(오프라인 측정,
+#   sim/assets/amr_gripper/README.md). 스테이지 가상 흡착도 같은 점에서 거리를 잰다.
+# - deck_view_standoff_m: 침상 상판 픽 전에 집을 칸 위 0.30 m 에서 내려다본다(9/23 L3 ⑧ not_detected 대응).
+# - refine_view_standoff_m: 첫 관측의 검출 위 0.20 m 에서 봉투 방향으로 다시 본다. D455 1280 폭에서 QR 코드 한 변
+#   약 129 px(계산, sim/tests/test_amr_hand_camera.py). 흡착컵은 봉투 위 약 8 cm 다.
+# - hand_camera_frame 은 기본값 amr_1/hand_camera_optical 이다(스테이지 --amr-hand-camera 가 낸다).
+# 관측 거리·오프셋(belt_view_*)은 launch 인자로 준다(demo_v2.sh). L3 미확인.
+/**:
+  ros__parameters:
+    use_sim_time: true
+    robot_id: amr_1
+    joint_names: [ur_arm_shoulder_pan_joint, ur_arm_shoulder_lift_joint, ur_arm_elbow_joint,
+                  ur_arm_wrist_1_joint, ur_arm_wrist_2_joint, ur_arm_wrist_3_joint]
+    home_joint_positions: [-0.000355, -1.288212, 1.319241, -0.000007, 1.570788, 0.0]
+    arm_base_frame: amr_1/ur_arm_base_link
+    arm_base_frame_convention: base
+    via_joint_positions: [0.0, -1.6, 0.3, -0.2708, 1.5708, 0.0]
+    pouch_source: camera                       # 다른 줄
+    belt_pick_lock_wrist: true
+    scan_tag_source: sim
+    tool_frame: amr_1/ur_arm_wrist_3_link      # 다른 줄
+    tcp_offset_m: [0.0, 0.0, 0.1555]           # 다른 줄
+    deck_view_standoff_m: 0.30                 # 다른 줄
+    refine_view_standoff_m: 0.20               # 다른 줄
+    tag_standoff_m: 0.25                       # 다른 줄 — 인식표 카메라 판독 거리(재범 9/29, 제안값·L3 미확인)
+    detection_max_age_s: 0.2
+    deck_slot_frame_base: 1
+    pouch_height_m: 0.01
+    grasp_z_offset_m: 0.005
+    place_z_offset_m: 0.015
+    cabinet_frame: bed_a1/cabinet
+    approach_height_m: 0.08

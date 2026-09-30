@@ -1,0 +1,43 @@
+name: 문제 보고
+description: 되던 것이 안 되거나, 예상과 다르게 동작할 때
+title: "[문제] "
+labels: ["문제"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 증상
+      placeholder: 마스터 2 에서 ros2 topic list 에 /carter_a/scan 이 안 보인다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 재현 방법
+      description: 다른 사람이 그대로 따라 할 수 있게
+      placeholder: |
+        1. 마스터 1 에서 Isaac Sim 실행
+        2. 마스터 2 에서 `ros2 topic list`
+    validations:
+      required: true
+
+  - type: textarea
+    id: layer
+    attributes:
+      label: 어디까지 확인했는가
+      description: |
+        네트워크 문제는 계층으로 좁히면 빠릅니다 —
+        [진단 순서](../../docs/setup/ros2-wired-network.md)
+      placeholder: |
+        - [x] ping 10.10.0.1 정상
+        - [x] ROS_DOMAIN_ID 양쪽 115 일치
+        - [ ] ufw 상태 미확인
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: 관측 증거와 가설
+      description: 어느 커밋에서, 무엇을 봤고(관측), 원인은 뭐라고 생각하는지(가설)를 나눠 적습니다. 긴 로그는 붙이지 말고 위치만.

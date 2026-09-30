@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<package format="3">
+  <name>rokey_p3_bringup</name>
+  <version>0.0.0</version>
+  <description>기동 조합. 뼈대 launch. orchestration 담당 소유.</description>
+  <maintainer email="l.jaebeom@gmail.com">JAEBEOM LIM</maintainer>
+  <license>TODO: License declaration</license>
+
+  <depend>rclpy</depend>
+  <depend>rokey_p3_interfaces</depend>
+  <depend>launch</depend>
+  <depend>launch_ros</depend>
+  <depend>rokey_p3_orchestrator</depend>
+  <depend>rokey_p3_manipulation</depend>
+  <depend>rokey_p3_navigation</depend>
+  <depend>rokey_p3_perception</depend>
+  <depend>std_msgs</depend>
+  <depend>rosgraph_msgs</depend>
+  <depend>builtin_interfaces</depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+
+  <test_depend>action_msgs</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

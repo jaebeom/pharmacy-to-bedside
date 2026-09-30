@@ -1,0 +1,37 @@
+{
+  "purpose": "Hospital integrated-09 (2026-09-22 16:32) M0609 workcell inputs; historical run input, NOT production defaults",
+  "copied_at": "2026-09-23",
+  "authorization": "User requested position/settings values preserved in Git (2026-09-23, via 작전)",
+  "files": {
+    "workcell.json": {
+      "source_master02": "/home/rokey/markle_tmp/m2-hospital-integrated-09/workcell.json",
+      "sha256": "7fb6c613d332e3570443d09865a85ae473e51aed3233ab8ba47a2ad2fe210ff1",
+      "bytes": 73494
+    },
+    "arm-parameters.yaml": {
+      "source_master02": "/home/rokey/markle_tmp/m2-hospital-integrated-09/arm-parameters.yaml",
+      "sha256": "941d7428f5388b811e4de2d6a5d010712447be2859caad456f1d268b731912ac",
+      "bytes": 2425
+    },
+    "base.usda": {
+      "source_master02": "/home/rokey/markle_tmp/m2-hospital-integrated-09/base.usda",
+      "sha256": "a63f7ba2e5d3fcd3af96845b3c226baa866dd1c2463e294f79ad1ff5cf4ceb73",
+      "bytes": 157699
+    },
+    "launch-stage.sh": {
+      "source_master02": "/home/rokey/markle_tmp/m2-hospital-integrated-09/launch-stage.sh",
+      "sha256": "0d04e97628865ddec5dcda52efb1c106c1e59f9b5deb211dab155a25782209c4",
+      "bytes": 1283
+    },
+    "launch-arm.sh": {
+      "source_master02": "/home/rokey/markle_tmp/m2-hospital-integrated-09/launch-arm.sh",
+      "sha256": "0b15f5f925b0d6243e0e3ac6a2069c30e20bc57bb90083dde32586f064be5b54",
+      "bytes": 335
+    },
+    "deployment.json": {
+      "source_master02": "/home/rokey/markle_tmp/m2-hospital-integrated-09/deployment.json",
+      "sha256": "edcf16c1551cb877ab2ab39c5e842a473deed7e8e8fb6875f1ad41ff556c79b4",
+      "bytes": 1739
+    }
+  }
+}

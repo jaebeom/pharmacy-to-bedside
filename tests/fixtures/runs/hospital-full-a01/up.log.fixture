@@ -1,0 +1,4 @@
+[demo_v2 08:18:42] 월드 파일: zones=… routes=… (주행·웹 같은 경로)
+[demo_v2 08:18:44] 기동 전 확인: others:[] /clock 0 노드 0(도메인 131)
+[demo_v2 08:19:18] arm 준비: [INFO] [1790291957.700493569] [m0609_arm]: v2 계획 캐시 종류별: cylinder=9/9 module=9/9. 완료 종류: cylinder, module
+[demo_v2 08:19:22] 준비 완료. 웹 http://127.0.0.1:8000/?demo=1

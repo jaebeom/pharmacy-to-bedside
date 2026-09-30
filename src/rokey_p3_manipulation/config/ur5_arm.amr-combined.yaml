@@ -1,0 +1,23 @@
+# UR5 팔 노드 현장값 — AMR 합본(ridgeback_ur5.usd), 빈월드 lap14–16 에서 쓴 파일 그대로.
+# 출처: master02 /home/rokey/markle_tmp/m2-amrcombined-lap16/k4_arm_combined.yaml
+#       (sha256 435f5613…63bd1, 작전이 9/23 전문을 전달). 값은 옮겨 적기만 했고 고치지 않았다.
+# 쓰는 법: P3_UR5_ARM_PARAMS=<이 파일> (demo_v2.sh). pouch_source·scan_tag_source 는 launch 인자가 이긴다.
+/**:
+  ros__parameters:
+    use_sim_time: true
+    robot_id: amr_1
+    joint_names: [ur_arm_shoulder_pan_joint, ur_arm_shoulder_lift_joint, ur_arm_elbow_joint,
+                  ur_arm_wrist_1_joint, ur_arm_wrist_2_joint, ur_arm_wrist_3_joint]
+    home_joint_positions: [-0.000355, -1.288212, 1.319241, -0.000007, 1.570788, 0.0]
+    arm_base_frame: amr_1/ur_arm_base_link
+    arm_base_frame_convention: base
+    via_joint_positions: [0.0, -1.6, 0.3, -0.2708, 1.5708, 0.0]
+    pouch_source: sim
+    scan_tag_source: sim
+    detection_max_age_s: 0.2
+    deck_slot_frame_base: 1
+    pouch_height_m: 0.01
+    grasp_z_offset_m: 0.005
+    place_z_offset_m: 0.015
+    cabinet_frame: bed_a1/cabinet
+    approach_height_m: 0.08

@@ -1,0 +1,47 @@
+# 9/29 master02 성공 회차 전용. 0.05 m는 실측 보정이며 TF 높이 문제의 근본 수정이 아니다.
+/**:
+  ros__parameters:
+    use_sim_time: true
+    robot_id: amr_1
+    joint_names:
+    - ur_arm_shoulder_pan_joint
+    - ur_arm_shoulder_lift_joint
+    - ur_arm_elbow_joint
+    - ur_arm_wrist_1_joint
+    - ur_arm_wrist_2_joint
+    - ur_arm_wrist_3_joint
+    home_joint_positions:
+    - -0.000355
+    - -1.288212
+    - 1.319241
+    - -7.0e-06
+    - 1.570788
+    - 0.0
+    arm_base_frame: amr_1/ur_arm_base_link
+    arm_base_frame_convention: base
+    via_joint_positions:
+    - 0.0
+    - -1.6
+    - 0.3
+    - -0.2708
+    - 1.5708
+    - 0.0
+    pouch_source: camera
+    belt_pick_lock_wrist: true
+    scan_tag_source: sim
+    tool_frame: amr_1/ur_arm_wrist_3_link
+    tcp_offset_m:
+    - 0.0
+    - 0.0
+    - 0.1555
+    deck_view_standoff_m: 0.3
+    refine_view_standoff_m: 0.2
+    tag_standoff_m: 0.25
+    detection_max_age_s: 0.2
+    deck_slot_frame_base: 1
+    pouch_height_m: 0.01
+    grasp_z_offset_m: 0.005
+    place_z_offset_m: 0.015
+    cabinet_frame: bed_a1/cabinet
+    approach_height_m: 0.08
+    belt_pick_contact_drop_m: 0.05

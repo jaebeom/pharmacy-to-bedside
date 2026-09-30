@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "protocol_id": "pharmacy-lap-pilot-v1",
+  "status": "frozen",
+  "phase": "pilot",
+  "created_at": "2026-09-17T02:30:46Z",
+  "frozen_at": "2026-09-19T17:44:12Z",
+  "purpose": "조제실 구간 한 바퀴(1차 시연 범위)를 실행 전에 정의한 pilot 측정 계약이다. 합격선은 없다. 1) 시스템 경계: rokey_p3_orchestrator 의 orchestrator(pharmacy_only=true), order_generator(max_requests=1), event_logger. 나머지 노드(isaac 또는 stub_sim, fleet, arm, pouch_detector, m0609/arm)가 실물인지 스텁인지는 run 의 deployment inventory artifact 와 config fingerprint 가 말한다. 조합이 다른 run 은 한 성공률로 묶지 않는다. 2) 시행과 초기화: 시행 하나는 epoch 하나 안의 트립 하나다. 시행마다 /orchestrator/reset(rokey_p3_interfaces/srv/Reset)을 불러 계약 6절 리셋 barrier 를 지나고, 새 epoch 의 RESET_DONE 을 시행 시작으로 본다. RESET_DONE 의 epoch 를 run notes 에 적는다. order_generator 는 새 epoch 에서 요청 1건을 보낸다. 기동 직후 epoch 1 의 트립은 barrier 를 거치지 않았으므로 시행이 아니다. 원본은 보존하고 분모에 넣지 않는다. 운영 순서는 기동, /orchestrator/reset, 트립, /orchestrator/reset, 트립 순이고 시행 수만큼 리셋과 트립을 되풀이한다. 3) 사건과 시계: 시작 사건 REQUEST_ACCEPTED, 종료 사건 DOCKED. 시간 지표는 같은 epoch 안의 Event.header.stamp(sim time, /clock 작성자는 하나) 차이다. 호스트 wall 시각을 섞지 않는다. arm 과 isaac 이 내는 이벤트에는 request_id 가 없으므로 이벤트는 epoch 로 묶고 주문 이벤트는 order_id 로 맞춘다. 4) 성공 정의: 그 트립(REQUEST_ACCEPTED 의 request_id)의 모든 주문에 ORDER_DONE 이 있고, /orders/status 의 마지막 상태가 HOLD_RETURN 이고 reason 이 pharmacy_only 이며, DOCKED 가 있고 lap_s 가 트립 제한 시간(계약 7절, orchestrator 파라미터 trip_limit_s, 기본 600 s sim) 이하다. DELIVERED 와 SUCCESS 는 병동 구간의 것이라 이 protocol 에서 쓰지 않는다. 5) outcome: 성공 정의를 채우면 succeeded. DOCKED 전에 리셋으로 새 epoch 가 시작되면 aborted. RESET_DONE 수신 뒤 wall 900 s 안에 DOCKED 도 Deliver 결과(order_generator 로그)도 없으면 수집을 멈추고 timeout. 실시간 비율이 낮으면 트립 제한 시간보다 이 watchdog 이 먼저 올 수 있고 그때도 timeout 이다. 나머지는 failed 다(주문 ABORT 또는 TIMEOUT, reason 이 pharmacy_only 가 아님, DOCKED 없음, lap_s 가 트립 제한 시간 초과). 6) 분모와 제외: 트립 분모는 REQUEST_ACCEPTED 로 시작한 트립이다. aborted, timeout, failed 트립도 분모에 넣는다. Deliver goal 거부는 이벤트가 없어 분모 밖이다(계약 2.5절). 시작 사건 없이 끝난 시행도 run 으로 남기되 트립 분모에는 넣지 않는다. 그 밖의 사후 제외는 없다. 제외가 필요해지면 원본을 보존하고 이유, 독립 리뷰, 제외 전후 결과를 함께 낸다. 7) 보충: M0609 보충(REFILL_REQUESTED 부터 REFILL_DONE 까지)은 트립과 별도 구간이다. lap_s 에 더하거나 빼지 않는다(시나리오 6절). 보충을 관측하려면 run 의 dispenser 설정(예: 활성 슬롯 count 1, 다른 슬롯 0)으로 REFILL_REQUESTED 를 유도하고 그 설정은 run 의 config fingerprint 가 기록한다. 이 protocol 은 설정값을 고정하지 않는다. 8) seed: Dispense 가 봉투를 벨트 시작에 스폰할 때의 위치와 yaw 무작위(계약 2.1절)에 쓸 시드다. 작성 시점(2026-09-17)에는 isaac 쪽 시드 파라미터가 저장소에 없다. 시드를 적용하지 못한 run 은 seed 를 시행 번호로만 쓰고 notes 에 시드 미적용을 적는다. 9) 원본: event_logger 의 run 디렉토리(events.jsonl, order_status.jsonl, cabinet.jsonl, orders.jsonl, meta.json)를 artifact 로 보존한다. event_logger 는 epoch 가 오르면 원본 디렉토리를 새로 연다.",
+  "sample_plan": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "repetitions_per_seed": 1
+  },
+  "timeout": {
+    "seconds": 900,
+    "clock": "monotonic",
+    "policy": "record_timeout"
+  },
+  "metrics": [
+    {
+      "name": "lap_s",
+      "unit": "s",
+      "description": "같은 epoch 의 REQUEST_ACCEPTED stamp 부터 DOCKED stamp 까지(sim time). 시나리오 6절 trip_time 과 같은 구간이다. 트립 제한 시간(계약 7절, 기본 600 s sim)을 넘어도 DOCKED 가 있으면 값을 적고, 성공 판정에서만 뺀다.",
+      "denominator": "REQUEST_ACCEPTED 로 시작한 트립 하나. DOCKED 가 없거나 시작 사건이 없으면 value null, sample_count 0, missing_count 1.",
+      "aggregation": "single",
+      "clock": "simulation",
+      "missing_policy": "record_missing"
+    },
+    {
+      "name": "load_s",
+      "unit": "s",
+      "description": "같은 epoch 의 REQUEST_ACCEPTED stamp 부터 LOAD_DONE stamp 까지(sim time). LOAD_DONE 은 정상 적재 끝과 벨트 막힘 두 경로에서 나온다(ADR 0001). 어느 경로였는지는 outcome 과 orders 기록으로 구분한다.",
+      "denominator": "REQUEST_ACCEPTED 로 시작한 트립 하나. 둘 중 하나라도 없으면 value null, sample_count 0, missing_count 1.",
+      "aggregation": "single",
+      "clock": "simulation",
+      "missing_policy": "record_missing"
+    },
+    {
+      "name": "dispense_to_end_s",
+      "unit": "s",
+      "description": "그 트립 주문의 DISPENSED stamp 부터 같은 order_id 의 POUCH_AT_END stamp 까지(sim time). 벨트 이송 구간이다. 두 이벤트 모두 isaac(스텁 조합이면 stub_sim)이 낸다.",
+      "denominator": "DISPENSED 가 나온 주문 하나. 둘 중 하나라도 없으면 value null, sample_count 0, missing_count 1.",
+      "aggregation": "single",
+      "clock": "simulation",
+      "missing_policy": "record_missing"
+    },
+    {
+      "name": "return_s",
+      "unit": "s",
+      "description": "같은 epoch 의 RETURNED stamp(복귀 goal 수락 순간) 부터 DOCKED stamp 까지(sim time).",
+      "denominator": "RETURNED 가 나온 트립 하나. 둘 중 하나라도 없으면 value null, sample_count 0, missing_count 1.",
+      "aggregation": "single",
+      "clock": "simulation",
+      "missing_policy": "record_missing"
+    },
+    {
+      "name": "refill_s",
+      "unit": "s",
+      "description": "같은 epoch 의 첫 REFILL_REQUESTED stamp 부터 그 뒤 첫 REFILL_DONE stamp 까지(sim time). 트립과 별도 구간이고 lap_s 와 합치지 않는다(시나리오 6절).",
+      "denominator": "그 epoch 의 보충 요청 하나. REFILL_REQUESTED 가 없으면 value null, sample_count 0, missing_count 1 이고 notes 에 보충 요청 없음을 적는다. REFILL_DONE 만 없어도 value null, sample_count 0, missing_count 1.",
+      "aggregation": "single",
+      "clock": "simulation",
+      "missing_policy": "record_missing"
+    },
+    {
+      "name": "pick_attempts",
+      "unit": "count",
+      "description": "같은 epoch 의 PICK_ATTEMPT 이벤트 개수. 시도 번호는 detail 이 아니라 이벤트 개수로 센다(계약 2.6절). pharmacy_only 에서는 벨트 픽만 있다.",
+      "denominator": "REQUEST_ACCEPTED 로 시작한 트립 하나. 시도가 없으면 value 0, sample_count 1. 시작 사건이 없으면 value null, sample_count 0, missing_count 1.",
+      "aggregation": "count",
+      "clock": "none",
+      "missing_policy": "record_missing"
+    },
+    {
+      "name": "lap_success",
+      "unit": "ratio",
+      "description": "purpose 4) 의 성공 정의를 채운 트립이면 1, 아니면 0. 여러 run 을 모을 때는 성공 트립 수를 시작한 트립 수로 나눈다.",
+      "denominator": "REQUEST_ACCEPTED 로 시작한 트립. aborted, timeout, failed 트립을 포함한다. Deliver goal 거부는 이벤트가 없어 넣지 않는다(계약 2.5절). 시작 사건이 없는 시행은 value null, sample_count 0, missing_count 1.",
+      "aggregation": "ratio",
+      "clock": "none",
+      "missing_policy": "record_missing"
+    }
+  ]
+}

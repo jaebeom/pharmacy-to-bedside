@@ -1,0 +1,3 @@
+{"cabinet_id": "bed_a3/cabinet", "order_id": "", "pre_reset": false, "present": false, "stamp": 4.88, "used": false}
+{"cabinet_id": "bed_a1/cabinet", "order_id": "", "pre_reset": false, "present": false, "stamp": 4.88, "used": false}
+{"cabinet_id": "bed_a1/cabinet", "order_id": "ord-0001", "pre_reset": false, "present": true, "stamp": 222.0, "used": true}

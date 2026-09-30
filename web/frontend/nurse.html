@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P3 관제 · 간호사</title>
+<link rel="stylesheet" href="css/nurse.css">
+</head>
+<body class="nurse">
+
+<header class="n-top">
+  <div class="n-brand">
+    <span class="n-brand-mark">P3</span>
+    <span class="n-brand-name">약 배송</span>
+  </div>
+  <nav class="n-nav" id="nav"></nav>
+  <div class="n-spacer"></div>
+  <span class="n-sim" id="sim-state" hidden></span>
+  <span class="n-conn" id="conn"><span class="n-conn-dot"></span><span id="conn-text">연결 중…</span></span>
+  <button class="n-btn n-btn-primary" id="btn-request" type="button" hidden>약 배송 요청</button>
+</header>
+
+<!-- 지금 간호사가 알아야 할 상황 한 줄. 끊김·보충·리셋이 여기 뜬다. -->
+<div class="n-banner" id="banner" hidden></div>
+<div class="n-stock" id="stock" hidden></div>
+
+<main class="n-main">
+  <section class="n-card n-now" aria-labelledby="now-title">
+    <h2 id="now-title">지금 배송</h2>
+    <div id="now"></div>
+  </section>
+
+  <section class="n-card n-alerts" aria-labelledby="alerts-title">
+    <h2 id="alerts-title">확인이 필요한 알림 <span class="n-count" id="alerts-count"></span></h2>
+    <div id="alerts"></div>
+  </section>
+
+  <section class="n-card n-map" id="map-card" aria-labelledby="map-title" hidden>
+    <h2 id="map-title">병원 지도 <span class="n-sub" id="map-meta"></span></h2>
+    <div class="fmap-wrap">
+      <div class="fmap" id="map"></div>
+      <div class="cam-pip" id="cam-pip"></div>
+    </div>
+  </section>
+
+  <section class="n-card n-patients" aria-labelledby="patients-title">
+    <h2 id="patients-title">환자별 약 <span class="n-sub" id="patients-sub"></span></h2>
+    <div id="patients"></div>
+  </section>
+</main>
+
+<div class="n-toast" id="toast" hidden></div>
+
+<dialog class="n-dialog" id="request-dialog" aria-labelledby="req-title">
+  <form id="request-form" method="dialog">
+    <h3 id="req-title">약 배송 요청</h3>
+
+    <fieldset class="n-step">
+      <legend><span class="n-step-no">1</span> 누구에게 보낼까요?</legend>
+      <div class="n-pick" id="pick"></div>
+    </fieldset>
+
+    <fieldset class="n-step" id="how-step">
+      <legend><span class="n-step-no">2</span> 어떻게 보낼까요?</legend>
+      <div class="n-seg" id="how"></div>
+    </fieldset>
+
+    <fieldset class="n-step" id="where-step">
+      <legend><span class="n-step-no">3</span> 어디로 보낼까요?</legend>
+      <div class="n-where-note" id="where-note"></div>
+      <div class="n-beds" id="beds"></div>
+    </fieldset>
+
+    <div class="n-req-error" id="request-error" role="alert" hidden></div>
+
+    <div class="n-dialog-actions">
+      <span class="n-summary" id="summary"></span>
+      <button type="button" class="n-btn" id="request-cancel">닫기</button>
+      <button type="submit" class="n-btn n-btn-primary" id="request-submit">보내기</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="js/nurse.js"></script>
+</body>
+</html>

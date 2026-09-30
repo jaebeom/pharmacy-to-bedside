@@ -1,0 +1,9 @@
+[boot_check] stale PASS 관제 창 0, 녹화기 1, load 3.91
+[boot_check] disk PASS /home/rokey/markle_tmp/m1-camp1-a01-bed_a1-64e5ab7-95 여유 820.4 GB(최소 20)
+[boot_check] window SKIP
+[boot_check] lock PASS 안 잠김(loginctl session 2)
+[boot_check] viewport PASS viewport 1920x1080
+[boot_check] clock PASS 발행자 1(읽은 값 [1, 1, 0]), sim 12.016667293 → 14.550000758
+[boot_check] record PASS screen.mp4 3475089 → 7289463 B(60 s)
+[boot_check] OK
+boot_check exit=0

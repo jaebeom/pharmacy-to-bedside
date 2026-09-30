@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P3 관제 · 개발자</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<div id="disconnect-banner" class="banner" hidden>
+  <span class="banner-dot"></span>
+  <span id="disconnect-text">연결 끊김</span>
+  <span id="disconnect-detail" class="banner-detail"></span>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">P3</span>
+    <span class="brand-name">약제 배송 관제</span>
+  </div>
+
+  <nav class="nav" id="nav"></nav>
+
+  <div class="stat">
+    <span class="stat-label">연결</span>
+    <span class="stat-value"><span class="dot" id="conn-dot"></span><span id="conn-text">연결 중…</span></span>
+  </div>
+
+  <div class="stat">
+    <span class="stat-label">epoch</span>
+    <span class="stat-value mono" id="stat-epoch">—</span>
+  </div>
+
+  <div class="stat">
+    <span class="stat-label">sim 시간</span>
+    <span class="stat-value mono" id="stat-simtime">—</span>
+  </div>
+
+  <div class="stat">
+    <span class="stat-label">/clock</span>
+    <span class="stat-value"><span class="dot" id="clock-dot"></span><span id="clock-text">—</span></span>
+  </div>
+
+  <div class="stat">
+    <span class="stat-label">seq</span>
+    <span class="stat-value mono" id="stat-seq">—</span>
+  </div>
+
+  <div class="fault-badge" id="fault-badge" hidden></div>
+  <div class="ops" id="ops"></div>
+
+  <div class="topbar-spacer"></div>
+
+  <div class="commands" id="commands" hidden>
+    <button class="btn" id="btn-request" type="button">요청 넣기</button>
+    <button class="btn btn-danger" id="btn-reset" type="button">리셋</button>
+  </div>
+  <div class="source-tag mono" id="source-tag"></div>
+</header>
+
+<main class="board">
+
+  <div class="col col-left">
+  <section class="panel panel-trip">
+    <div class="panel-head">
+      <h2>현재 트립</h2>
+      <div class="head-meta" id="trip-meta"></div>
+    </div>
+    <div class="panel-body" id="trip"></div>
+  </section>
+    <section class="panel panel-signals">
+      <div class="panel-head">
+        <h2>인터락 신호</h2>
+        <div class="head-meta" id="signals-meta"></div>
+      </div>
+      <div class="panel-body" id="signals"></div>
+    </section>
+    <section class="panel panel-qr">
+      <div class="panel-head">
+        <h2>QR 판독</h2>
+        <div class="head-meta" id="qr-meta"></div>
+      </div>
+      <div class="panel-body" id="qr"></div>
+    </section>
+  </div>
+
+  <div class="col col-mid">
+    <section class="panel panel-dispenser">
+      <div class="panel-head">
+        <h2>조제기 · 벨트 · 보관함</h2>
+        <div class="head-meta" id="dispenser-meta"></div>
+      </div>
+      <div class="panel-body" id="dispenser"></div>
+    </section>
+    <section class="panel panel-map" id="map-panel" hidden>
+      <div class="panel-head">
+        <h2>병원 평면도</h2>
+        <div class="head-meta" id="map-meta"></div>
+      </div>
+      <div class="panel-body fmap" id="map"></div>
+    </section>
+
+  </div>
+
+  <div class="col col-right">
+    <section class="panel panel-alarms">
+      <div class="panel-head">
+        <h2>알람</h2>
+        <div class="head-meta" id="alarms-meta"></div>
+      </div>
+      <div class="panel-body" id="alarms"></div>
+    </section>
+
+    <section class="panel panel-tabs">
+      <div class="panel-head">
+        <div class="tabs" role="tablist">
+          <button class="tab is-active" role="tab" data-tab="timeline" type="button">이벤트 타임라인</button>
+          <button class="tab" role="tab" data-tab="logs" type="button">에러 로그</button>
+          <button class="tab" role="tab" data-tab="cameras" type="button" id="tab-cameras" hidden>카메라</button>
+        </div>
+        <div class="head-meta" id="timeline-filters"></div>
+        <div class="head-meta" id="log-filters" hidden></div>
+      </div>
+      <div class="panel-body" id="timeline"></div>
+      <div class="panel-body" id="logs" hidden></div>
+      <div class="panel-body cams" id="cameras" hidden></div>
+    </section>
+  </div>
+
+</main>
+
+<div id="toast" class="toast" hidden></div>
+
+<dialog id="request-dialog" class="dialog">
+  <form id="request-form" method="dialog">
+    <h3>배송 요청 넣기</h3>
+
+    <div class="pool-head">
+      <span>주문 풀에서 고릅니다</span>
+      <span class="pool-source mono" id="pool-source"></span>
+    </div>
+    <div class="dialog-error" id="pool-problems" hidden></div>
+    <div class="pool" id="pool"></div>
+
+    <div class="field-row">
+      <label>모드
+        <select id="f-mode"></select>
+      </label>
+      <label>destination_id
+        <input id="f-destination" list="dest-list" type="text" placeholder="bed_a1" required>
+        <datalist id="dest-list"></datalist>
+      </label>
+      <label>request_id
+        <input id="f-request-id" type="text" required>
+      </label>
+    </div>
+
+    <div class="dest-picker" id="dest-picker"></div>
+    <div class="dialog-hint" id="dest-hint" hidden></div>
+    <div class="dialog-error" id="request-error" hidden></div>
+
+    <div class="dialog-actions">
+      <span class="dialog-note" id="request-note"></span>
+      <button type="button" class="btn" id="request-cancel">취소</button>
+      <button type="submit" class="btn btn-primary" id="request-submit">보내기</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

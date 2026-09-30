@@ -1,0 +1,325 @@
+# 병원 씬(sim/scenes/hospital_navigationv1)의 구역과 고정 프레임. 계약 v1 3절의 형식이다.
+#
+# **이 파일은 자동 생성물이다. 손으로 고치지 않는다.**
+#   단일 출처: sim/scenes/hospital_navigationv1.anchors.json(USD 에서 뽑은 앵커) + maps/hospital.{pgm,yaml}
+#   만드는 코드: sim/standalone/p3sim/hospital_nav.py, 시험: sim/tests/test_hospital_nav.py
+#   다시 만들기: python3 sim/standalone/hospital_nav_files.py --zones
+#
+# **정차 자세는 빈월드에서 검증한 팔 밑동↔목표 상대 기하를 옮긴 것이다. 병원 높이로 IK 를 다시 풀지 않았다.**
+#   몸체가 지도의 막힌 칸과 겹치지 않는 것만 확인했다. L3 미실행.
+#
+# bed 의 room·ward·label(작전 9/23 확정): room C1 = D1–D4, C2 = D5–D10(PDF P3_Map 의 병실),
+#   ward 는 W1 하나(1병동), label = PDF 병상 번호. 웹 /api/destinations 가 이것으로 병실별로 묶는다.
+#
+# 사람 결정 전 기본값: ① D1–D4 → bed_a1–a4, D5–D10 → bed_b1–b6 ② load = 창구 1(A1) 자리
+#   ③ 병실 입구 C1·C2 는 zone 이 아니라 경로 경유점. bed_a3(D3)은 협탁이 없어 가상 보관함이다.
+#
+# pharmacy.belt_end(작전 9/23 확정): 창구 A1 끝 롤러 ConveyorTrack_02/Rollers_01 윗면의 출구 쪽 끝 중심.
+#   x = Rollers_01 bbox x 중심, y = bbox min y(봉투가 −y 로 나간다), z = bbox max z(윗면),
+#   yaw −90°(x = 진행 방향). bbox 는 master02 참조 탐침 결과의 terminal_surface(#240)다.
+#   잰 값이고 hospital_nav.A1_TERMINAL_SURFACE 에 있다.
+# 고르는 법: launch 인자나 P3_ZONES 로 이 파일의 절대 경로를 준다. 기본 zones.yaml 은 그대로다.
+
+frame: map
+zones:
+  load:
+    kind: load
+    x: -8.26605892
+    y: 4.10165615
+    yaw: -1.5707963267948966
+    tol_xy: 0.15
+    tol_yaw: 0.2
+  dock_1:
+    kind: dock
+    x: -8.26605892
+    y: 4.10165615
+    yaw: -1.5707963267948966
+    tol_xy: 0.15
+    tol_yaw: 0.2
+  dock_2:
+    kind: dock
+    x: -6.015
+    y: 4.686
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+  dock_3:
+    kind: dock
+    x: -3.018
+    y: 4.686
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+  dock_4:
+    kind: dock
+    x: -0.076
+    y: 4.686
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+  station_a:
+    kind: station
+    x: 7.322
+    y: 2.801
+    yaw: 0.0
+    tol_xy: 0.15
+    tol_yaw: 0.2
+  station_b:
+    kind: station
+    x: 9.584
+    y: 4.66
+    yaw: 3.142
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    cabinet:
+      x: 9.934
+      y: 3.958
+      z: 0.587
+      yaw: 0.0
+    tag:
+      x: 9.934
+      y: 3.958
+      z: 0.737
+      yaw: 0.0
+  station_c:
+    kind: station
+    x: 19.228
+    y: 5.522
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C1
+    cabinet:
+      x: 19.93
+      y: 5.872
+      z: 0.568
+      yaw: 1.571
+    tag:
+      x: 19.93
+      y: 5.872
+      z: 0.718
+      yaw: 1.571
+  station_d:
+    kind: station
+    x: 19.238
+    y: -2.411
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C2
+    cabinet:
+      x: 19.939
+      y: -2.061
+      z: 0.568
+      yaw: 1.571
+    tag:
+      x: 19.939
+      y: -2.061
+      z: 0.718
+      yaw: 1.571
+  bed_a1:
+    kind: bed
+    x: 22.298
+    y: 7.275
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C1
+    ward: W1
+    label: D1
+    cabinet:
+      x: 23.0
+      y: 7.625
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 22.82
+      y: 7.625
+      z: 0.6355
+      yaw: 0.0
+  bed_a2:
+    kind: bed
+    x: 25.298
+    y: 7.283
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C1
+    ward: W1
+    label: D2
+    cabinet:
+      x: 26.0
+      y: 7.633
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 25.82
+      y: 7.633
+      z: 0.6355
+      yaw: 0.0
+  bed_a3:
+    kind: bed
+    x: 23.702
+    y: 5.81
+    yaw: 1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C1
+    ward: W1
+    label: D3
+    cabinet:
+      x: 23.0
+      y: 5.46
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 23.18
+      y: 5.46
+      z: 0.6355
+      yaw: 0.0
+  bed_a4:
+    kind: bed
+    x: 25.65
+    y: 6.226
+    yaw: 3.142
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C1
+    ward: W1
+    label: D4
+    cabinet:
+      x: 26.0
+      y: 5.46
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 26.0
+      y: 5.654
+      z: 0.6355
+      yaw: 0.0
+  bed_b1:
+    kind: bed
+    x: 22.298
+    y: -0.106
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C2
+    ward: W1
+    label: D5
+    cabinet:
+      x: 23.0
+      y: 0.244
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 22.82
+      y: 0.244
+      z: 0.6355
+      yaw: 0.0
+  bed_b2:
+    kind: bed
+    x: 25.298
+    y: -0.106
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C2
+    ward: W1
+    label: D6
+    cabinet:
+      x: 26.0
+      y: 0.244
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 25.82
+      y: 0.244
+      z: 0.6355
+      yaw: 0.0
+  bed_b3:
+    kind: bed
+    x: 28.298
+    y: -0.106
+    yaw: -1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C2
+    ward: W1
+    label: D7
+    cabinet:
+      x: 29.0
+      y: 0.244
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 28.82
+      y: 0.244
+      z: 0.6355
+      yaw: 0.0
+  bed_b4:
+    kind: bed
+    x: 23.702
+    y: -1.385
+    yaw: 1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C2
+    ward: W1
+    label: D8
+    cabinet:
+      x: 23.0
+      y: -1.735
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 23.18
+      y: -1.735
+      z: 0.6355
+      yaw: 0.0
+  bed_b5:
+    kind: bed
+    x: 26.702
+    y: -1.385
+    yaw: 1.571
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C2
+    ward: W1
+    label: D9
+    cabinet:
+      x: 26.0
+      y: -1.735
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 26.18
+      y: -1.735
+      z: 0.6355
+      yaw: 0.0
+  bed_b6:
+    kind: bed
+    x: 28.65
+    y: -0.969
+    yaw: 3.142
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    room: C2
+    ward: W1
+    label: D10
+    cabinet:
+      x: 29.0
+      y: -1.735
+      z: 0.631
+      yaw: 0.0
+    tag:
+      x: 29.0
+      y: -1.54
+      z: 0.6355
+      yaw: 0.0
+pharmacy:
+  belt_end:
+    x: -8.26605892
+    y: 4.90165615
+    z: 0.36554548
+    yaw: -1.5708

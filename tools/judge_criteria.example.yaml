@@ -1,0 +1,35 @@
+# judge_run.py 의 기준 파일 **보기**. 실제 판정선은 슬롯마다 결과를 보기 전에 따로 고정한다.
+#
+# 이 파일을 그대로 합격선으로 쓰지 않는다. 복사해서 그 회차의 값으로 고치고, 고친 파일을
+# 회차 기록과 함께 남긴다. 스크립트는 "센다", 판정은 이 파일과의 대조다.
+#
+#   python3 tools/judge_run.py --logs ~/p3_demo_logs --stamp <기동시각> \
+#       --run <run 디렉토리> --criteria <이 파일을 고친 것>
+
+# "새 종류 WARN" 의 기준 목록(2026-09-21 확정). 여기 없는 종류가 나오면 새 종류다.
+# 값은 judge_run.warn_kind() 가 만드는 서명이다(숫자·경로·시각을 지운 것).
+#   python3 -c "import sys; sys.path.insert(0,'tools'); import judge_run; print(judge_run.warn_kind(input()))"
+warn_baseline:
+  # arm: joint_states 수신 공백
+  - '[WARN] [T] [mN_arm]: joint_states 수신 공백 N s(wall). stale 은 N s, 유예 N s.'
+  # arm: rail/joint_states 수신 공백
+  - '[WARN] [T] [mN_arm]: railPATH 수신 공백 N s(wall). stale 은 N s, 유예 N s.'
+  # stack: down 의 SIGINT. 회차마다 1 건 나온다. 노드 이름표가 없어 노드별 집계에서 빠지던 줄이다.
+  - '[WARN] [launch]: user interrupted with ctrl-c (SIGINT)'
+  # headless 회차에서만 더한다(GLFW·display 3 종). 창 모드 회차에는 넣지 않는다.
+
+# 이벤트 차례(계약 2.6절). 비워 두면 차례를 보지 않는다.
+# 한 바퀴 스텁 전 구간의 값은 src/rokey_p3_bringup/test/test_stub_loop.py 의 CONTRACT_ORDER 와 같다.
+event_order: []
+
+# 판정선. 여기 없는 항목은 **판정하지 않는다**("기준 없음" 으로 나온다).
+gates:
+  laps: {min: 3}            # K6: 연속 3 바퀴. REQUEST_ACCEPTED→DOCKED 로 끝난 것만
+  # open_trips: {max: 0}    # 끝나지 않은 요청. 켜면 미완료가 laps 와 별도로 미달이 된다
+  drops: {max: 0}           # 낙하(#397)
+  errors: {max: 0}          # [ERROR]
+  tracebacks: {max: 0}
+  http_rejects: {max: 0}    # 의도하지 않은 거부. 일부러 거부를 유도한 회차라면 올린다
+  new_warn_kinds: {max: 0}  # 기준 목록에 없는 WARN 종류
+  refill_failed: {max: 0}
+  # cabinet_present: {min: 3}   # K5 가 붙은 뒤에 켠다. 그 전 회차는 0 이 정상이다(pharmacy_only)

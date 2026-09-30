@@ -1,0 +1,199 @@
+{
+  "server_run_id": "0d30ee5f",
+  "server_time": "2026-09-17T08:04:36.171Z",
+  "mode": "fixture",
+  "commands_enabled": true,
+  "seq": 76,
+  "epoch": 6,
+  "reset_in_progress": false,
+  "clock": {
+    "sim_s": 238.5,
+    "alive": true,
+    "age_wall_s": 0.024646
+  },
+  "trip": {
+    "request_id": "req-0002",
+    "mode": null,
+    "mode_name": null,
+    "mode_source": null,
+    "destination_id": null,
+    "robot_id": null,
+    "phase": "accepted",
+    "phase_label": "적재 위치로 이동",
+    "phase_source": "status_view",
+    "started_sim_s": 238.5,
+    "last_event_sim_s": 238.5,
+    "orders": [
+      {
+        "order_id": "ord-102",
+        "patient_id": null,
+        "item_id": null,
+        "state": 0,
+        "state_name": "ACCEPTED",
+        "reason": "",
+        "stamp": 238.5
+      }
+    ]
+  },
+  "dispenser": {
+    "paused_item_ids": [],
+    "queue_length": 0,
+    "belt_occupied": false,
+    "stamp": 227.5,
+    "wall": "2026-09-17T08:04:25.076Z",
+    "stale": true,
+    "paused": false,
+    "refilling": false,
+    "refilling_item_ids": [],
+    "slots": [
+      {
+        "item_id": "drug-ibu",
+        "slot": 0,
+        "lot_id": "L-2409",
+        "expiry": "2027-03-01",
+        "count": 12,
+        "active": true,
+        "slot_name": "A"
+      },
+      {
+        "item_id": "drug-acet",
+        "slot": 1,
+        "lot_id": "L-2411",
+        "expiry": "2027-06-30",
+        "count": 7,
+        "active": true,
+        "slot_name": "B"
+      }
+    ]
+  },
+  "belt": {
+    "occupied": false,
+    "at_end": false,
+    "order_id": "",
+    "stamp": 184.0,
+    "wall": "2026-09-17T08:03:41.259Z",
+    "stale": true
+  },
+  "signals": {
+    "arm_at_home": {
+      "value": true,
+      "wall": "2026-09-17T08:03:45.294Z",
+      "age_wall_s": 50.877176,
+      "stale": true
+    },
+    "base_stopped": {
+      "value": true,
+      "wall": "2026-09-17T08:03:32.693Z",
+      "age_wall_s": 63.477624,
+      "stale": true
+    },
+    "gripper_holding": {
+      "value": false,
+      "wall": "2026-09-17T08:03:43.277Z",
+      "age_wall_s": 52.893734,
+      "stale": true
+    },
+    "belt": {
+      "value": false,
+      "wall": "2026-09-17T08:03:41.259Z",
+      "age_wall_s": 54.911225,
+      "stale": true
+    },
+    "m0609_at_home": {
+      "value": true,
+      "wall": "2026-09-17T08:04:24.572Z",
+      "age_wall_s": 11.599051,
+      "stale": true
+    }
+  },
+  "cabinet": null,
+  "recent_events": [
+    {
+      "seq": 74,
+      "name": "RESET_BEGIN",
+      "request_id": "",
+      "order_id": "",
+      "robot_id": "",
+      "epoch": 6,
+      "detail": "",
+      "stamp": 233.0,
+      "wall": "2026-09-17T08:04:30.608Z"
+    },
+    {
+      "seq": 75,
+      "name": "RESET_DONE",
+      "request_id": "",
+      "order_id": "",
+      "robot_id": "",
+      "epoch": 6,
+      "detail": "",
+      "stamp": 235.0,
+      "wall": "2026-09-17T08:04:32.619Z"
+    },
+    {
+      "seq": 76,
+      "name": "REQUEST_ACCEPTED",
+      "request_id": "req-0002",
+      "order_id": "ord-102",
+      "robot_id": "",
+      "epoch": 6,
+      "detail": "",
+      "stamp": 238.5,
+      "wall": "2026-09-17T08:04:36.146Z"
+    }
+  ],
+  "alarms": [
+    {
+      "id": "98982a",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — arm_at_home (50.9 s)",
+      "request_id": null,
+      "order_id": "arm_at_home",
+      "stamp": 238.5,
+      "epoch": 6
+    },
+    {
+      "id": "2cce7f",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — base_stopped (63.5 s)",
+      "request_id": null,
+      "order_id": "base_stopped",
+      "stamp": 238.5,
+      "epoch": 6
+    },
+    {
+      "id": "6fffeb",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — gripper_holding (52.9 s)",
+      "request_id": null,
+      "order_id": "gripper_holding",
+      "stamp": 238.5,
+      "epoch": 6
+    },
+    {
+      "id": "594ebf",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — belt (54.9 s)",
+      "request_id": null,
+      "order_id": "belt",
+      "stamp": 238.5,
+      "epoch": 6
+    },
+    {
+      "id": "9f2e40",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — m0609_at_home (11.6 s)",
+      "request_id": null,
+      "order_id": "m0609_at_home",
+      "stamp": 238.5,
+      "epoch": 6
+    }
+  ],
+  "_note": "mock 의 실제 /api/snapshot. mode_source=null — mode/destination_id/patient_id/item_id 를 못 얻은 경우(api.md §1.3).",
+  "logs": []
+}

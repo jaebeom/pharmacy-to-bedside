@@ -1,0 +1,54 @@
+# 병원 한 바퀴에서 M0609 보충이 **두 번, 종류별로 한 번씩** 나게 하는 재고(재범 v0 정의 9/23:
+# "약통(원통)과 약 모듈을 각각 집어 조제기에 넣는 것이 보여야 한다", 리하 #576).
+# 형식·로트는 dispenser.concurrent-refill.yaml 과 같다. 다른 것은 drug-ibu 를 문턱까지 내려 둔 것뿐이다.
+#
+#   drug-ibu(모듈)  두 슬롯 다 0 → 기동 때 멈춤(paused)이고 곧바로 보충 요청이다
+#     (`DispenserInventory.__init__`: 합계 0 인 약품이 `_paused`·`_requested` 로 들어간다).
+#     문턱 아래로만 두면(합계 1) 요청은 `take()` 때 나므로 ibu 주문이 없는 한 보충이 안 난다.
+#     보충 계획은 상태를 읽으므로 주문 없이도 이 요청을 집어 간다(refill_planner 머리 주석).
+#     둘 다 비어 있으면 슬롯 A 만 채운다. 이 한 바퀴에서 ibu 는 조제하지 않으니 멈춤은 문제가 아니다.
+#   drug-amox(원통) 합계 2 → ord-0001 이 한 봉투를 내면 1 ≤ 1 → REFILL_REQUESTED. 그때 AMR 은
+#     봉투를 싣고 병상으로 가는 중이다(다중 로봇 조율, #527 R행). **겹쳤는지는 오케스트레이터 info
+#     로그의 `refill_overlap send … overlap=yes|no` 줄로 본다**(Event 가 아니라 `events.jsonl` 에는 없다).
+#     `overlap=yes` 는 그때 트립이 배송 중(`trip_fsm.DELIVERY_STATES`: TRANSIT·AUTHENTICATING·
+#     DELIVERING·NEXT_STOP)이었다는 뜻이다. `IDLE` 이 아닌 것과 다르다 — 조제실에 서 있는 상태는 `no` 다.
+#
+# 약품 → 약통 종류는 `layout_v2.default_v2()["items"]` 다: cylinder=drug-amox, module=drug-ibu.
+# 실험용 값이다. 실측·현장값이 아니다. 리셋하면 이 파일 값으로 되돌린다(계약 6절 3).
+
+version: 1
+
+refill_threshold: 1
+
+items:
+  drug-amox:
+    - {slot: a, lot_id: lot-amox-01, expiry: "2027-03-31", count: 2}
+    - {slot: b, lot_id: lot-amox-02, expiry: "2027-09-30", count: 0}
+  drug-ibu:
+    - {slot: a, lot_id: lot-ibu-01, expiry: "2027-05-31", count: 0}
+    - {slot: b, lot_id: lot-ibu-02, expiry: "2027-11-30", count: 0}
+
+# 선반(논리 재고). 재범 9/29 N3 "쓴 만큼 줄게": 물리 선반 18칸(원통 9·모듈 9, 스테이지 --workcell-consume 로
+# 쓴 약통은 안 돌아온다)에 맞춰 약품마다 9통이다. 보충 한 번에 한 통씩 줄고 리셋이 이 파일 값으로 되돌린다.
+# 로트 05–11 은 합성값이다(카탈로그 cn- 가 없다 — 장착 확인은 물리 칸의 cn-02xx QR 로 한다).
+shelf:
+  drug-amox:
+    - {lot_id: lot-amox-03, expiry: "2028-03-31", count: 5}
+    - {lot_id: lot-amox-04, expiry: "2028-09-30", count: 5}
+    - {lot_id: lot-amox-05, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-amox-06, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-amox-07, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-amox-08, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-amox-09, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-amox-10, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-amox-11, expiry: "2028-12-31", count: 5}
+  drug-ibu:
+    - {lot_id: lot-ibu-03, expiry: "2028-05-31", count: 5}
+    - {lot_id: lot-ibu-04, expiry: "2028-11-30", count: 5}
+    - {lot_id: lot-ibu-05, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-ibu-06, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-ibu-07, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-ibu-08, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-ibu-09, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-ibu-10, expiry: "2028-12-31", count: 5}
+    - {lot_id: lot-ibu-11, expiry: "2028-12-31", count: 5}

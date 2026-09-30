@@ -1,0 +1,25 @@
+# 보호 경로. 여기 적힌 경로를 바꾸는 PR 은 그 담당 사람의 승인이 있어야 병합된다.
+# 봇 머지 조건은 docs/process/github-governance.md 의 "봇 머지 조건" 절.
+# 패키지 코드 본문(orchestrator, bringup, manipulation, perception)은 적지 않는다.
+# 그건 봇 머지 조건 안에서 들어가고 다음 날 스크럼에서 사람이 사후 검토한다.
+# handle 은 2026-09-17 collaborator 목록에서 확인했다.
+
+# 공용 파일: 인터페이스, 계약, ADR, 지표 정책, protocol, evidence, 검사기, CI, 규칙 문서 — 저장소 관리
+/src/rokey_p3_interfaces/   @jaebeom
+/docs/architecture/         @jaebeom
+/docs/adr/                  @jaebeom
+/docs/policy/               @jaebeom
+/experiments/protocols/     @jaebeom
+/evidence/                  @jaebeom
+/schemas/                   @jaebeom
+/tools/                     @jaebeom
+/.github/                   @jaebeom
+/AGENTS.md                  @jaebeom
+/CLAUDE.md                  @jaebeom
+/CONTRIBUTING.md            @jaebeom
+/ruff.toml                  @jaebeom
+
+# 다른 사람 레인. 클라우드 세션이 건드리지 않는 곳이라 들어오면 그 담당이 본다.
+/src/rokey_p3_navigation/   @Taegyu-Lee1117
+/src/rokey_p3_description/  @parksejun12
+/sim/                       @parksejun12

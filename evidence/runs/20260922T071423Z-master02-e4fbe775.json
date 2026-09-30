@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "run_id": "20260922T071423Z-master02-e4fbe775",
+  "created_at": "2026-09-22T07:14:23Z",
+  "code": {
+    "commit": "5a138c972dc8762af461ff5b96c5cb0ae1a6378e",
+    "dirty": false
+  },
+  "host_id": "master02",
+  "environment": {
+    "versions": {
+      "os": "Ubuntu 24.04.4 LTS",
+      "ros": "jazzy",
+      "isaac_sim": "5.1.0-rc.19",
+      "rmw": "rmw_fastrtps_cpp",
+      "gpu_driver": "580.173.02",
+      "cuda": "13.0 driver API"
+    },
+    "fingerprints": {
+      "config": {
+        "sha256": "049ea33ad493cb947209a9f134fe2d79efdcddfcf2aa1ae0335904eeb08675f5"
+      },
+      "scene": {
+        "sha256": "d667ee9da2a36e2f9829c77323ebcdcd878e8d066b511dbbeb658dbd4bb76e76"
+      },
+      "model": {
+        "not_applicable": "학습 모델 없이 기존 기구학 및 거리 기반 attach를 사용했다."
+      },
+      "dataset": {
+        "not_applicable": "학습/평가 데이터셋 없이 측정한 USD 지형과 난수 셀 선택을 사용했다."
+      }
+    }
+  },
+  "clocks": {
+    "duration": "simulation",
+    "timeout": "monotonic"
+  },
+  "seed": 835258728,
+  "repetition_index": 1,
+  "protocol": {
+    "path": "experiments/protocols/hospital-refill-integration-pilot-v1.json",
+    "sha256": "6b7af9cf99676d9a41459876e785002082b4f92bc13c697c917b20f695acc39e"
+  },
+  "phase": "pilot",
+  "outcome": "failed",
+  "artifacts": [
+    {
+      "uri": "sha256/7f0dfb5e46feb5fc012160441bd9570689829f72fc78c0458845215c68d42111/trials.mkv",
+      "sha256": "7f0dfb5e46feb5fc012160441bd9570689829f72fc78c0458845215c68d42111",
+      "size_bytes": 91883485
+    },
+    {
+      "uri": "sha256/a4619b135b49a0b506409153ddeb28842d896ee4aff664d8e6480823d587f01d/launch-stage.sh",
+      "sha256": "a4619b135b49a0b506409153ddeb28842d896ee4aff664d8e6480823d587f01d",
+      "size_bytes": 1283
+    },
+    {
+      "uri": "sha256/50c7c2dc5556d7abaef0d55fbedef014dd34eac887141a32289c937550466cac/stage.log",
+      "sha256": "50c7c2dc5556d7abaef0d55fbedef014dd34eac887141a32289c937550466cac",
+      "size_bytes": 257448268
+    },
+    {
+      "uri": "sha256/0b15f5f925b0d6243e0e3ac6a2069c30e20bc57bb90083dde32586f064be5b54/launch-arm.sh",
+      "sha256": "0b15f5f925b0d6243e0e3ac6a2069c30e20bc57bb90083dde32586f064be5b54",
+      "size_bytes": 335
+    },
+    {
+      "uri": "sha256/9b9e54cf2e2f3a4722ee6ab1d1863e95ebec97c3438915ddf7ca413090b574cd/repository-tests.log",
+      "sha256": "9b9e54cf2e2f3a4722ee6ab1d1863e95ebec97c3438915ddf7ca413090b574cd",
+      "size_bytes": 288
+    },
+    {
+      "uri": "sha256/049ea33ad493cb947209a9f134fe2d79efdcddfcf2aa1ae0335904eeb08675f5/deployment.json",
+      "sha256": "049ea33ad493cb947209a9f134fe2d79efdcddfcf2aa1ae0335904eeb08675f5",
+      "size_bytes": 1967
+    },
+    {
+      "uri": "sha256/a6658029692f6fec2ef3069b011024105e053261f5fa662b04b49f7960ace79d/arm.log",
+      "sha256": "a6658029692f6fec2ef3069b011024105e053261f5fa662b04b49f7960ace79d",
+      "size_bytes": 35135
+    },
+    {
+      "uri": "sha256/131c9ef088a2ad87c161fcb9a6de9ad0064958e4b777a5e8c33714ea6cf32f72/ready.png",
+      "sha256": "131c9ef088a2ad87c161fcb9a6de9ad0064958e4b777a5e8c33714ea6cf32f72",
+      "size_bytes": 657650
+    },
+    {
+      "uri": "sha256/87880977f3860990c10ef33329dbff493df3ef426747424a0846aabf14db9271/clock-publishers.txt",
+      "sha256": "87880977f3860990c10ef33329dbff493df3ef426747424a0846aabf14db9271",
+      "size_bytes": 1412
+    },
+    {
+      "uri": "sha256/57173aee3fcb406a0f0631847e62ddd518487bc6e00c6cfec29b50dd69ba1bcc/sim-tests.log",
+      "sha256": "57173aee3fcb406a0f0631847e62ddd518487bc6e00c6cfec29b50dd69ba1bcc",
+      "size_bytes": 991
+    },
+    {
+      "uri": "sha256/d4db81c7d98a2eef04da1f28f0d8db3f21a535e08f5088f87628417b8a6bb9ae/trials.log",
+      "sha256": "d4db81c7d98a2eef04da1f28f0d8db3f21a535e08f5088f87628417b8a6bb9ae",
+      "size_bytes": 132
+    },
+    {
+      "uri": "sha256/941d7428f5388b811e4de2d6a5d010712447be2859caad456f1d268b731912ac/arm-parameters.yaml",
+      "sha256": "941d7428f5388b811e4de2d6a5d010712447be2859caad456f1d268b731912ac",
+      "size_bytes": 2425
+    },
+    {
+      "uri": "sha256/9df52d4eed1a5d077fedb4d122ae7c72eb5cd2da6ccc1b9480b811889813e27e/kit.log",
+      "sha256": "9df52d4eed1a5d077fedb4d122ae7c72eb5cd2da6ccc1b9480b811889813e27e",
+      "size_bytes": 260180642
+    },
+    {
+      "uri": "sha256/ca216cd7e8636ab3a55897f44780f523c3c43c191e634d2996673426e5ddfef6/results.json",
+      "sha256": "ca216cd7e8636ab3a55897f44780f523c3c43c191e634d2996673426e5ddfef6",
+      "size_bytes": 166
+    },
+    {
+      "uri": "sha256/f039d7fd85a5257a6d103130cbae0e05246e0dba5bb6b4d7cdc424626f7837e7/events.jsonl",
+      "sha256": "f039d7fd85a5257a6d103130cbae0e05246e0dba5bb6b4d7cdc424626f7837e7",
+      "size_bytes": 5008360
+    },
+    {
+      "uri": "sha256/d667ee9da2a36e2f9829c77323ebcdcd878e8d066b511dbbeb658dbd4bb76e76/base.usda",
+      "sha256": "d667ee9da2a36e2f9829c77323ebcdcd878e8d066b511dbbeb658dbd4bb76e76",
+      "size_bytes": 157660
+    },
+    {
+      "uri": "sha256/2d7149fdad9c96b974b2d6df680d3fd2c4dbd2511f8d51d8ac2b237ba996e5fb/workcell.json",
+      "sha256": "2d7149fdad9c96b974b2d6df680d3fd2c4dbd2511f8d51d8ac2b237ba996e5fb",
+      "size_bytes": 100918
+    },
+    {
+      "uri": "sha256/c2d30a3a1dab7cdc0fe26fde1a6fd75e4114a87d8a01151afb7f8eff1c55f2a7/measurements.json",
+      "sha256": "c2d30a3a1dab7cdc0fe26fde1a6fd75e4114a87d8a01151afb7f8eff1c55f2a7",
+      "size_bytes": 4531
+    }
+  ],
+  "metrics": [
+    {
+      "name": "refill_success",
+      "value": 0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "grasp_attached",
+      "value": 1,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "rail_peak_speed",
+      "value": 2.961455821990967,
+      "unit": "m/s",
+      "sample_count": 4718,
+      "missing_count": 0
+    }
+  ],
+  "notes": "preferred_first / 315 obstacles. First goal shelf_74: attached, then 90 sim s deadline during raised rail transfer; HOLD and no home. 1 accepted goal, following 2 not sent. Planning took 123.2 wall s while startup precompute was still running; this failed run is not replaced by a retry. Runtime stage launched cdfb743, unchanged runtime files correspond to client commit 5a138c9. Full component hashes/launch commands in deployment artifact. No friction-grasp or full-delivery claim. Artifact keys resolve under /home/rokey/markle_tmp/hospital-evidence-store on master02."
+}

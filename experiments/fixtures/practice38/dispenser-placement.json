@@ -1,0 +1,23 @@
+{
+  "scene_geometry": "PASS",
+  "checked_prims": 340,
+  "anchors_world": {
+    "PillOpening": [
+      -8.05,
+      11.115,
+      0.98
+    ],
+    "ModuleEntry": [
+      -7.7,
+      11.11546546,
+      1.02
+    ],
+    "ConveyorOpening": [
+      -9.8225,
+      11.26546546,
+      1.105
+    ]
+  },
+  "asset_sha256": "cd2591a821d96e44e3a0a90ef66ee33e6fd1b432582618163094bb22242ddaf2",
+  "prim": "/World/ReviewedDispenser"
+}

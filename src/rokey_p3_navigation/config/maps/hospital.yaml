@@ -1,0 +1,11 @@
+# 자동 생성물 — 손으로 고치지 않는다. sim/standalone/usd_occupancy_map.py
+# source_usd: sim/scenes/hospital_navigationv1.usda sha256 8c144b9b85b1967ee946eb827a117a96be8b8270e026463f1910f1e79744bba0
+# z_band: [0.1, 1.8] m, render geometry (not PhysX collision), pgm sha256 e897037500b11a05d7b25af8b626348283a30ce82865846a8548e4a0b3c41fa8
+# skip: ['/World/ridgeback_ur5', '/World/PouchTemplate', '/World/gripper', '/World/PouchPool', '/World/Environment/hospital/SM_SupplyCart_02a_28']
+image: hospital.pgm
+mode: trinary
+resolution: 0.05
+origin: [-12.250, -6.500, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

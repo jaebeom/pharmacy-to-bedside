@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# 머지된 PR 의 브랜치에 커밋을 더 올리는 것을 막는다.
+#
+# 그런 커밋은 `main` 에 들어가지 않고 브랜치에 매달린다. 9/18 에 다섯 번(#162·#195·#203·#208·#139),
+# 9/21 에 세 번(#413·#415·#420) 걸렸다. 그때마다 "다음부터 확인한다" 로 넘겼고 그때마다 다시 걸렸다.
+# 그래서 확인을 습관이 아니라 push 앞의 장치로 둔다.
+#
+# 설치(클론마다 한 번. `.git/hooks` 는 복제되지 않는다):
+#
+#     git config core.hooksPath tools/git-hooks
+#
+# 워크트리를 쓰는 클론에서는 **공용 git 디렉토리 하나에 걸리므로 그 클론의 워크트리 전부**에 적용된다.
+# 끄기: `git config --unset core.hooksPath`, 한 번만 넘기기: `git push --no-verify`.
+#
+# 막지 않는 경우(전부 통과시킨다 — 이 훅 때문에 일이 멈추면 안 된다):
+# - `gh` 가 없거나 조회가 실패한다(네트워크·권한).
+# - 그 브랜치에 PR 이 없다. 열려 있다. Draft 다.
+# - `main` 으로 미는 것, 브랜치 삭제.
+set -uo pipefail
+
+command -v gh >/dev/null || exit 0
+
+blocked=0
+while read -r _local_ref local_sha remote_ref _remote_sha; do
+  [[ -z ${remote_ref:-} ]] && continue
+  [[ $local_sha =~ ^0+$ ]] && continue                 # 브랜치 삭제
+  branch=${remote_ref#refs/heads/}
+  [[ $branch == "$remote_ref" || $branch == main ]] && continue
+
+  row=$(gh pr list --head "$branch" --state all --limit 1 --json number,state \
+          --jq '.[0] | "\(.number) \(.state)"' 2>/dev/null) || continue
+  [[ -z $row || $row == 'null null' ]] && continue
+  number=${row%% *}
+  state=${row##* }
+  [[ $state == MERGED ]] || continue
+
+  blocked=1
+  cat >&2 <<MSG
+
+[pre-push] 멈춘다. 브랜치 '$branch' 의 PR #$number 는 **이미 머지됐다**.
+여기에 올린 커밋은 main 에 들어가지 않는다.
+
+  git switch -c <새-브랜치> origin/main
+  git cherry-pick <커밋>
+  gh pr create --base main ...
+
+그 PR 이 정말 열려 있다고 확인했으면: git push --no-verify
+이 훅을 끄려면: git config --unset core.hooksPath
+
+MSG
+done
+
+exit "$blocked"

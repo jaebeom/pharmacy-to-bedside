@@ -1,0 +1,28 @@
+# 조제기 재고. 약품마다 슬롯 2개다(계약 2.1절). 이 데이터는 orchestrator 가 갖고
+# isaac 은 봉투를 스폰하고 벨트를 돌리는 물리만 맡는다.
+# 로트와 유통기한은 FEFO 판단에만 쓰는 데이터이고 물리가 없다.
+# 리셋하면 이 파일의 값으로 되돌린다(계약 6절 3).
+
+version: 1
+
+# 남은 봉투가 이 값 이하로 내려가면 REFILL_REQUESTED 를 한 번 낸다.
+refill_threshold: 1
+
+items:
+  drug-amox:
+    - {slot: a, lot_id: lot-amox-01, expiry: "2027-03-31", count: 5}
+    - {slot: b, lot_id: lot-amox-02, expiry: "2027-09-30", count: 5}
+  drug-ibu:
+    - {slot: a, lot_id: lot-ibu-01, expiry: "2027-05-31", count: 5}
+    - {slot: b, lot_id: lot-ibu-02, expiry: "2027-11-30", count: 5}
+
+# 보충 선반. 약품별 캐니스터 목록이고 적힌 순서가 꺼내는 순서다. M0609 보충이 성공하면 맨 앞 것이
+# 빈 슬롯 하나에 들어가고 선반에서 빠진다. 값은 합성 데이터이고 리셋하면 이 파일의 값으로 되돌린다.
+# 보충한 캐니스터의 로트·유통기한·수량은 이 표가 정한다(계약 2.1절 끝). arm 결과의 lot_id 는 기록용이다.
+shelf:
+  drug-amox:
+    - {lot_id: lot-amox-03, expiry: "2028-03-31", count: 5}
+    - {lot_id: lot-amox-04, expiry: "2028-09-30", count: 5}
+  drug-ibu:
+    - {lot_id: lot-ibu-03, expiry: "2028-05-31", count: 5}
+    - {lot_id: lot-ibu-04, expiry: "2028-11-30", count: 5}

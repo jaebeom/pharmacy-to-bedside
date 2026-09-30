@@ -1,0 +1,17 @@
+{
+  "boundary": "next_dispense",
+  "contract": "docs/architecture/delivery-contract-v1.md 11.3 @ dc172d1",
+  "actor": "orchestrator(다음 Dispense 를 부를지). null 은 unknown·stale·토픽 없음",
+  "cases": [
+    {"id": "N01", "clause": "11.3", "title": "현재: 벨트 비움 + 픽 ok 면 배출", "input": {"belt_occupied": false, "pick": "ok", "placement": null, "arm_clear": null}, "expect": {"allowed": true}},
+    {"id": "N02", "clause": "11.3", "title": "현재: 픽이 실패로 끝나고 벨트가 비었으면 다음 주문 배출", "input": {"belt_occupied": false, "pick": "failed", "placement": null, "arm_clear": null}, "expect": {"allowed": true}},
+    {"id": "N03", "clause": "11.3", "title": "현재: 벨트 점유면 금지", "input": {"belt_occupied": true, "pick": "ok", "placement": null, "arm_clear": null}, "expect": {"allowed": false}},
+    {"id": "N04", "clause": "11.3 2.1", "title": "현재: 벨트 unknown 이면 금지", "input": {"belt_occupied": null, "pick": "ok", "placement": null, "arm_clear": null}, "expect": {"allowed": false}},
+    {"id": "N05", "clause": "11.3", "title": "현재: 픽 결과 전이면 벨트가 비어도 금지", "input": {"belt_occupied": false, "pick": "pending", "placement": null, "arm_clear": null}, "expect": {"allowed": false}},
+    {"id": "N06", "clause": "11.3", "title": "guard: 네 조건이 다 참이면 배출", "options": {"next_dispense_guard": true}, "input": {"belt_occupied": false, "pick": "ok", "placement": "confirmed", "arm_clear": "CLEAR"}, "expect": {"allowed": true}},
+    {"id": "N07", "clause": "11.3", "title": "guard: 팔이 통로 안이면 금지(at_home 과 무관)", "options": {"next_dispense_guard": true}, "input": {"belt_occupied": false, "pick": "ok", "placement": "confirmed", "arm_clear": "INTRUDING"}, "expect": {"allowed": false}},
+    {"id": "N08", "clause": "11.3", "title": "guard: arm_clear 토픽 없음·UNKNOWN 이면 금지", "options": {"next_dispense_guard": true}, "input": {"belt_occupied": false, "pick": "ok", "placement": "confirmed", "arm_clear": null}, "expect": {"allowed": false}},
+    {"id": "N09", "clause": "11.3 11.4", "title": "guard: 칸 안착 미확인이면 금지", "options": {"next_dispense_guard": true}, "input": {"belt_occupied": false, "pick": "ok", "placement": "unconfirmed", "arm_clear": "CLEAR"}, "expect": {"allowed": false}},
+    {"id": "N10", "clause": "11.3", "title": "guard: 픽이 실패면 금지", "options": {"next_dispense_guard": true}, "input": {"belt_occupied": false, "pick": "failed", "placement": null, "arm_clear": "CLEAR"}, "expect": {"allowed": false}}
+  ]
+}

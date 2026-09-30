@@ -1,0 +1,64 @@
+name: 구현 작업
+description: 구현할 것. 합격 조건을 먼저 적는다.
+title: "[작업] "
+labels: ["작업"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **합격 조건을 먼저 적는 것이 이 템플릿의 목적입니다.**
+        결과를 보고 기준을 맞추면 평가 기준의 「사전 정의한 정량 지표」를 충족하지 못합니다.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: 무엇을 만드는가
+      placeholder: 선반의 약 상자를 집어 병동 바구니의 해당 칸에 놓는다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: done
+    attributes:
+      label: 완료 판정 (합격 조건)
+      description: |
+        **숫자로 적습니다.** "잘 동작함" 은 판정이 아닙니다.
+        합격선 숫자가 아직 없으면 "pilot" 이라고 적고 무엇을 어떻게 잴지(정의·분모)만 씁니다.
+      placeholder: |
+        - 20회 시도 중 19회 이상 바구니 안착
+        - 한 품목당 소요 시간: pilot 후 D6 에 확정
+        - 파지 실패 시 재시도 1회 후 Alert 발행
+    validations:
+      required: true
+
+  - type: dropdown
+    id: layer
+    attributes:
+      label: 검증 계층
+      description: 어느 테스트로 확인하는가
+      multiple: true
+      options:
+        - L1 단위 — 순수 로직·좌표 변환·파라미터
+        - L2 통합 — 토픽·서비스·액션 인터페이스
+        - L3 시스템 — Isaac Sim 헤드리스 시나리오
+        - 저장소 harness — 문서·설정·증거
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pc
+    attributes:
+      label: 담당 PC
+      description: 별칭은 docs/setup/host-inventory.md
+      options:
+        - 마스터 1 (master01) — Isaac Sim
+        - 마스터 2 (master02) — 비전·오케스트레이터
+        - 개인 노트북 (dev01~dev04)
+        - 무관
+
+  - type: textarea
+    id: blocked
+    attributes:
+      label: 선행 작업
+      description: 이 작업이 시작되려면 먼저 끝나야 하는 이슈
+      placeholder: "#7 이 머지된 뒤"

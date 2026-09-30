@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "run_id": "20260919T181358Z-master01-154727c1",
+  "created_at": "2026-09-19T18:13:58Z",
+  "code": {
+    "commit": "2c68b73cd0f11945586656186f995d147d45ba6d",
+    "dirty": false
+  },
+  "host_id": "master01",
+  "environment": {
+    "versions": {
+      "os": "Ubuntu 24.04.4 LTS",
+      "ros": "jazzy",
+      "isaac_sim": "5.1.0-rc.19+release.26219.9c81211b.gl",
+      "rmw": "rmw_fastrtps_cpp",
+      "gpu_driver": "580.173.02",
+      "cuda": "13.0 (nvidia-smi 머리글의 드라이버 CUDA 버전. CUDA toolkit·nvcc 없음)"
+    },
+    "fingerprints": {
+      "config": {
+        "sha256": "39500277ef37d0acac63a182fcea6e6cba9c8287dbfb2c24d47aab02511b62a2"
+      },
+      "scene": {
+        "not_applicable": "preset demo-ros-refill-v2 에는 base USD 가 없다. 스테이지가 code.commit 의 sim/standalone 코드로 장면을 만든다. 외부 로봇 USD sha256 은 deployment inventory(config fingerprint)에 있다"
+      },
+      "model": {
+        "not_applicable": "학습 모델을 쓰지 않았다. 검출은 스텁(stub_loop.launch.py use_stub_detector 기본 true)이다"
+      },
+      "dataset": {
+        "not_applicable": "데이터셋을 쓰지 않았다. 주문 풀·재고 파일은 config fingerprint 에 들어 있다"
+      }
+    }
+  },
+  "clocks": {
+    "duration": "simulation",
+    "timeout": "monotonic"
+  },
+  "seed": 2,
+  "repetition_index": 1,
+  "protocol": {
+    "path": "experiments/protocols/pharmacy-lap-pilot-v1.json",
+    "sha256": "7fcf25bd65adbfcea349a75767fd8316c9e731789e0b03e9010cdf9df7c4be05"
+  },
+  "phase": "pilot",
+  "outcome": "succeeded",
+  "artifacts": [
+    {
+      "uri": "sha256/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855/cabinet.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "uri": "sha256/cf1f9e0de34637e96eed031995d94ffffafa19de1e13776ed9a5e260ea8100ac/events.jsonl",
+      "sha256": "cf1f9e0de34637e96eed031995d94ffffafa19de1e13776ed9a5e260ea8100ac",
+      "size_bytes": 3078
+    },
+    {
+      "uri": "sha256/9a8d0a46677254db36a465c027865a6b87bca859fa8253477974707e6c2d215a/meta.json",
+      "sha256": "9a8d0a46677254db36a465c027865a6b87bca859fa8253477974707e6c2d215a",
+      "size_bytes": 299
+    },
+    {
+      "uri": "sha256/c65b155c1a15b56b5148ca25e1e495ba320c90b821dbfb11770cd8947faf668e/orders.jsonl",
+      "sha256": "c65b155c1a15b56b5148ca25e1e495ba320c90b821dbfb11770cd8947faf668e",
+      "size_bytes": 164
+    },
+    {
+      "uri": "sha256/3b0cfa4effd9465877ffe15328c73713b09f58dd8f5b56ee8b73a7b5a90646e5/order_status.jsonl",
+      "sha256": "3b0cfa4effd9465877ffe15328c73713b09f58dd8f5b56ee8b73a7b5a90646e5",
+      "size_bytes": 526
+    },
+    {
+      "uri": "sha256/39500277ef37d0acac63a182fcea6e6cba9c8287dbfb2c24d47aab02511b62a2/deployment-inventory-20260920-031105.txt",
+      "sha256": "39500277ef37d0acac63a182fcea6e6cba9c8287dbfb2c24d47aab02511b62a2",
+      "size_bytes": 2317
+    },
+    {
+      "uri": "sha256/76b3196eff576f15581e54a2e9e17c76480d614f96da3a3fec6489698103888a/20260920-031105-stage.log",
+      "sha256": "76b3196eff576f15581e54a2e9e17c76480d614f96da3a3fec6489698103888a",
+      "size_bytes": 1501799
+    },
+    {
+      "uri": "sha256/6dfb2bc4de733ce6cb247a205557caece7e02383a4797d4c8059498dce26047a/20260920-031105-kit.log",
+      "sha256": "6dfb2bc4de733ce6cb247a205557caece7e02383a4797d4c8059498dce26047a",
+      "size_bytes": 3386132
+    },
+    {
+      "uri": "sha256/985830eb2cf3c12e18f5a2258d5a031ad93db9dcc94e61d18da60be757f95147/20260920-031105-stack.log",
+      "sha256": "985830eb2cf3c12e18f5a2258d5a031ad93db9dcc94e61d18da60be757f95147",
+      "size_bytes": 11023
+    },
+    {
+      "uri": "sha256/98748baccd9a34c37c7e53da9727027d523a1cf27ab24565cc60b05e38d75232/20260920-031105-arm.log",
+      "sha256": "98748baccd9a34c37c7e53da9727027d523a1cf27ab24565cc60b05e38d75232",
+      "size_bytes": 5434
+    },
+    {
+      "uri": "sha256/f5c0a0b44cd5098a8b1aa60d0d0e8b2f19d2edd9491a37faaab95f53f6fccf11/20260920-031105-web.log",
+      "sha256": "f5c0a0b44cd5098a8b1aa60d0d0e8b2f19d2edd9491a37faaab95f53f6fccf11",
+      "size_bytes": 1298
+    },
+    {
+      "uri": "sha256/b53a8941e8d8f2f357234a9ca00f59d28b1cc19e06d917ec37899909327dfec5/20260920-031105-tree.txt",
+      "sha256": "b53a8941e8d8f2f357234a9ca00f59d28b1cc19e06d917ec37899909327dfec5",
+      "size_bytes": 125
+    },
+    {
+      "uri": "sha256/29a2e9b73bc67cc6221135f231dae9da82c52627d1d8ab6ad97074f62da88c98/agg-20260919T181358Z-master01-154727c1.json",
+      "sha256": "29a2e9b73bc67cc6221135f231dae9da82c52627d1d8ab6ad97074f62da88c98",
+      "size_bytes": 3093
+    }
+  ],
+  "metrics": [
+    {
+      "name": "lap_s",
+      "value": 12.683333994,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "load_s",
+      "value": 11.100000578,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "dispense_to_end_s",
+      "value": 9.316667152,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "return_s",
+      "value": 1.016666719,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "refill_s",
+      "value": 22.516667841,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "pick_attempts",
+      "value": 1,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "lap_success",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    }
+  ],
+  "notes": "시행 3/3. RESET_DONE epoch 4(protocol purpose 2). 리셋은 웹 POST /api/reset(202)으로 했다. 웹 백엔드는 /orchestrator/reset 을 부른다(web/backend/app/ros_bridge.py). 웹 요청은 넣지 않았고 트립은 order_generator 자동 요청 1건(ord-0002, request r004-0001)이다. aggregate_runs.py(2c68b73) status=trial, trip_limit_s 600.0, notes 없음. 시드 미적용: Isaac 에 Dispense 스폰 시드 파라미터가 없어 seed 는 시행 번호로만 쓴다(purpose 8). 팔 m0609_arm 은 v2_seed=7 고정(시행 사이 같음). trip_limit_s 600 은 orchestrator 파라미터 기본값이다. deployment inventory 의 stack_cmd 에 덮어쓴 인자가 없다(use_isaac_adapter·pharmacy_only·publish_clock·emulate_m0609·use_stub_m0609·dispenser_file·order_pool_file·run_host 뿐). 팔은 v2_guarded_module_path:=false 도 받았다. protocol timeout 900 s monotonic watchdog 은 걸리지 않았다. 스테이지 --headless, preset demo-ros-refill-v2. 이 preset 은 base USD 가 없어 스테이지가 코드로 장면을 만든다(스테이지 로그 scene 줄이 모두 '-'). 그래서 scene fingerprint 는 not_applicable 이다. cabinet.jsonl 0 바이트: pharmacy_only 는 침상에 가지 않아 POUCH_PLACED 가 없고 /evaluator/cabinet 관측이 없다(stub_sim._emit_cabinet). protocol 지표는 cabinet 을 쓰지 않는다. config fingerprint = deployment inventory 파일의 sha256 이다. inventory 에는 스택·스테이지 인자와 dispenser(b12bd67f…)·order_pool(4092001b…)·zones(99d74b45…)·로봇 USD(b4879c83…) 해시가 있다. order_pool·zones 는 2c68b73 의 저장소 파일과 같다. 원본은 master01 로컬(~/.ros/rokey_p3/runs, ~/markle_tmp/ev)에 있다(결정 27). artifact URI 는 content-addressed 키이고 아직 그 위치에 복사하지 않았다. verify-artifacts 미실행. 웹 백엔드는 지난 release 워크트리(419b20b)의 venv 인터프리터·패키지로 돌렸고, 웹 코드와 정적 파일은 2c68b73 트리다(inventory web_cmd). 이 run 에서 웹은 리셋만 했다. 같은 기동의 epoch 1 run 20260919T181215Z-master01-1cefc5f8(시행 아님, 분모 제외, lap_s 12.533)의 원본은 시행 1 manifest 의 artifacts 에 보존한다. aggregate_runs.py --json 출력 파일 agg-<run_id>.json 을 artifacts 에 넣었다. 출처: #240 issuecomment-5744270086."
+}

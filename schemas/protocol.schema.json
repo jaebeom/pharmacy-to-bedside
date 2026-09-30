@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jaebeom/ROKEY_P3_A3/schemas/protocol.schema.json",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$(?![\\s\\S])"
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$(?![\\s\\S])"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$(?![\\s\\S])"
+    },
+    "protocol_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$(?![\\s\\S])"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[0-9]{8}T[0-9]{6}Z-master0[12]-[a-f0-9]{8}$(?![\\s\\S])"
+    },
+    "phase": {
+      "enum": [
+        "pilot",
+        "acceptance"
+      ]
+    },
+    "not_applicable": {
+      "type": "object",
+      "properties": {
+        "not_applicable": {
+          "type": "string",
+          "minLength": 10,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "not_applicable"
+      ],
+      "additionalProperties": false
+    },
+    "version": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!.*(?:latest|unknown|tbd|TBD|\\*|[<>~^])).*\\S.*$(?![\\s\\S])"
+        },
+        {
+          "$ref": "#/$defs/not_applicable"
+        }
+      ]
+    },
+    "fingerprint": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          },
+          "required": [
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "$ref": "#/$defs/not_applicable"
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        1
+      ]
+    },
+    "protocol_id": {
+      "$ref": "#/$defs/protocol_id"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "frozen"
+      ]
+    },
+    "phase": {
+      "$ref": "#/$defs/phase"
+    },
+    "created_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "frozen_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "purpose": {
+      "type": "string",
+      "pattern": "\\S",
+      "minLength": 1
+    },
+    "sample_plan": {
+      "type": "object",
+      "properties": {
+        "seeds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10000,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          }
+        },
+        "repetitions_per_seed": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      },
+      "required": [
+        "seeds",
+        "repetitions_per_seed"
+      ],
+      "additionalProperties": false
+    },
+    "timeout": {
+      "type": "object",
+      "properties": {
+        "seconds": {
+          "type": "number",
+          "minimum": 0.001
+        },
+        "clock": {
+          "enum": [
+            "monotonic"
+          ]
+        },
+        "policy": {
+          "enum": [
+            "record_timeout"
+          ]
+        }
+      },
+      "required": [
+        "seconds",
+        "clock",
+        "policy"
+      ],
+      "additionalProperties": false
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/$defs/name"
+          },
+          "unit": {
+            "type": "string",
+            "pattern": "\\S",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "pattern": "\\S",
+            "minLength": 1
+          },
+          "denominator": {
+            "type": "string",
+            "pattern": "\\S",
+            "minLength": 1
+          },
+          "aggregation": {
+            "enum": [
+              "sum",
+              "mean",
+              "max",
+              "min",
+              "count",
+              "ratio",
+              "single"
+            ]
+          },
+          "clock": {
+            "enum": [
+              "simulation",
+              "monotonic",
+              "none"
+            ],
+            "description": "Clock used for this metric; a run may contain both simulation and monotonic metrics. none is for non-time metrics."
+          },
+          "missing_policy": {
+            "enum": [
+              "record_missing"
+            ]
+          },
+          "threshold": {
+            "type": "object",
+            "properties": {
+              "operator": {
+                "enum": [
+                  "<",
+                  "<=",
+                  ">",
+                  ">=",
+                  "=="
+                ]
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "operator",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "unit",
+          "description",
+          "denominator",
+          "aggregation",
+          "clock",
+          "missing_policy"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "requires_failure_classification": {
+      "type": "boolean",
+      "description": "true 면 이 protocol 로 기록된 outcome=failed run 은 failure_class·failure_cause 없이는 evidence.py validate 를 통과 못한다(schemas/run.schema.json). 없으면 false 와 같다(과거 protocol 은 그대로 통과한다)."
+    }
+  },
+  "required": [
+    "schema_version",
+    "protocol_id",
+    "status",
+    "phase",
+    "created_at",
+    "purpose",
+    "sample_plan",
+    "timeout",
+    "metrics"
+  ],
+  "additionalProperties": false
+}

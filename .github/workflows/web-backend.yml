@@ -1,0 +1,120 @@
+name: Web backend
+
+# 관제 웹 백엔드(web/backend)의 시험을 돌린다. colcon 은 web/ 을 보지 않으므로(ci.yml 의 경로 판정에서
+# web/ 은 ros=false 로 빠진다) 여기서 안 돌리면 이 시험들은 CI 어디에서도 돌지 않는다.
+# ROS 통합 시험은 rclpy 와 빌드된 워크스페이스가 있어야 해서 이 러너에서는 뺀다 — 아래 PYTEST_MARKERS.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - '.github/workflows/web-backend.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - '.github/workflows/web-backend.yml'
+  workflow_dispatch:
+
+# ci.yml·harness.yml 과 같은 규칙. 같은 PR 의 이전 run 은 죽이고, main 커밋은 전부 검증한다.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+env:
+  # 제외는 여기 한 곳에서만 정한다. pytest.ini 의 addopts 에 기대지 않고 명령줄에 명시한다 —
+  # 설정 파일이 바뀌어 제외 범위가 조용히 넓어져도 이 로그에는 실제로 쓴 표현식이 찍힌다.
+  PYTEST_MARKERS: not ros
+
+jobs:
+  tests:
+    name: web/backend tests (pytest)
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: web/backend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      # 마이너까지 고정한다. 마스터 PC 와 개발 기계가 3.12.3 이고 ruff 의 target-version 은 py310 이라
+      # 3.12 안에서만 돌면 된다. 패치까지 박지 않는 이유는 러너 toolcache 에서 특정 패치가 빠지면
+      # 어제 초록이던 PR 이 오늘 빨개지기 때문이다(ruff 핀과 같은 이유, 방향만 반대).
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: web/backend/requirements.txt
+
+      - name: Install web/backend requirements
+        run: |
+          python -V
+          python -m pip install --upgrade pip
+          # rclpy 는 여기 없다. requirements.txt 주석 참고 — /opt/ros/jazzy 에서 오고, 이 job 은 ROS 없이 돈다.
+          python -m pip install -r requirements.txt
+          python -m pip list
+
+      # -v: 시험 이름이 한 줄씩 보인다. -ra: skip·xfail 이유가 요약에 찍힌다.
+      # 실서버 시험(tests/test_live_server.py)은 127.0.0.1 자유 포트에 uvicorn 을 실제로 띄워
+      # 밖에서 두드린다. TestClient 는 자체 WS 구현을 써서 /ws 404 를 못 잡았던 적이 있어 일부러 포함한다.
+      - name: Run pytest
+        run: |
+          echo "제외 표현식: -m \"$PYTEST_MARKERS\""
+          python -m pytest tests/ -m "$PYTEST_MARKERS" --strict-markers -v -ra --junitxml=junit.xml
+
+      # 초록의 뜻을 숫자로 못 박는다. "0개 수집인데 초록", "조용한 skip 이 통과처럼 보임" 을 여기서 막는다.
+      # pytest 가 실패해 위 step 이 빨개져도 숫자는 남기고 간다.
+      - name: Assert counts (no empty run, no silent skips)
+        if: ${{ !cancelled() }}
+        run: |
+          python - <<'PY'
+          import sys
+          import xml.etree.ElementTree as ET
+          from collections import Counter
+
+          root = ET.parse("junit.xml").getroot()
+          ts = root if root.tag == "testsuite" else root.find("testsuite")
+          n = {k: int(ts.get(k, 0)) for k in ("tests", "errors", "failures", "skipped")}
+          per = Counter(tc.get("classname", "?") for tc in ts.iter("testcase"))
+
+          for name, count in sorted(per.items()):
+              print(f"{count:5d}  {name}")
+
+          passed = n["tests"] - n["failures"] - n["errors"] - n["skipped"]
+          print(
+              f"\ncollected={n['tests']} passed={passed} "
+              f"failed={n['failures']} errors={n['errors']} skipped={n['skipped']}"
+          )
+          # deselected 는 junit 에 없다. 위 step 의 pytest 요약줄에서 본다.
+
+          live = sum(c for name, c in per.items() if "test_live_server" in name)
+          print(f"실서버(uvicorn 을 띄우는) 시험: {live}개")
+
+          bad = []
+          if n["tests"] == 0:
+              bad.append("수집된 시험이 0개다. 초록이어도 아무것도 검증하지 않은 것이다.")
+          if n["skipped"]:
+              bad.append(
+                  f"skip 된 시험이 {n['skipped']}개다. 제외는 -m 표현식으로만 한다. "
+                  "건너뛸 이유가 생겼다면 그 이유를 코드가 아니라 사람이 적고 이 검사를 함께 고쳐라."
+              )
+          if live == 0:
+              bad.append(
+                  "실서버 시험이 한 개도 돌지 않았다. TestClient 만으로는 /ws 가 404 인 것을 못 잡는다."
+              )
+          for line in bad:
+              print(f"::error::{line}")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Upload junit.xml
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-backend-junit
+          path: web/backend/junit.xml
+          if-no-files-found: error

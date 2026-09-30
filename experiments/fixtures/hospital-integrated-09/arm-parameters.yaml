@@ -1,0 +1,142 @@
+/m0609_arm:
+  ros__parameters:
+    command_rate_hz: 20.0
+    grasp_settle_s: 0.5
+    hold_timeout_s: 2.0
+    home_joint_positions:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    home_tolerance_rad: 0.05
+    inventory_topic: /m0609/shelf/inventory
+    joint_limits_high:
+    - 6.283185307179586
+    - 6.283185307179586
+    - 2.6179938779914944
+    - 6.283185307179586
+    - 6.283185307179586
+    - 6.283185307179586
+    joint_limits_low:
+    - -6.283185307179586
+    - -6.283185307179586
+    - -2.6179938779914944
+    - -6.283185307179586
+    - -6.283185307179586
+    - -6.283185307179586
+    joint_names:
+    - joint_1
+    - joint_2
+    - joint_3
+    - joint_4
+    - joint_5
+    - joint_6
+    max_joint_speed: 0.5
+    open_loop: false
+    rail_command_rate_hz: 50.0
+    rail_enabled: false
+    rail_joint_max_accel:
+    - 4.0
+    - 4.0
+    - 4.0
+    - 6.0
+    - 6.0
+    - 6.0
+    rail_joint_max_speed:
+    - 2.094
+    - 2.094
+    - 2.513
+    - 3.142
+    - 3.142
+    - 3.142
+    rail_joint_names:
+    - rail_x
+    - rail_y
+    rail_max_accel:
+    - 1.0
+    - 1.0
+    rail_max_speed:
+    - 0.8
+    - 0.8
+    rail_tcp_max_speed: 0.8
+    rail_tcp_offset_m:
+    - 0.0
+    - 0.0
+    - 0.19671
+    rail_teach_file: ''
+    rail_timeout_s: 10.0
+    rail_tolerance_m: 0.01
+    refill_timeout_s: 90.0
+    release_settle_s: 0.3
+    robot_id: m0609
+    scene_version: 2
+    shelf_approach_joints:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    shelf_grasp_joints:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    slot_a_approach_joints:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    slot_a_insert_joints:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    slot_b_approach_joints:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    slot_b_insert_joints:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    stale_grace_s: 3.0
+    start_type_description_service: true
+    state_gap_warn_s: 0.2
+    use_sim_time: true
+    v2_collision_file: ''
+    v2_guarded_module_path: false
+    v2_ik_seeds: 12
+    v2_max_skips: 3
+    v2_min_clearance: 0.01
+    v2_rail_joint_names:
+    - rail_x
+    - rail_y
+    - rail_z
+    v2_rail_max_accel:
+    - 1.0
+    - 1.0
+    - 1.0
+    v2_rail_max_speed:
+    - 0.8
+    - 0.8
+    - 0.8
+    v2_rail_select: preferred_first
+    v2_seed: 835258728
+    waypoint_timeout_s: 10.0
+    waypoint_tolerance_rad: 0.05
+

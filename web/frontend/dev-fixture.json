@@ -1,0 +1,307 @@
+{
+  "server_run_id": "0d30ee5f",
+  "server_time": "2026-09-17T08:03:47.989Z",
+  "mode": "fixture",
+  "commands_enabled": true,
+  "seq": 68,
+  "epoch": 5,
+  "reset_in_progress": true,
+  "clock": {
+    "sim_s": 190.5999999999999,
+    "alive": true,
+    "age_wall_s": 0.074723
+  },
+  "trip": {
+    "request_id": "req-0001",
+    "mode": 0,
+    "mode_name": "MODE_SINGLE",
+    "mode_source": "event_detail",
+    "destination_id": "station_a",
+    "robot_id": "amr_1",
+    "phase": "order_done",
+    "phase_label": "주문 닫힘",
+    "phase_source": "status_view",
+    "started_sim_s": 173.0,
+    "last_event_sim_s": 189.0,
+    "orders": [
+      {
+        "order_id": "ord-101",
+        "patient_id": "김환자",
+        "item_id": "drug-ibu",
+        "state": 11,
+        "state_name": "HOLD_RETURN",
+        "reason": "pharmacy_only",
+        "stamp": 189.0
+      }
+    ]
+  },
+  "dispenser": {
+    "paused_item_ids": [],
+    "queue_length": 0,
+    "belt_occupied": true,
+    "stamp": 178.0,
+    "wall": "2026-09-17T08:03:35.209Z",
+    "stale": true,
+    "paused": false,
+    "refilling": false,
+    "refilling_item_ids": [],
+    "slots": [
+      {
+        "item_id": "drug-ibu",
+        "slot": 0,
+        "lot_id": "L-2409",
+        "expiry": "2027-03-01",
+        "count": 2,
+        "active": true,
+        "slot_name": "A"
+      },
+      {
+        "item_id": "drug-acet",
+        "slot": 1,
+        "lot_id": "L-2411",
+        "expiry": "2027-06-30",
+        "count": 7,
+        "active": true,
+        "slot_name": "B"
+      }
+    ]
+  },
+  "belt": {
+    "occupied": false,
+    "at_end": false,
+    "order_id": "",
+    "stamp": 184.0,
+    "wall": "2026-09-17T08:03:41.259Z",
+    "stale": true
+  },
+  "signals": {
+    "arm_at_home": {
+      "value": true,
+      "wall": "2026-09-17T08:03:45.294Z",
+      "age_wall_s": 2.695295,
+      "stale": true
+    },
+    "base_stopped": {
+      "value": true,
+      "wall": "2026-09-17T08:03:32.693Z",
+      "age_wall_s": 15.295743,
+      "stale": true
+    },
+    "gripper_holding": {
+      "value": false,
+      "wall": "2026-09-17T08:03:43.277Z",
+      "age_wall_s": 4.711853,
+      "stale": true
+    },
+    "belt": {
+      "value": false,
+      "wall": "2026-09-17T08:03:41.259Z",
+      "age_wall_s": 6.729344,
+      "stale": true
+    },
+    "m0609_at_home": {
+      "value": true,
+      "wall": "2026-09-17T08:03:28.168Z",
+      "age_wall_s": 19.8204,
+      "stale": true
+    }
+  },
+  "cabinet": null,
+  "recent_events": [
+    {
+      "seq": 58,
+      "name": "RESET_BEGIN",
+      "request_id": "",
+      "order_id": "",
+      "robot_id": "",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 171.0,
+      "wall": "2026-09-17T08:03:28.168Z"
+    },
+    {
+      "seq": 59,
+      "name": "REQUEST_ACCEPTED",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "",
+      "epoch": 5,
+      "detail": "{\"mode\":0,\"destination_id\":\"station_a\",\"orders\":[{\"order_id\":\"ord-101\",\"patient_id\":\"김환자\",\"item_id\":\"drug-ibu\"}]}",
+      "stamp": 173.0,
+      "wall": "2026-09-17T08:03:30.180Z"
+    },
+    {
+      "seq": 60,
+      "name": "AMR_DOCKED_LOAD",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "amr_1",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 175.5,
+      "wall": "2026-09-17T08:03:32.693Z"
+    },
+    {
+      "seq": 61,
+      "name": "DISPENSED",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "dispenser",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 178.0,
+      "wall": "2026-09-17T08:03:35.209Z"
+    },
+    {
+      "seq": 62,
+      "name": "POUCH_AT_END",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "dispenser",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 181.5,
+      "wall": "2026-09-17T08:03:38.738Z"
+    },
+    {
+      "seq": 63,
+      "name": "PICK_ATTEMPT",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "amr_1",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 182.5,
+      "wall": "2026-09-17T08:03:39.747Z"
+    },
+    {
+      "seq": 64,
+      "name": "POUCH_PICKED",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "amr_1",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 184.0,
+      "wall": "2026-09-17T08:03:41.259Z"
+    },
+    {
+      "seq": 65,
+      "name": "POUCH_LOADED",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "amr_1",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 186.0,
+      "wall": "2026-09-17T08:03:43.277Z"
+    },
+    {
+      "seq": 66,
+      "name": "LOAD_DONE",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "amr_1",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 186.5,
+      "wall": "2026-09-17T08:03:43.780Z"
+    },
+    {
+      "seq": 67,
+      "name": "ARM_HOME",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "amr_1",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 188.0,
+      "wall": "2026-09-17T08:03:45.293Z"
+    },
+    {
+      "seq": 68,
+      "name": "ORDER_DONE",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "robot_id": "amr_1",
+      "epoch": 5,
+      "detail": "",
+      "stamp": 189.0,
+      "wall": "2026-09-17T08:03:46.302Z"
+    }
+  ],
+  "alarms": [
+    {
+      "id": "218f2d",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — arm_at_home (2.7 s)",
+      "request_id": null,
+      "order_id": "arm_at_home",
+      "stamp": 190.5999999999999,
+      "epoch": 5
+    },
+    {
+      "id": "00e436",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — base_stopped (15.3 s)",
+      "request_id": null,
+      "order_id": "base_stopped",
+      "stamp": 190.5999999999999,
+      "epoch": 5
+    },
+    {
+      "id": "d384c8",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — gripper_holding (4.7 s)",
+      "request_id": null,
+      "order_id": "gripper_holding",
+      "stamp": 190.5999999999999,
+      "epoch": 5
+    },
+    {
+      "id": "57c603",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — belt (6.7 s)",
+      "request_id": null,
+      "order_id": "belt",
+      "stamp": 190.5999999999999,
+      "epoch": 5
+    },
+    {
+      "id": "fca4b7",
+      "level": "warn",
+      "kind": "STATUS_STALE",
+      "message": "상태 끊김 — m0609_at_home (19.8 s)",
+      "request_id": null,
+      "order_id": "m0609_at_home",
+      "stamp": 190.5999999999999,
+      "epoch": 5
+    },
+    {
+      "id": "a631df",
+      "level": "warn",
+      "kind": "HOLD_RETURN",
+      "message": "주문 회수 — ord-101 (사유: pharmacy_only)",
+      "request_id": "req-0001",
+      "order_id": "ord-101",
+      "stamp": 189.0,
+      "epoch": 5
+    },
+    {
+      "id": "bdc174",
+      "level": "info",
+      "kind": "RESET_IN_PROGRESS",
+      "message": "리셋 중 (epoch 5)",
+      "request_id": null,
+      "order_id": null,
+      "stamp": 171.0,
+      "epoch": 5
+    }
+  ],
+  "_note": "mock --mock 의 실제 /api/snapshot 을 그대로 받아 둔 것. mode_source=event_detail (값이 다 채워진 경우).",
+  "logs": []
+}

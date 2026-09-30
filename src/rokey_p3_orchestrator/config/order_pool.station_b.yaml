@@ -1,0 +1,10 @@
+# 병원 간호스테이션 B 테이블 배송(재범 9/24: 목적지는 병상 협탁이 아니라 간호스테이션 B 의 테이블이다).
+# zone `station_b` = SM_SideTable_02a4_01 윗면. 형식·규칙은 order_pool.yaml 과 같다(계약 7절: order_id = 봉투 QR 내용,
+# 인식표 = pt-<patient_id>). `bed` 칸은 목적지 zone 이다 — 병상 흐름(ScanTag → 내려놓기 → CabinetObservation)을
+# 그대로 쓴다. 병상 열 곳 풀(order_pool.hospital.yaml)은 v1 증거로 그대로 둔다. P3_ORDER_POOL 로 고른다.
+# 숫자로만 된 ID 는 따옴표로 감싼다.
+
+version: 1
+
+orders:
+  - {order_id: ord-0011, patient_id: "2011", item_id: drug-amox, bed: station_b}

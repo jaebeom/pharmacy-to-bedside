@@ -1,0 +1,32 @@
+# 구역과 고정 프레임. 계약 v1 3절의 형식이다.
+#
+# 이 파일은 rokey_p3_description(simulation 소유) 에 있고 씬 배치와 같은 파일에서 나온다.
+# 읽는 쪽은 rokey_p3_navigation 의 fleet(구역 자세·허용오차)와 zones_tf(고정 프레임)다.
+#
+# **값은 전부 0 이다. 아직 아무것도 재지 않았다.**
+#   - x, y, yaw, cabinet, tag, pharmacy: 9/17 마스터에서 맵을 뽑은 뒤 채운다.
+#     map 의 원점·축은 Isaac world 의 원점·축이다(계약 3절).
+#   - tol_xy, tol_yaw: 9/19 도킹 오차 측정 뒤 채운다. UR5 도달 범위와 손 카메라 시야로 정한다(계약 2.2절).
+#     허용오차가 0 인 동안 fleet 는 arrived=true 를 내지 않는다.
+#
+# 단위는 m, rad. yaw 는 z 축 반시계 양수.
+# 구역 ID 규칙은 rokey_p3_navigation/zones.py 의 정규식이다:
+# pharm, load, dock_N, ward_x, station_x, room_xN, bed_xN.
+# 구역은 맵을 뽑으면서 늘어난다(대기 도크는 dock_1 부터 dock_5).
+
+frame: map
+
+zones:
+  load:      {kind: load,    x: 0.0, y: 0.0, yaw: 0.0, tol_xy: 0.0, tol_yaw: 0.0}
+  dock_1:    {kind: dock,    x: 0.0, y: 0.0, yaw: 0.0, tol_xy: 0.0, tol_yaw: 0.0}
+  bed_a1:    {kind: bed,     x: 0.0, y: 0.0, yaw: 0.0, tol_xy: 0.0, tol_yaw: 0.0,
+              cabinet: {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}, tag: {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}}
+  station_a: {kind: station, x: 0.0, y: 0.0, yaw: 0.0, tol_xy: 0.0, tol_yaw: 0.0,
+              cabinet: {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}, tag: {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}}
+
+# 조제실 고정 프레임. 계약 3절이 zones_tf 의 작성으로 정한 네 개다.
+pharmacy:
+  belt_end:         {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}
+  shelf:            {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}
+  dispenser_slot_a: {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}
+  dispenser_slot_b: {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}

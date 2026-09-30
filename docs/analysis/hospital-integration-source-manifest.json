@@ -1,0 +1,177 @@
+[
+  {
+    "source": "/tmp/p3_add_rail_robot.py",
+    "bytes": 2614,
+    "sha256": "08b6f29fb505c92f8c59557335fa4052a81711ad84e7a1d85e31f9ed2e0d2b38"
+  },
+  {
+    "source": "/tmp/p3_align_rail.py",
+    "bytes": 3557,
+    "sha256": "627ec6fad6168114fb4b92efebc5f442b169c25cf81eaf4b69c3a14b163763fa"
+  },
+  {
+    "source": "/tmp/p3_amr_inspect.py",
+    "bytes": 533,
+    "sha256": "f1568115c92b13d83fac8938dc0deabc84cfd9f1fd3e253fdca220ce4fb9f9c5"
+  },
+  {
+    "source": "/tmp/p3_asset_final_view.py",
+    "bytes": 1039,
+    "sha256": "8ef1170e2d8ccef09f47076143f1520b991da0b77097e6fc4b5c95c919fdd9e6"
+  },
+  {
+    "source": "/tmp/p3_attach_inlets.py",
+    "bytes": 3651,
+    "sha256": "b63b9edb1b7f824b97c18650683a7f54b875129971028a2aa83f10d8a1db99ea"
+  },
+  {
+    "source": "/tmp/p3_audit_asset.py",
+    "bytes": 716,
+    "sha256": "26e206372cbb39631bcf72682c3ccbe4f64ccc6b773b7f93e5d39906c61041a8"
+  },
+  {
+    "source": "/tmp/p3_belt_detail.py",
+    "bytes": 414,
+    "sha256": "94da1d32ab5359c8945a1ffea8f086aa4ac3cae9ca487dfad596935c5383d8f4"
+  },
+  {
+    "source": "/tmp/p3_check_reach.py",
+    "bytes": 1747,
+    "sha256": "17f89405f4a6a63430606aa1be594fe1c50c10f2ea25e6f2a9ff1392c6f45bfe"
+  },
+  {
+    "source": "/tmp/p3_check_reach484.py",
+    "bytes": 1752,
+    "sha256": "87cc7b70a602dd383378dd93ec614d85d4286d619adf4cf3f386b6a7184a05d7"
+  },
+  {
+    "source": "/tmp/p3_extract_clip.py",
+    "bytes": 877,
+    "sha256": "ae49bd99530420f216a9270f33deff0d9178879ce4654a92c9d666e16dc93cbf"
+  },
+  {
+    "source": "/tmp/p3_find_conveyor.py",
+    "bytes": 416,
+    "sha256": "6ba4534657ddb5dbc624145fb78ee1a9c55b5afaf5071bac57649fb0840a0ec3"
+  },
+  {
+    "source": "/tmp/p3_finish_attach.py",
+    "bytes": 264,
+    "sha256": "283cf914b16a7dd624b2e0f0eb7a515edf6dd0fc169a0d3ef9cf77c6fccaf85d"
+  },
+  {
+    "source": "/tmp/p3_inspect_detail.py",
+    "bytes": 484,
+    "sha256": "183c70c233ab1716839d7987d214f5f3b319cdfa3356f4adf42cb042b7c6cc52"
+  },
+  {
+    "source": "/tmp/p3_inspect_machine.py",
+    "bytes": 527,
+    "sha256": "e496c0295c81f3fc9c7c0a9e970cd6b66b1bdbc838319380271e23daf38ee1b3"
+  },
+  {
+    "source": "/tmp/p3_intake_closeup.py",
+    "bytes": 639,
+    "sha256": "777ff28239457fa23f3f65c00a79b54677320b723d37c4b3ab9c10972751cad4"
+  },
+  {
+    "source": "/tmp/p3_package_asset.py",
+    "bytes": 3221,
+    "sha256": "5114917743af847606692e01a17780f1ee319daec1c08d6fa570b67c658df298"
+  },
+  {
+    "source": "/tmp/p3_pick_ik_probe.py",
+    "bytes": 798,
+    "sha256": "5dac93f3eb7be7c007727845748dbabd4b93e0a16c2fb9e40c1010122eb54890"
+  },
+  {
+    "source": "/tmp/p3_pick_inspect.py",
+    "bytes": 978,
+    "sha256": "83b3e2e2bd9208343fed7cad3a79cc70dec352bc237933731413c79859224f92"
+  },
+  {
+    "source": "/tmp/p3_pick_ready.py",
+    "bytes": 534,
+    "sha256": "3a8ca062fbcaa2035b5ed0aba1891e12cb67c25fbcf2ec7b91755787149019ff"
+  },
+  {
+    "source": "/tmp/p3_pick_run.py",
+    "bytes": 349,
+    "sha256": "541aca110bd1e44013cdfcbccc3f5d6a45e8d753725f6b9f2fc2c056619271e8"
+  },
+  {
+    "source": "/tmp/p3_pick_setup.py",
+    "bytes": 667,
+    "sha256": "515d3945d2cce9c02866b9fe741fb277a01691fa60aecf1f394beaecfbd3f5e5"
+  },
+  {
+    "source": "/tmp/p3_remodel_machine.py",
+    "bytes": 5176,
+    "sha256": "568f875e064b12cc1bd3484ff50015d29703ab750bf7bb6b8b0d788f884a5ab9"
+  },
+  {
+    "source": "/tmp/p3_remodel_machine_final.py",
+    "bytes": 6780,
+    "sha256": "855fd51db1dfab12eb9dda9b3fadc5ff868e60e532d5c9b055fb1f04b5fde794"
+  },
+  {
+    "source": "/tmp/p3_replace_amr.py",
+    "bytes": 926,
+    "sha256": "fa22ca81eae4eedc3badd8afb5c2956f429907996241820de8234137a776b7d4"
+  },
+  {
+    "source": "/tmp/p3_restore_shelf_display.py",
+    "bytes": 759,
+    "sha256": "4a14f70f07d7a1d7f1e872673890c31211e32a8e734a6526f137ace94fa6858e"
+  },
+  {
+    "source": "/tmp/p3_review_viewer.py",
+    "bytes": 2458,
+    "sha256": "832c878bbf6ff5f2517689fa54b90b80b9fa767446f7eb9d3b6e2aa7f72cc7d9"
+  },
+  {
+    "source": "/tmp/p3_shelf_bounds.py",
+    "bytes": 339,
+    "sha256": "69f806d3e4db3936811cc3e48c969d0e88178e6a5303bd9a2b54bda90194cfed"
+  },
+  {
+    "source": "/tmp/p3_shelf_surfaces.py",
+    "bytes": 945,
+    "sha256": "cc8670fcbc46065d2562a1bdcc6cab76efc297121633948f2f565d970efaa836"
+  },
+  {
+    "source": "/tmp/p3_start_intake.py",
+    "bytes": 367,
+    "sha256": "fcf9a49ae2db5b8b4c173b9515f67be91a12c4e375e2a6720ef97d59e2cfe58b"
+  },
+  {
+    "source": "/tmp/p3_stop_review_physics.py",
+    "bytes": 110,
+    "sha256": "284abffe94c2537f974ac612a9cfe1732a52118b55308008236f64669aa5835d"
+  },
+  {
+    "source": "/tmp/p3_test484.py",
+    "bytes": 4841,
+    "sha256": "1c807dae0521b2674253125f63def940539939eec63576b62c981303c1fe531d"
+  },
+  {
+    "source": "/home/rokey/markle_tmp/m2-pr483-view/propose_inlets.py",
+    "bytes": 3218,
+    "sha256": "ce834570e0c197feeff35640035ef4c026c13b531b18195d9be36a6c3bf67dc2"
+  },
+  {
+    "source": "/home/rokey/markle_tmp/m2-pr483-view/remodel_dispenser.py",
+    "bytes": 6780,
+    "sha256": "855fd51db1dfab12eb9dda9b3fadc5ff868e60e532d5c9b055fb1f04b5fde794"
+  },
+  {
+    "source": "/home/rokey/markle_tmp/m2-pr483-view/show_hospital.py",
+    "bytes": 516,
+    "sha256": "8e0527a0a551815fd76db58830ef33fb9de568c480dd36caf2186a4b121d35a9"
+  },
+  {
+    "source": "/home/rokey/markle_tmp/m2-pr483-view/show_hospital_v2.py",
+    "bytes": 548,
+    "sha256": "3a2a4b18282aee8f142f8c44e95086c5e03039b2c169de349c076f71a90d4a0f"
+  }
+]

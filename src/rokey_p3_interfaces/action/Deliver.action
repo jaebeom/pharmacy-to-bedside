@@ -1,0 +1,10 @@
+# The orchestrator carries out one request (one trip) end to end.
+DeliveryRequest request
+---
+OrderStatus[] orders         # last state the orchestrator published per order
+bool success                 # true only when every order is STATE_DELIVERED. This is the
+                             # orchestrator claim, not SUCCESS. SUCCESS comes from the
+                             # evaluator path only: contract v1 section 8
+---
+string phase                 # phase name (same vocabulary as Event names)
+string current_order_id

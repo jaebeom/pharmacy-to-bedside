@@ -1,0 +1,25 @@
+# 한 바퀴 안에서 M0609 보충이 AMR 이송과 **동시에** 일어나게 하는 재고(발표 평가 '다중 로봇 조율', #527 R행).
+# 기본 dispenser.yaml 과 같은 형식·같은 로트이고, drug-amox 만 적게 둔다:
+#   슬롯 a 2개, 슬롯 b 0개 → 첫 amox 봉투(ord-0001)를 내면 합계 1 ≤ refill_threshold 1 → REFILL_REQUESTED.
+#   그때 AMR 은 봉투를 싣고 병상으로 가는 중이다. M0609 가 빈 슬롯 b 를 채운다(REFILL_DONE).
+# 실험용 값이다. 실측·현장값이 아니다. 리셋하면 이 파일 값으로 되돌린다(계약 6절 3).
+
+version: 1
+
+refill_threshold: 1
+
+items:
+  drug-amox:
+    - {slot: a, lot_id: lot-amox-01, expiry: "2027-03-31", count: 2}
+    - {slot: b, lot_id: lot-amox-02, expiry: "2027-09-30", count: 0}
+  drug-ibu:
+    - {slot: a, lot_id: lot-ibu-01, expiry: "2027-05-31", count: 5}
+    - {slot: b, lot_id: lot-ibu-02, expiry: "2027-11-30", count: 5}
+
+shelf:
+  drug-amox:
+    - {lot_id: lot-amox-03, expiry: "2028-03-31", count: 5}
+    - {lot_id: lot-amox-04, expiry: "2028-09-30", count: 5}
+  drug-ibu:
+    - {lot_id: lot-ibu-03, expiry: "2028-05-31", count: 5}
+    - {lot_id: lot-ibu-04, expiry: "2028-11-30", count: 5}

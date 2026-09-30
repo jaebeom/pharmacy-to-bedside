@@ -1,0 +1,32 @@
+{
+  "purpose": "Observed live UI review settings; separate from historical fixture; not auto-loaded by runtime",
+  "camera_prim": "/HospitalPracticeCamera",
+  "eye": [
+    -3.8,
+    8.1,
+    4.5
+  ],
+  "target": [
+    -3.8,
+    11.2,
+    0.9
+  ],
+  "up": [
+    0,
+    0,
+    1
+  ],
+  "focal_mm": 10,
+  "horizontal_aperture_mm": 24,
+  "render_aspect_ratio": "16:9",
+  "light_rig": "Default",
+  "previous": {
+    "focal_mm": 7,
+    "render_resolution": [
+      1024,
+      1152
+    ],
+    "light_rig": "Stage Lights"
+  },
+  "persistence": "Live UI changed; startup camera JSON still7mm. Integration owner must explicitly apply this separate review preset; restart verification pending."
+}

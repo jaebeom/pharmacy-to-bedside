@@ -1,0 +1,154 @@
+[
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-conveyor-probe-01/probe-screen.png",
+    "source_sha256": "f4523f9854e4e446e1294a48fcb54bc07e4dc70cc3ae6ec1cce71dc5a66645b7",
+    "image": "01-m2-hospital-conveyor-probe-01-probe-screen.webp",
+    "image_sha256": "0d20417ffe88885a642f333c86cf3761c24dd901fd74b861a85f602076c16739",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-conveyor-probe-03/full-stock-belt-screen.png",
+    "source_sha256": "060e9329ce4247bf56a7f114fd1d8fab18602933648067d8c9c476dc05019f2e",
+    "image": "02-m2-hospital-conveyor-probe-03-full-stock-belt-screen.webp",
+    "image_sha256": "30ab4f78bc5c498ab5da06878ee6328c084e94bacbce84011d779c3fe4c1d604",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-conveyor-probe-04/mixed-stock-screen.png",
+    "source_sha256": "a87d03ec88eb8034556ffd176e0ca2a4e193a0733d86eeb6e9233fb4c5061efb",
+    "image": "03-m2-hospital-conveyor-probe-04-mixed-stock-screen.webp",
+    "image_sha256": "fdce131174c36b597a2c83264cb33d348910ba2f9a04fa5694e87cbf96b3db87",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-conveyor-probe-06/terminal-screen.png",
+    "source_sha256": "3920528152221a7583032e5fc3e0ac0d5065e1eed3f46ad434791c911aa152ab",
+    "image": "04-m2-hospital-conveyor-probe-06-terminal-screen.webp",
+    "image_sha256": "b975a97b30b3fe444e67bf0cdfc807d51bb3fd647f447f9ed486453aa6f8635f",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-conveyor-probe-08/chute-entry-stall.png",
+    "source_sha256": "b5799670e0ded8eca12f36e60258ceae979fdea374ea4a31dc9f08584de17da9",
+    "image": "05-m2-hospital-conveyor-probe-08-chute-entry-stall.webp",
+    "image_sha256": "5fb40bd96df47607936feab85ad2f942bf2bc24d4e0b041c9f1e95bc32abb02a",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-conveyor-probe-10/chute-stall-screen.png",
+    "source_sha256": "c971b49549e9b59e0ac4b6127678162cec971c192ffc86ed4ea591958f5cdc7e",
+    "image": "06-m2-hospital-conveyor-probe-10-chute-stall-screen.webp",
+    "image_sha256": "2991bdf961a06530875f2fa45c17c76313b532099bd456770d2a88884ede9a83",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-conveyor-probe-11/receiver-boundary-failure.png",
+    "source_sha256": "29bab6beca7eea0080681267aaec68b9025d7b2a5c7d70624db493d80a97d922",
+    "image": "07-m2-hospital-conveyor-probe-11-receiver-boundary-failure.webp",
+    "image_sha256": "a6ea294fe4c99fd22655482f5b29cec4d8b23bcb939be24cb76550e3adb1b3ad",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-conveyor-probe-13/video-final-frame.png",
+    "source_sha256": "86e789a4178252c7ddcf3e1735fe97fb2945635b47e0fe4714c95c6db4741716",
+    "image": "08-m2-hospital-conveyor-probe-13-video-final-frame.webp",
+    "image_sha256": "f4bad30fbbff904f9d8ed894799964f174773a3c5aec67ef3082d9048c74a8c3",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-single-amr-01/amr-screen.png",
+    "source_sha256": "ea990800c44284514bac84405269de2d33817b2bcabbf917e88897b0442f9f2d",
+    "image": "09-m2-hospital-single-amr-01-amr-screen.webp",
+    "image_sha256": "613abc53bdbe8d42bf79c5f1207a27a138bbad7029f616a0181545a62a2c3319",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-single-amr-01/recording-final-frame.png",
+    "source_sha256": "ee936971f0b3e54ea996a620a19512b1d87fa04afd9c0285977d98d38907e4f8",
+    "image": "10-m2-hospital-single-amr-01-recording-final-frame.webp",
+    "image_sha256": "2e92ce4eafee8c2893d827a9f3403758bea87f60eba38a73ba9945261f11a0c9",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-hospital-single-amr-01/recording-frame-check.png",
+    "source_sha256": "804e5a51472ddf932b2a61eccaf99a6c64403a4c2aa84859dcf27f8c06af00e9",
+    "image": "11-m2-hospital-single-amr-01-recording-frame-check.webp",
+    "image_sha256": "267e48d6e908febed0bffdcbf8fb52fafcd7a4ee3a09016f6ea66ce10dc37a77",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/m2-original-intakes-practice-01/window-recorder-check.png",
+    "source_sha256": "f0474998d02c5307fe372a707ad1c3dd4c277e7834a6221565c26385635baaef",
+    "image": "12-m2-original-intakes-practice-01-window-recorder-check.webp",
+    "image_sha256": "1d86a90ebda354af5293a634a2a27452ab9213f9536dfa4efc1e0e2b9b9af06a",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/pr500-l3-20260923/abort/final-window.png",
+    "source_sha256": "60c81fc22ea4080f26c4c139de2bf4b3138db3c0042d947a14dbd9a4732470af",
+    "image": "13-abort-final-window.webp",
+    "image_sha256": "e4fcdbcac973ba9334fd254073f1e8f55dadcea08087122ca4bc71c5bf5fb5f7",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/pr500-l3-20260923/receiver/final-window.png",
+    "source_sha256": "585cc6899c47a16d20daea223557ca8ef6cf6165aeb61f2c369aeb394da63e16",
+    "image": "14-receiver-final-window.webp",
+    "image_sha256": "b5ea07c40182ab203616738cff96a1a20431752483183d0d6be1c59d81cc8476",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/pr500-l3-20260923/terminal/final-window.png",
+    "source_sha256": "ba3df76b53d4c4f328af0d83f8959862e234443cfb3f37e8bfff296e8cbf9dcc",
+    "image": "15-terminal-final-window.webp",
+    "image_sha256": "6a4cf590ddc8355fb1096a351263c64021de40a178e7b2789ad277b04af0e17a",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/pr500-l3-shutdown-20260923/abort/final-window.png",
+    "source_sha256": "93a0a78c86b1d4fc98b630b0a4a3229286530bce352d34e2f992e80c8d1c7b28",
+    "image": "16-abort-final-window.webp",
+    "image_sha256": "a0582b24d193fbe481eeb2675eb41d1f962c00f653239107443137fed78fcf09",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/pr500-l3-shutdown-20260923/terminal/final-window.png",
+    "source_sha256": "211ef2db44e6e6551b16946866da7322ba94453cd93844757a862adcfdc13386",
+    "image": "17-terminal-final-window.webp",
+    "image_sha256": "9183467036b7673c2e700ca70b1d322f0bd286460ccdecf641886dc53ac1be96",
+    "transform": "WEBP quality85; original resolution; no crop or annotations",
+    "scope": "Capture provenance only; do not infer trial success from image"
+  },
+  {
+    "source_master02": "/tmp/codex-clipboard-fELKED.png",
+    "source_sha256": "55345f228bb36bbb3ac6a0f064770b1d1e744c61de4ac18c1364983d35f6c434",
+    "image": "18-user-camera-problem.webp",
+    "image_sha256": "4ab57256d166ece63a5e25c3b03b788bd8b5ec9bf0a1a0b5c98bacca256460a2",
+    "transform": "Crop Isaac window box (66,32,994,1060); WEBP quality85; scene pixels otherwise unchanged",
+    "scope": "User supplied 9/23 current integration camera problem, NOT practice38 capture"
+  },
+  {
+    "source_master02": "/home/rokey/markle_tmp/practice38-camera-20260923/after.png",
+    "source_sha256": "355f84e1c6371102138510d24ad769906347fa62ac3a4c2e4ace6aa39e262a9f",
+    "image": "19-default-light-wide-view.webp",
+    "image_sha256": "e7742c600fef5265689e0fb0771cef86749b72bb50ac1a46d95124ca7efa74c7",
+    "transform": "WEBP quality85, no crop or resize",
+    "scope": "9/23 live UI adjustment, Default light rig, focal10mm, aspect16:9; runtime603dfc1, not practice38 L3"
+  }
+]

@@ -1,0 +1,4 @@
+{"detail": "", "epoch": 3, "name": "RESET_DONE", "order_id": "", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 300.0}
+{"detail": "", "epoch": 3, "name": "REQUEST_ACCEPTED", "order_id": "", "request_id": "r003-0001", "robot_id": "amr_1", "stale": false, "stamp": 303.0}
+{"detail": "", "epoch": 3, "name": "AMR_DOCKED_LOAD", "order_id": "", "request_id": "r003-0001", "robot_id": "amr_1", "stale": false, "stamp": 323.25}
+{"detail": "", "epoch": 3, "name": "DISPENSED", "order_id": "ord-0001", "request_id": "r003-0001", "robot_id": "dispenser", "stale": false, "stamp": 323.35}

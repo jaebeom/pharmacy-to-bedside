@@ -1,0 +1,17 @@
+{"detail": "", "epoch": 2, "name": "RESET_DONE", "order_id": "", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 100.0}
+{"detail": "", "epoch": 2, "name": "REQUEST_ACCEPTED", "order_id": "", "request_id": "r002-0001", "robot_id": "amr_1", "stale": false, "stamp": 105.25}
+{"detail": "", "epoch": 2, "name": "AMR_DOCKED_LOAD", "order_id": "", "request_id": "r002-0001", "robot_id": "amr_1", "stale": false, "stamp": 125.5}
+{"detail": "", "epoch": 2, "name": "DISPENSER_PAUSED", "order_id": "ord-0001", "request_id": "r002-0001", "robot_id": "amr_1", "stale": false, "stamp": 125.5}
+{"detail": "", "epoch": 2, "name": "REFILL_REQUESTED", "order_id": "ord-0001", "request_id": "r002-0001", "robot_id": "amr_1", "stale": false, "stamp": 125.5}
+{"detail": "", "epoch": 2, "name": "DISPENSED", "order_id": "ord-0001", "request_id": "r002-0001", "robot_id": "dispenser", "stale": false, "stamp": 125.6}
+{"detail": "", "epoch": 2, "name": "POUCH_AT_END", "order_id": "ord-0001", "request_id": "", "robot_id": "dispenser", "stale": false, "stamp": 133.6}
+{"detail": "", "epoch": 2, "name": "PICK_ATTEMPT", "order_id": "ord-0001", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 134.0}
+{"detail": "", "epoch": 2, "name": "PICK_ATTEMPT", "order_id": "ord-0001", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 140.0}
+{"detail": "", "epoch": 2, "name": "POUCH_PICKED", "order_id": "ord-0001", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 142.0}
+{"detail": "", "epoch": 2, "name": "POUCH_LOADED", "order_id": "ord-0001", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 146.0}
+{"detail": "", "epoch": 2, "name": "LOAD_DONE", "order_id": "", "request_id": "r002-0001", "robot_id": "amr_1", "stale": false, "stamp": 146.1}
+{"detail": "", "epoch": 2, "name": "ORDER_DONE", "order_id": "ord-0001", "request_id": "r002-0001", "robot_id": "amr_1", "stale": false, "stamp": 146.1}
+{"detail": "", "epoch": 2, "name": "ARM_HOME", "order_id": "", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 150.0}
+{"detail": "", "epoch": 2, "name": "RETURNED", "order_id": "", "request_id": "r002-0001", "robot_id": "amr_1", "stale": false, "stamp": 150.2}
+{"detail": "", "epoch": 2, "name": "DOCKED", "order_id": "", "request_id": "r002-0001", "robot_id": "amr_1", "stale": false, "stamp": 180.45}
+{"detail": "", "epoch": 2, "name": "REFILL_DONE", "order_id": "", "request_id": "", "robot_id": "m0609", "stale": false, "stamp": 190.0}

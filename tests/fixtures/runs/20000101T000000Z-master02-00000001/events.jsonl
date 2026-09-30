@@ -1,0 +1,12 @@
+{"detail": "", "epoch": 1, "name": "REQUEST_ACCEPTED", "order_id": "", "request_id": "r001-0001", "robot_id": "amr_1", "stale": false, "stamp": 10.0}
+{"detail": "", "epoch": 1, "name": "AMR_DOCKED_LOAD", "order_id": "", "request_id": "r001-0001", "robot_id": "amr_1", "stale": false, "stamp": 30.25}
+{"detail": "", "epoch": 1, "name": "DISPENSED", "order_id": "ord-0001", "request_id": "r001-0001", "robot_id": "dispenser", "stale": false, "stamp": 30.35}
+{"detail": "", "epoch": 1, "name": "POUCH_AT_END", "order_id": "ord-0001", "request_id": "", "robot_id": "dispenser", "stale": false, "stamp": 38.35}
+{"detail": "", "epoch": 1, "name": "PICK_ATTEMPT", "order_id": "ord-0001", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 38.75}
+{"detail": "", "epoch": 1, "name": "POUCH_PICKED", "order_id": "ord-0001", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 46.75}
+{"detail": "", "epoch": 1, "name": "POUCH_LOADED", "order_id": "ord-0001", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 50.75}
+{"detail": "", "epoch": 1, "name": "LOAD_DONE", "order_id": "", "request_id": "r001-0001", "robot_id": "amr_1", "stale": false, "stamp": 50.85}
+{"detail": "", "epoch": 1, "name": "ORDER_DONE", "order_id": "ord-0001", "request_id": "r001-0001", "robot_id": "amr_1", "stale": false, "stamp": 50.85}
+{"detail": "", "epoch": 1, "name": "ARM_HOME", "order_id": "", "request_id": "", "robot_id": "amr_1", "stale": false, "stamp": 54.75}
+{"detail": "", "epoch": 1, "name": "RETURNED", "order_id": "", "request_id": "r001-0001", "robot_id": "amr_1", "stale": false, "stamp": 54.95}
+{"detail": "", "epoch": 1, "name": "DOCKED", "order_id": "", "request_id": "r001-0001", "robot_id": "amr_1", "stale": false, "stamp": 85.2}

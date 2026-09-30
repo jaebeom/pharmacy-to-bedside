@@ -1,0 +1,278 @@
+# Nav2 + AMCL + map_server 파라미터. ROS 2 Jazzy / Nav2 Jazzy 기준.
+#
+# 네임스페이스는 launch 의 RewrittenYaml 이 붙인다. 그래서 여기 키는 노드 이름만 쓴다.
+# use_sim_time 과 map_server 의 yaml_filename 도 launch 인자로 덮어쓴다.
+#
+# 프레임은 계약 v1 3절이다: map(유일한 world) -> amr_1/odom(AMCL) -> amr_1/base_link(base_driver).
+# 토픽은 네임스페이스 안의 상대 이름이라 /amr_1/scan, /amr_1/odom, /amr_1/cmd_vel 로 풀린다.
+#
+# footprint·inflation·라이다 거리·vy_samples·goal tolerance 는 master02 `~/test_amr`
+# (이태규님 작업, 저장소 밖, 9/20)에서 Isaac 병원 씬 주행이 돌던 값이다. **우리 저장소에서는 Isaac L3 미실행**이다.
+# AMCL·planner·속도·가속도는 그 구성과 이미 같았다(확인만 했다).
+# 플러그인 타입 표기(`::`)와 progress_checker_plugins 복수형은 Jazzy 기준으로 적었다. 마스터에서 `ros2 param dump` 로 확인한다.
+
+amcl:
+  ros__parameters:
+    use_sim_time: true
+    base_frame_id: "amr_1/base_link"
+    odom_frame_id: "amr_1/odom"
+    global_frame_id: "map"
+    scan_topic: scan
+    # Ridgeback 베이스는 전방향이다(dummy prismatic x, y + revolute z).
+    robot_model_type: "nav2_amcl::OmniMotionModel"
+    alpha1: 0.2
+    alpha2: 0.2
+    alpha3: 0.2
+    alpha4: 0.2
+    alpha5: 0.2
+    laser_model_type: "likelihood_field"
+    laser_likelihood_max_dist: 2.0
+    laser_max_range: 100.0
+    laser_min_range: -1.0
+    max_beams: 60
+    min_particles: 500
+    max_particles: 2000
+    pf_err: 0.05
+    pf_z: 0.99
+    recovery_alpha_fast: 0.0
+    recovery_alpha_slow: 0.0
+    resample_interval: 1
+    transform_tolerance: 1.0
+    update_min_a: 0.2
+    update_min_d: 0.25
+    z_hit: 0.5
+    z_max: 0.05
+    z_rand: 0.5
+    z_short: 0.05
+    set_initial_pose: false   # fleet 가 RESET_DONE 뒤 /amr_1/initialpose 로 넣는다(계약 6절)
+    always_reset_initial_pose: false
+    tf_broadcast: true
+
+map_server:
+  ros__parameters:
+    use_sim_time: true
+    yaml_filename: ""   # launch 인자 map 으로 덮어쓴다. 9/17 마스터에서 추출한다
+
+planner_server:
+  ros__parameters:
+    use_sim_time: true
+    expected_planner_frequency: 20.0
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_navfn_planner::NavfnPlanner"
+      tolerance: 0.5
+      use_astar: false
+      allow_unknown: true
+
+controller_server:
+  ros__parameters:
+    use_sim_time: true
+    controller_frequency: 20.0
+    odom_topic: odom
+    min_x_velocity_threshold: 0.001
+    min_y_velocity_threshold: 0.001
+    min_theta_velocity_threshold: 0.001
+    failure_tolerance: 0.3
+    progress_checker_plugins: ["progress_checker"]
+    goal_checker_plugins: ["general_goal_checker"]
+    controller_plugins: ["FollowPath"]
+    progress_checker:
+      plugin: "nav2_controller::SimpleProgressChecker"
+      required_movement_radius: 0.5
+      movement_time_allowance: 10.0
+    general_goal_checker:
+      plugin: "nav2_controller::SimpleGoalChecker"
+      stateful: true
+      # 도킹 오차 측정 뒤 zones.yaml 의 tol 에 맞춰 줄인다(계약 2.2절).
+      xy_goal_tolerance: 0.2
+      yaw_goal_tolerance: 0.2
+    # 속도 제한 창구. `speed_governor` 가 지역 코스트맵의 여유로 **최고 속도의 %** 를 여기에 낸다
+    # (재범 9/23: 넓은 복도에서 빠르게, 가까운 데서만 0.5). 그 노드가 없으면 제한이 안 와서
+    # 아래 최고 속도가 그대로 쓰인다 — **띄우지 않으려면 최고 속도도 같이 되돌려야 한다.**
+    speed_limit_topic: "speed_limit"
+    FollowPath:
+      plugin: "dwb_core::DWBLocalPlanner"
+      # 전방향 베이스라 vy 도 뽑는다. 가속도는 test_amr 구성과 같다.
+      # 최고 속도 0.5 → 1.0 (9/23). 가까운 곳은 `speed_governor` 가 되돌린다 — 그 노드는 **절대 속도**
+      # (`slow_speed_mps` 0.7, 9/29)로 값을 받아 여기 최고 속도에서 몇 %인지 스스로 센다. 최고 속도를 올려도
+      # 근접 속도가 따라 올라가지 않는다. 두 곳이 어긋나지 않게 시험이 묶어 둔다.
+      # 9/23 낮에 단순 두 배(#526)는 고정물 touch 로 되돌렸다(#547) — 근접 감속이 있어야 올린다.
+      min_vel_x: -1.0
+      max_vel_x: 1.0
+      min_vel_y: -1.0
+      max_vel_y: 1.0
+      max_vel_theta: 1.0
+      min_speed_xy: 0.0
+      max_speed_xy: 1.0
+      min_speed_theta: 0.0
+      acc_lim_x: 1.0
+      acc_lim_y: 1.0
+      acc_lim_theta: 2.0
+      decel_lim_x: -1.0
+      decel_lim_y: -1.0
+      decel_lim_theta: -2.0
+      vx_samples: 10
+      vy_samples: 20
+      vtheta_samples: 20
+      sim_time: 1.7
+      transform_tolerance: 0.2
+      short_circuit_trajectory_evaluation: true
+      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign",
+                "PathAlign", "PathDist", "GoalDist"]
+      BaseObstacle.scale: 0.02
+      PathAlign.scale: 32.0
+      PathAlign.forward_point_distance: 0.1
+      GoalAlign.scale: 24.0
+      GoalAlign.forward_point_distance: 0.1
+      PathDist.scale: 32.0
+      GoalDist.scale: 24.0
+      RotateToGoal.scale: 32.0
+      RotateToGoal.slowing_factor: 5.0
+      RotateToGoal.lookahead_time: -1.0
+
+# 감속기(`speed_governor`). Nav2 lifecycle 이 아니라 nav2.launch.py 가 같은 네임스페이스에 띄우는 노드다.
+# `max_speed_mps` 는 위 FollowPath 의 `max_speed_xy` 와 같아야 한다 — 어긋나면 기동 줄의 m/s 가 틀린다.
+speed_governor:
+  ros__parameters:
+    use_sim_time: true
+    max_speed_mps: 1.0
+    slow_speed_mps: 0.7                  # 재범 9/29: 0.5 → 0.7 (speed_governor.SLOW_SPEED_MPS 와 같게, L3 미확인)
+
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      use_sim_time: true
+      global_frame: amr_1/odom
+      robot_base_frame: amr_1/base_link
+      update_frequency: 5.0
+      publish_frequency: 2.0
+      rolling_window: true
+      width: 5
+      height: 5
+      resolution: 0.05
+      # Ridgeback 베이스 1.10 x 0.90 m. 수납한 팔·상판·적재물은 아직 넣지 않았다(RFC 0001 4절).
+      footprint: "[[0.55, 0.45], [0.55, -0.45], [-0.55, -0.45], [-0.55, 0.45]]"
+      # 2D scan 의 현재 관측을 우선한다. 정적 지도는 global_costmap 에 유지한다.
+      # 단일 스캔 평면 밖(예: 낮은 몰딩·높은 트레이)이나 가림 영역은 감지되지 않으므로
+      # local static 제거는 병원 L3에서 6목표·touch 0 및 RViz 사각 확인 후 확정한다.
+      plugins: ["obstacle_layer", "inflation_layer"]
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          # **절대 이름이어야 한다.** 코스트맵은 `/amr_1/local_costmap`(전역은 `/amr_1/global_costmap`)
+          # 네임스페이스의 노드라, 상대 `scan` 은 `/amr_1/local_costmap/scan` 으로 풀린다 —
+          # 라이다는 `/amr_1/scan` 으로 내므로 **아무도 안 내는 토픽**을 듣고 있었다.
+          # 마클1 회차18 실측: local_costmap 구독자에 `/amr_1/local_costmap/scan`,
+          # `/amr_1/scan` 은 Publisher 1 / **Subscription 0**.
+          # 그동안 장애물 층에 관측이 하나도 안 들어와 지역 코스트맵이 끝까지 비어 있었다.
+          # (위 `amcl.scan_topic: scan` 은 그대로 둔다. amcl 은 `/amr_1` 에 바로 떠서 상대 이름이 맞는다 —
+          #  한 단계 더 들어가는 코스트맵만 어긋났고, 그래서 측위는 멀쩡했다.)
+          # `<robot_namespace>` 는 nav2.launch.py 가 `/<namespace>` 로 바꾼다(nav2_common ReplaceString).
+          # 박아 두면 `--namespace amr_2` 가 죽는다.
+          topic: <robot_namespace>/scan
+          data_type: "LaserScan"
+          max_obstacle_height: 2.0
+          clearing: true
+          marking: true
+          raytrace_max_range: 10.0
+          raytrace_min_range: 0.0
+          obstacle_max_range: 8.0
+          obstacle_min_range: 0.0
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        # 로컬은 조금만 넓힌다: 고정물 옆 정차는 추종기가 맡지만(넘김 0.5 m) 접근점 근처에서 DWB 가 비용에 막히지 않게.
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.9
+      # `speed_governor` 는 전체 격자를 읽어 여유를 잰다. 델타(`costmap_updates`)만 오면 못 읽는다.
+      # **이 값은 9/23 이전부터 켜져 있었다** — 코스트맵이 안 온 원인은 이것이 아니었다(#594 오진).
+      always_send_full_costmap: true
+
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      use_sim_time: true
+      global_frame: map
+      robot_base_frame: amr_1/base_link
+      update_frequency: 1.0
+      publish_frequency: 1.0
+      resolution: 0.05
+      track_unknown_space: true
+      footprint: "[[0.55, 0.45], [0.55, -0.45], [-0.55, -0.45], [-0.55, 0.45]]"
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: true
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          # **절대 이름이어야 한다.** 코스트맵은 `/amr_1/local_costmap`(전역은 `/amr_1/global_costmap`)
+          # 네임스페이스의 노드라, 상대 `scan` 은 `/amr_1/local_costmap/scan` 으로 풀린다 —
+          # 라이다는 `/amr_1/scan` 으로 내므로 **아무도 안 내는 토픽**을 듣고 있었다.
+          # 마클1 회차18 실측: local_costmap 구독자에 `/amr_1/local_costmap/scan`,
+          # `/amr_1/scan` 은 Publisher 1 / **Subscription 0**.
+          # 그동안 장애물 층에 관측이 하나도 안 들어와 지역 코스트맵이 끝까지 비어 있었다.
+          # (위 `amcl.scan_topic: scan` 은 그대로 둔다. amcl 은 `/amr_1` 에 바로 떠서 상대 이름이 맞는다 —
+          #  한 단계 더 들어가는 코스트맵만 어긋났고, 그래서 측위는 멀쩡했다.)
+          # `<robot_namespace>` 는 nav2.launch.py 가 `/<namespace>` 로 바꾼다(nav2_common ReplaceString).
+          # 박아 두면 `--namespace amr_2` 가 죽는다.
+          topic: <robot_namespace>/scan
+          data_type: "LaserScan"
+          max_obstacle_height: 2.0
+          clearing: true
+          marking: true
+          raytrace_max_range: 10.0
+          raytrace_min_range: 0.0
+          obstacle_max_range: 8.0
+          obstacle_min_range: 0.0
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        # 복도 가운데로 가게 한다(재범 9/23 "복도가 넓은데 굉장히 좁게 감"). 반경 0.65 에서는 벽에서 0.65 m 너머 비용이
+        # 0 이라 NavFn 이 "벽에서 0.65 m 떨어진 가장 짧은 선"을 골랐고, 모퉁이에서 대각선(0.71 m)이 몰딩·탁자를 쓸었다
+        # (병원 694ac9b 회차, #240). 반경을 넓히고 기울기를 완만하게 해 넓은 곳에서는 가운데가 싸다.
+        cost_scaling_factor: 1.0
+        inflation_radius: 1.5
+      always_send_full_costmap: true
+
+behavior_server:
+  ros__parameters:
+    use_sim_time: true
+    local_costmap_topic: local_costmap/costmap_raw
+    global_costmap_topic: global_costmap/costmap_raw
+    local_footprint_topic: local_costmap/published_footprint
+    global_footprint_topic: global_costmap/published_footprint
+    cycle_frequency: 10.0
+    local_frame: amr_1/odom
+    global_frame: map
+    robot_base_frame: amr_1/base_link
+    transform_tolerance: 0.1
+    behavior_plugins: ["spin", "backup", "drive_on_heading", "wait"]
+    spin:
+      plugin: "nav2_behaviors::Spin"
+    backup:
+      plugin: "nav2_behaviors::BackUp"
+    drive_on_heading:
+      plugin: "nav2_behaviors::DriveOnHeading"
+    wait:
+      plugin: "nav2_behaviors::Wait"
+    max_rotational_vel: 1.0
+    min_rotational_vel: 0.4
+    rotational_acc_lim: 3.2
+
+bt_navigator:
+  ros__parameters:
+    use_sim_time: true
+    global_frame: map
+    robot_base_frame: amr_1/base_link
+    odom_topic: odom
+    bt_loop_duration: 10
+    # BT 노드가 action server(planner·controller)의 goal **수락**을 기다리는 wall ms. Jazzy 기본 20.
+    # 9/24 50b658a 10건 ord-0003: 복도 (11.37, 7.31) 정상 주행 중 `Timed out while waiting for action server to
+    # acknowledge goal request for compute_path_to_pose` → Aborting → nav2_status_6(planner·controller 실패 줄 없음).
+    # Isaac 과 한 PC(rtf 0.38)에서 재계획 수락이 20 ms 를 넘을 수 있다. 수락 대기만 늘리고 계획·제어 시간은 그대로다.
+    default_server_timeout: 200
+    # 기본 BT XML(navigate_to_pose_w_replanning_and_recovery.xml)을 쓴다.
+    # plugin_lib_names 는 Jazzy 기본 목록을 그대로 둔다.

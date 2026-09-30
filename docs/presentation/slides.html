@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P3 최종 발표 골격</title>
+<!--
+  기록(동결, 2026-09-28): 이 골격은 9/23 main 992dddb 기준이다. 5분 발표 원본은 tutor-main.html · tech-3.html 이고 편집은 edit-plan-5min.md 다.
+  이 파일의 '측정 중' 자리 · YOLO · '다중 PC 한 바퀴' 문구를 발표에 옮기지 않는다(tech-3-sources.md 4절).
+  기준 main 992dddb.
+  이 파일이 슬라이드 원본이다. 9/28 18:00 증거 동결 뒤 수치를 채우고 PPT 로 옮긴다.
+  근거·상태는 docs/presentation/scorecard.md 와 같다. 여기 수치를 새로 만들지 않는다.
+  class="ph" = 측정 중 자리표시. aside.notes = 발표자 노트(PPT 노트로 옮긴다).
+-->
+<style>
+:root{
+  --ink:#16252b; --muted:#5b6b70; --line:#d5e0e0; --bg:#ffffff; --tint:#eef5f4;
+  --teal:#0f4c5c; --teal2:#2a7f86; --amber:#b86e00; --amberbg:#fff3de;
+  --isaac:#1d7a55; --l12:#2e5ea8; --impl:#6b7478; --unv:#b86e00; --none:#b3261e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#dfe6e6;color:var(--ink);
+  font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",Arial,sans-serif}
+.deck{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0}
+.frame{width:1280px;height:720px;overflow:hidden}
+.frame>.slide{transform-origin:top left}
+.slide{width:1280px;height:720px;background:var(--bg);position:relative;overflow:hidden;
+  padding:56px 64px 48px;display:flex;flex-direction:column;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+.slide.dark{background:var(--teal);color:#fff}
+.slide h1{font-size:40px;margin:0 0 8px;letter-spacing:-.5px}
+.slide h2{font-size:34px;margin:0 0 20px;letter-spacing:-.5px}
+.slide h3{font-size:20px;margin:0 0 10px;color:var(--teal)}
+.slide p,.slide li,.slide td,.slide th{font-size:17px;line-height:1.5}
+.kicker{font-size:14px;font-weight:700;color:var(--teal2);letter-spacing:1px;margin-bottom:6px}
+.dark .kicker{color:#9fd3cf}
+.body{flex:1;display:flex;gap:32px;min-height:0}
+.col{flex:1;min-width:0}
+.col.w2{flex:2}
+.card{background:var(--tint);border-radius:10px;padding:16px 18px}
+.src{position:absolute;left:64px;right:64px;bottom:16px;font-size:12px;color:var(--muted)}
+.dark .src{color:#b9d6d4}
+.pg{position:absolute;right:24px;top:18px;font-size:12px;color:var(--muted)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:14px!important;color:var(--muted);font-weight:700}
+ul{margin:0;padding-left:20px}
+li{margin:0 0 6px}
+.chip{display:inline-block;font-size:12px;font-weight:700;color:#fff;border-radius:10px;padding:1px 8px;
+  vertical-align:middle;white-space:nowrap}
+.s-isaac{background:var(--isaac)} .s-l12{background:var(--l12)} .s-impl{background:var(--impl)}
+.s-unv{background:var(--unv)} .s-none{background:var(--none)}
+.ph{display:inline-block;background:var(--amberbg);color:var(--amber);border:1.5px dashed var(--amber);
+  border-radius:6px;padding:0 6px;font-weight:700;font-size:.9em}
+.phbox{border:2px dashed var(--amber);background:var(--amberbg);color:var(--amber);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:16px;padding:12px}
+.big{font-size:56px;font-weight:800;line-height:1;color:var(--teal)}
+.biglabel{font-size:14px;color:var(--muted);margin-top:6px}
+.stats{display:flex;gap:28px;margin-bottom:18px}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:13px}
+aside.notes{display:none}
+body.shownotes aside.notes{display:block;position:absolute;left:0;right:0;bottom:0;background:#fffbe6;
+  color:#333;font-size:13px;padding:8px 12px;border-top:1px solid #e0d090;max-height:40%;overflow:auto}
+.toolbar{position:fixed;right:12px;top:12px;z-index:5;font-size:13px}
+.toolbar button{font:inherit;padding:4px 10px;border-radius:6px;border:1px solid #9bb;background:#fff;cursor:pointer}
+svg text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",Arial,sans-serif}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff} .toolbar{display:none} .deck{padding:0;gap:0}
+  .frame{height:720px!important;width:1280px!important}
+  .frame>.slide{transform:none!important}
+  .slide{box-shadow:none;page-break-after:always}
+}
+</style>
+</head>
+<body>
+<div class="toolbar"><button type="button" onclick="document.body.classList.toggle('shownotes')">노트 보기</button></div>
+<div class="deck">
+
+<!-- 1 표지 -->
+<div class="frame"><section class="slide dark" data-block="표지">
+  <div class="pg">1</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="kicker">ROKEY P3 · A3 · 최종 발표</div>
+    <h1 style="font-size:54px;line-height:1.2">병원 약제 물류를<br>Isaac Sim 디지털 트윈으로 검증하기</h1>
+    <p style="font-size:22px;color:#cfe7e5;margin-top:18px">M0609 보충 · UR5 픽·플레이스 · AMR 배송 — ROS 2 Jazzy로 한 바퀴를 잇다</p>
+    <p style="font-size:18px;color:#cfe7e5;margin-top:40px">임재범 · 전제환 · 이태규 · 박세준 &nbsp;|&nbsp; 2026-09-30</p>
+  </div>
+  <div class="legend" style="color:#fff">
+    <span>이 발표의 표시:</span>
+    <span class="chip s-isaac">Isaac 확인</span><span class="chip s-l12">L1L2</span>
+    <span class="chip s-impl">구현</span><span class="chip s-unv">미검증</span><span class="chip s-none">없음</span>
+  </div>
+  <aside class="notes">상태 표시 다섯 가지를 먼저 설명한다. 평가 문서 4절 6번: 구현·검사·Isaac 확인·미검증을 구분한다.</aside>
+</section></div>
+
+<!-- 2 문제 정의 (블록 1) -->
+<div class="frame"><section class="slide" data-block="1 문제·필요성·목표">
+  <div class="pg">2</div>
+  <div class="kicker">1 · 문제 정의</div>
+  <h2>약은 제때, 맞는 환자에게 — 사람 손이 가장 많이 가는 구간</h2>
+  <div class="body">
+    <div class="col">
+      <h3>풀려는 문제</h3>
+      <ul>
+        <li>조제기 재고 보충 → 출고 → 병동 침상 전달 → 복귀를 <b>한 흐름</b>으로 정의 <span class="chip s-impl">구현</span></li>
+        <li>종료 상태 넷: SUCCESS · HOLD_RETURN · ABORT · TIMEOUT</li>
+        <li>로봇 셋이 순서를 지켜 협업: M0609(보충) · UR5(픽·플레이스) · AMR(주행)</li>
+      </ul>
+      <h3 style="margin-top:22px">왜 디지털 트윈인가</h3>
+      <p><span class="ph">문장 확정 필요 — 대응표 빈칸 8</span></p>
+      <p style="font-size:15px;color:var(--muted)">초안: 실제 병동·로봇 없이 로봇 간 인터락, 실패·리셋, 반복 측정을 같은 조건으로 되풀이할 수 있다. (실제 병원 작업량·오류율은 미확인이라 "현실 복제"는 주장하지 않는다.)</p>
+    </div>
+    <div class="col">
+      <h3>검증 목표 — 결과 전에 고정</h3>
+      <div class="card">
+        <ul>
+          <li>한 바퀴 ①–⑩이 끊김 없이 이어지는가 (상시 판정선)</li>
+          <li>도착·정차 오차, 충돌(touch) 0, 리셋 뒤 재실행</li>
+          <li>조제실 구간 pilot protocol — frozen 9/19</li>
+        </ul>
+      </div>
+      <h3 style="margin-top:22px">범위 밖 (밝힌다)</h3>
+      <ul>
+        <li>실로봇·실병원 검증 아님 — 시뮬레이션 결과</li>
+        <li>AMR 1대, 1인 1건 주문</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">근거: docs/planning/scenario.md (9/16 확정, PR #21) · docs/policy/metrics.md · experiments/protocols/pharmacy-lap-pilot-v1.json · #240/5755830894</div>
+  <aside class="notes">"왜 디지털 트윈인가"는 확정 문서에 없다. 기획서(결정 아님)에만 있다. 재범 확정 전에는 초안 문장을 쓰지 않는다.</aside>
+</section></div>
+
+<!-- 3 시나리오 개요 + 개요 영상 (블록 2) -->
+<div class="frame"><section class="slide" data-block="2 개요 영상">
+  <div class="pg">3</div>
+  <div class="kicker">2 · 전체 시나리오</div>
+  <h2>주문 한 건이 침상 보관함에 들어가기까지 — ①–⑩</h2>
+  <div class="body" style="flex-direction:column;gap:18px">
+    <svg viewBox="0 0 1152 150" width="1152" height="150" role="img" aria-label="한 바퀴 열 단계">
+      <g font-size="15" text-anchor="middle">
+        <!-- 10 steps -->
+        <g fill="#0f4c5c"><rect x="0" y="30" width="102" height="64" rx="10"/><rect x="116" y="30" width="102" height="64" rx="10"/>
+        <rect x="232" y="30" width="102" height="64" rx="10"/><rect x="348" y="30" width="102" height="64" rx="10"/>
+        <rect x="464" y="30" width="102" height="64" rx="10"/><rect x="580" y="30" width="102" height="64" rx="10"/>
+        <rect x="696" y="30" width="102" height="64" rx="10"/><rect x="812" y="30" width="102" height="64" rx="10"/>
+        <rect x="928" y="30" width="102" height="64" rx="10"/><rect x="1044" y="30" width="102" height="64" rx="10"/></g>
+        <g fill="#fff" font-weight="700">
+          <text x="51" y="58">① 요청</text><text x="51" y="80" font-weight="400" font-size="13">수락</text>
+          <text x="167" y="58">② 적재</text><text x="167" y="80" font-weight="400" font-size="13">도킹</text>
+          <text x="283" y="58">③ 조제</text><text x="283" y="80" font-weight="400" font-size="13">조제기 출고</text>
+          <text x="399" y="58">④ 벨트</text><text x="399" y="80" font-weight="400" font-size="13">끝 도착</text>
+          <text x="515" y="58">⑤ 픽</text><text x="515" y="80" font-weight="400" font-size="13">UR5 흡착</text>
+          <text x="631" y="58">⑥ 주행</text><text x="631" y="80" font-weight="400" font-size="13">침상 도착</text>
+          <text x="747" y="58">⑦ 인증</text><text x="747" y="80" font-weight="400" font-size="13">환자 QR</text>
+          <text x="863" y="58">⑧ 전달</text><text x="863" y="80" font-weight="400" font-size="13">보관함</text>
+          <text x="979" y="58">⑨ 복귀</text><text x="979" y="80" font-weight="400" font-size="13">도크로</text>
+          <text x="1095" y="58">⑩ 리셋</text><text x="1095" y="80" font-weight="400" font-size="13">도킹·epoch</text>
+        </g>
+        <g fill="#b86e00" font-size="13"><text x="283" y="120">재고 0 → M0609 보충 (병렬)</text></g>
+        <path d="M283 100 v8" stroke="#b86e00" stroke-width="2"/>
+      </g>
+    </svg>
+    <div class="phbox" style="flex:1">개요 영상 자리 — 측정 중(#527 통합·동적: 대표 한 바퀴 영상)<br>배속·컷 편집·서로 다른 실행을 이었으면 화면에 표시한다</div>
+  </div>
+  <div class="src">근거: docs/runbooks/emptyworld-lap-stack.md (①–⑩ 정의) · docs/practice/practice-30.md</div>
+  <aside class="notes">영상 후보: lap14 창 모드 클립(8:58, 머지 전 브랜치 포함) 또는 lap15 캡처(main fab74be). 동결 뒤 한 개를 고르고 실행 SHA·run ID 를 화면에 적는다.</aside>
+</section></div>
+
+<!-- 4 시스템 아키텍처 (블록 3) -->
+<div class="frame"><section class="slide" data-block="3 아키텍처">
+  <div class="pg">4</div>
+  <div class="kicker">3 · 시스템 아키텍처</div>
+  <h2>Isaac Sim ↔ 어댑터 ↔ ROS 2 노드</h2>
+  <div class="body">
+    <div class="col w2">
+      <img src="../architecture/system-overview.svg" width="760" alt="P3 시스템 그림 — docs/architecture/system-overview.md 와 같은 파일">
+    </div>
+    <div class="col">
+      <h3>왜 어댑터를 두었나</h3>
+      <p>Isaac 5.1 내부 Python 3.11 이 ROS 2 Jazzy(3.12) 인터페이스 패키지를 import 하지 못한다 → Isaac 은 JSON 토픽, 어댑터가 계약 타입으로 옮긴다.</p>
+      <h3 style="margin-top:18px">판정은 누가</h3>
+      <p>SUCCESS 는 orchestrator 의 주장이 아니라 <b>평가기가 본 보관함</b>으로 event_logger 가 쓴다.</p>
+      <p style="margin-top:10px"><span class="chip s-isaac">계약 합격</span> 한 PC · 다중 PC 한 바퀴(회차19: master01 stage + master02 나머지)</p>
+      <div class="card" style="margin-top:10px;background:#fff3de;padding:10px 12px">
+        <p style="margin:0;font-size:14px;color:#b86e00;font-weight:700">주장 범위(고정)</p>
+        <p style="margin:4px 0 0;font-size:14px">① Nav2 는 <b>접근점까지</b>, 마지막 0.5 m 는 <b>직접 추종기</b>(장애물 회피·감속기 미적용)<br>② 위치 추정은 <b>시뮬 도크 기준 TF(odom)</b>, AMCL 미사용</p>
+      </div>
+    </div>
+  </div>
+  <div class="src">그림: docs/architecture/system-overview.svg(문서와 같은 파일) · 근거: docs/architecture/delivery-contract-v1.md 0–1절 · docs/adr/0002 · docs/setup/ros2-wired-network.md 214–233행 · README 6절</div>
+  <aside class="notes">계획 배치(계약 1절: master01 Isaac, master02 orchestrator, 노트북 fleet·arm)와 실제 실행(한 마스터)을 구분해서 말한다. 다중 PC 결과가 오면 그림을 바꾼다.</aside>
+</section></div>
+
+<!-- 5 기술 스택 (블록 3) -->
+<div class="frame"><section class="slide" data-block="3 기술 스택">
+  <div class="pg">5</div>
+  <div class="kicker">3 · 기술 스택</div>
+  <h2>무엇으로 만들었나</h2>
+  <div class="body">
+    <div class="col">
+      <table>
+        <tr><th>층</th><th>사용</th></tr>
+        <tr><td>OS · 미들웨어</td><td>Ubuntu 24.04 · ROS 2 Jazzy · rmw_fastrtps</td></tr>
+        <tr><td>시뮬레이터</td><td>Isaac Sim 5.1.0 (Python 3.11) · OmniGraph ROS2 브리지</td></tr>
+        <tr><td>주행</td><td>Nav2 (controller · costmap · map_server) + 자체 waypoint 추종기</td></tr>
+        <tr><td>팔 제어</td><td>자체 IK(UR5) · M0609 레일 계획(IK + 여유 거리)</td></tr>
+        <tr><td>비전</td><td>OpenCV QR · HSV 폴백 · YOLO(선택, 가중치 없음)</td></tr>
+        <tr><td>로봇</td><td>Doosan M0609 (3축 레일) · Ridgeback + UR5 · 흡착 그리퍼</td></tr>
+        <tr><td>관제</td><td>웹 백엔드(ROS 브리지) · 정적 프론트</td></tr>
+        <tr><td>검증</td><td>colcon test(L1·L2) · GitHub Actions CI · evidence 스키마</td></tr>
+        <tr><td>하드웨어</td><td>RTX 5080 Laptop 16 GB (master01·02)</td></tr>
+      </table>
+    </div>
+    <div class="col" style="flex:.8">
+      <h3>ROS 2 패키지 7개</h3>
+      <div class="card" style="font-family:Menlo,Consolas,monospace;font-size:15px;line-height:1.8">
+        rokey_p3_bringup<br>rokey_p3_description<br>rokey_p3_interfaces<br>rokey_p3_manipulation<br>rokey_p3_navigation<br>rokey_p3_orchestrator<br>rokey_p3_perception
+      </div>
+      <p style="margin-top:14px;font-size:15px;color:var(--muted)">+ sim/ (Isaac 스테이지) · web/ · tools/ (run 집계·판정)</p>
+    </div>
+  </div>
+  <div class="src">근거: docs/setup/host-inventory.md 39–40행 · src/*/package.xml · sim/README.md · .github/workflows/</div>
+  <aside class="notes">YOLO 는 "선택, 가중치 없음"을 그대로 말한다.</aside>
+</section></div>
+
+<!-- 6 Flowchart (블록 3/7) -->
+<div class="frame"><section class="slide" data-block="3 flowchart">
+  <div class="pg">6</div>
+  <div class="kicker">3 · Flowchart — 트립 FSM</div>
+  <h2>orchestrator 한 트립의 상태 흐름</h2>
+  <div class="body">
+    <div class="col w2">
+      <svg viewBox="0 0 790 470" width="790" height="470" role="img" aria-label="트립 상태 흐름도">
+<defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#0f4c5c"/></marker></defs>
+<g font-size="13"><rect x="0" y="20" width="150" height="44" rx="22" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="75" y="47" text-anchor="middle" font-weight="700" fill="#0f4c5c">IDLE</text><rect x="210" y="20" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="285" y="47" text-anchor="middle" font-weight="700" fill="#0f4c5c">DISPATCHING</text><rect x="420" y="20" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="495" y="47" text-anchor="middle" font-weight="700" fill="#0f4c5c">DOCKED_LOAD</text><rect x="630" y="20" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="705" y="47" text-anchor="middle" font-weight="700" fill="#0f4c5c">WAIT_BELT</text><rect x="630" y="140" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="705" y="167" text-anchor="middle" font-weight="700" fill="#0f4c5c">PICKING_BELT</text><rect x="420" y="140" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="495" y="167" text-anchor="middle" font-weight="700" fill="#0f4c5c">DEPARTING</text><rect x="210" y="140" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="285" y="167" text-anchor="middle" font-weight="700" fill="#0f4c5c">TRANSIT</text><rect x="0" y="140" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="75" y="167" text-anchor="middle" font-weight="700" fill="#0f4c5c">AUTHENTICATING</text><rect x="0" y="260" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="75" y="287" text-anchor="middle" font-weight="700" fill="#0f4c5c">DELIVERING</text><rect x="210" y="260" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="285" y="287" text-anchor="middle" font-weight="700" fill="#0f4c5c">NEXT_STOP</text><rect x="420" y="260" width="150" height="44" rx="8" fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5"/><text x="495" y="287" text-anchor="middle" font-weight="700" fill="#0f4c5c">RETURNING</text><rect x="630" y="260" width="150" height="44" rx="22" fill="#0f4c5c" stroke="#0f4c5c" stroke-width="1.5"/><text x="705" y="287" text-anchor="middle" font-weight="700" fill="#ffffff">IDLE · 다음 주문</text></g>
+<g stroke="#0f4c5c" stroke-width="1.8" fill="none" marker-end="url(#ar2)"><path d="M150 42 H206"/><path d="M360 42 H416"/><path d="M570 42 H626"/><path d="M705 64 V136"/><path d="M630 162 H574"/><path d="M420 162 H364"/><path d="M210 162 H154"/><path d="M75 184 V256"/><path d="M150 282 H206"/><path d="M360 282 H416"/><path d="M570 282 H626"/><path d="M300 260 L452 188"/><path d="M130 184 L240 258"/></g>
+<g font-size="11" fill="#5b6b70"><text x="180" y="34" text-anchor="middle">Deliver</text><text x="390" y="34" text-anchor="middle">GoToZone</text><text x="600" y="34" text-anchor="middle">Dispense</text><text x="698" y="106" text-anchor="end">POUCH_AT_END</text><text x="602" y="154" text-anchor="middle">PickPouch</text><text x="392" y="154" text-anchor="middle">DEPARTED</text><text x="182" y="154" text-anchor="middle">ARRIVED</text><text x="68" y="226" text-anchor="end">AUTH_OK</text><text x="180" y="274" text-anchor="middle">PickPouch</text><text x="390" y="274" text-anchor="middle">마지막 침상</text><text x="600" y="274" text-anchor="middle">DOCKED</text><text x="398" y="202" text-anchor="end">다음 침상</text><text x="196" y="212" text-anchor="start">AUTH_FAIL</text></g>
+<g font-size="13">
+          <rect x="0" y="336" width="780" height="126" rx="10" fill="#fff3de" stroke="#b86e00"/>
+          <text x="16" y="362" fill="#b86e00" font-weight="700">곁가지 — 병렬 · 실패 · 리셋</text>
+          <text x="16" y="386" fill="#16252b">재고 0 → DISPENSER_PAUSED → REFILL_REQUESTED → /m0609/refill → REFILL_DONE → DISPENSER_RESUMED</text>
+          <text x="16" y="408" fill="#16252b">AUTH_FAIL → 그 침상 주문 HOLD_RETURN · 재시도 초과 → HOLD_RETURN / ABORT · 트립 시한 600 s → TIMEOUT</text>
+          <text x="16" y="430" fill="#16252b">RESETTING(어느 상태에서나): RESET_BEGIN(epoch+1) → drain → /sim/reset → RESET_DONE → IDLE</text>
+          <text x="16" y="452" fill="#16252b">늦게 온 결과는 (token, epoch) 로 버린다 · 긴급 주문은 큐 맨 앞, 도착 전 ARRIVING</text>
+        </g>
+</svg>
+    </div>
+  </div>
+  <div class="src">근거: src/rokey_p3_orchestrator/rokey_p3_orchestrator/trip_fsm.py 15–50·803–1045행 · docs/architecture/delivery-contract-v1.md 2.6·7절 · docs/adr/0001</div>
+  <aside class="notes">재시도 규칙: PickPouch 1회, Dispense 3회 뒤 ABORT(계약 7절). 진행 중 트립 선점은 없다(busy 면 거부).</aside>
+</section></div>
+
+<!-- 7 씬 구성 (블록 4) -->
+<div class="frame"><section class="slide" data-block="4 씬">
+  <div class="pg">7</div>
+  <div class="kicker">4 · 시뮬레이션 환경</div>
+  <h2>두 개의 월드 — 빈월드 조제실과 병원</h2>
+  <div class="body">
+    <div class="col">
+      <div class="phbox" style="height:250px">빈월드 조제실 캡처 — 측정 중(#527 환경: 배치도)</div>
+      <h3 style="margin-top:14px">빈월드 조제실 <span class="chip s-isaac">Isaac 확인</span></h3>
+      <p>코드로 만드는 장면: 선반 4 · 약통 16 · 3축 레일 M0609 · 조제기 · 컨베이어 · AMR 합본. <b>전 구간 ①–⑩은 여기서 돈다.</b></p>
+    </div>
+    <div class="col">
+      <div class="phbox" style="height:250px">병원 씬 캡처 — 측정 중(#527 환경: 배치도)</div>
+      <h3 style="margin-top:14px">병원 <span class="chip s-isaac">Isaac 확인 · 주행·컨베이어 단독</span></h3>
+      <p>병원 USD 위에 <b>병원 M0609 워크셀</b>(실측 JSON) · <b>씬 컨베이어</b>(표면 속도를 직접 써서 A1 롤러 끝까지) · <b>A1 옆 load 에서 합본 집기</b> · <b>Nav2</b>. 지도·zones·routes 는 USD 에서 뽑는다. 전 구간 한 바퀴는 리하 v0(14장) — <span class="chip s-isaac">통과(두 장비)</span></p>
+    </div>
+  </div>
+  <div class="src">근거: sim/standalone/pharmacy_stage.py · sim/scenes/hospital_navigationv1.usda · docs/runbooks/hospital-nav-l3.md · docs/practice/practice-30.md</div>
+  <aside class="notes">새 병원 씬(#523·#524)은 문 제거·개구부 1.97 m. 머지 여부를 동결 전에 확인한다.</aside>
+</section></div>
+
+<!-- 8 물리·연동·리셋 (블록 4) -->
+<div class="frame"><section class="slide" data-block="4 물리·ROS2·재현">
+  <div class="pg">8</div>
+  <div class="kicker">4 · 물리 · ROS 2 연동 · 반복 실행</div>
+  <h2>같은 초기 상태로 다시 돌릴 수 있는가</h2>
+  <div class="body">
+    <div class="col">
+      <h3>물리 속성 <span class="chip s-impl">구현</span></h3>
+      <table>
+        <tr><th>대상</th><th>설정</th></tr>
+        <tr><td>벨트</td><td>kinematic 강체 + collider · 속도 ratio 1.000 (5/5) <span class="chip s-isaac">Isaac</span></td></tr>
+        <tr><td>M0609 레일</td><td>Base 50 kg · Carriage 10 kg</td></tr>
+        <tr><td>약통 · 봉투</td><td>0.1 kg · 0.02 kg</td></tr>
+        <tr><td>물리 스텝</td><td>1/60 s</td></tr>
+        <tr><td>마찰</td><td><span class="chip s-none">미측정</span> 주력 스테이지에 재질 없음</td></tr>
+        <tr><td>파지</td><td>물리 파지 아님 — 거리 판정 attach</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <h3>ROS 2 연동 <span class="chip s-isaac">Isaac 확인</span></h3>
+      <ul>
+        <li><b>/clock</b> 59.999 Hz · rtf 0.990 (9/17)</li>
+        <li><b>TF</b> 로봇 링크 · <b>/amr_1/scan</b> 16 Hz</li>
+        <li>손 카메라 640×480 ≤10 Hz — 시연에서 뺐다</li>
+      </ul>
+      <h3 style="margin-top:16px">리셋 · Play/Stop</h3>
+      <ul>
+        <li>단계형 리셋(epoch) 30회 ABORT 0 <span class="chip s-isaac">Isaac</span></li>
+        <li>사람이 누른 STOP 5/5 복구 <span class="chip s-isaac">Isaac</span></li>
+        <li>연속 3바퀴 epoch 2→3→4 <span class="chip s-isaac">Isaac</span></li>
+        <li>동일 초기 상태(prim 자세 대조): <span class="ph">측정 중(#527 환경: Play/Stop)</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">근거: sim/standalone/p3sim/scene.py · pharmacy_stage.py · sim/README.md 128·132·179행 · docs/practice/practice-01.md 75행 · #240/5759211441</div>
+  <aside class="notes">마찰 값은 0.5단계 스크립트에만 있고 "not measured"로 적혀 있다. 물리 파지가 아니라는 점을 먼저 말한다.</aside>
+</section></div>
+
+<!-- 9 M0609 (블록 5) -->
+<div class="frame"><section class="slide" data-block="5 개별 제어 M0609">
+  <div class="pg">9</div>
+  <div class="kicker">5 · 개별 로봇 제어 ① M0609 보충</div>
+  <h2>재고가 0이 되면 레일 위 팔이 약통을 채운다</h2>
+  <div class="stats">
+    <div><div class="big">13/13</div><div class="biglabel">실습20 A 연속 보충</div></div>
+    <div><div class="big">78/79</div><div class="biglabel">실습21 보충 (실패 1: 창 닫은 뒤)</div></div>
+    <div><div class="big">19–21 s</div><div class="biglabel">보충 1회 (이전 40–52 s) — 명령 시각을 sim 시간에 맞춘 뒤 (#228)</div></div>
+  </div>
+  <div class="body">
+    <div class="col">
+      <h3>제어 흐름</h3>
+      <p>/m0609/refill 수락 → 재고 JSON 에서 칸 선택 → IK + 여유 거리 계획 → <b>팔 접힌 자세에서만 레일 이동</b> → 파지 → holding 2.0 s 확인 → 이송 중 낙하 검사 → 홈 → 결과</p>
+      <p style="font-size:15px;color:var(--muted)">센서가 바꾸는 결정: joint_states(도착 0.05 rad) · rail(0.01 m) · holding(파지·낙하) · 재고(칸 선택)</p>
+    </div>
+    <div class="col">
+      <h3>튜닝 근거</h3>
+      <ul>
+        <li>관절·TCP 속도 = 두산 사양의 <b>80%</b></li>
+        <li>수납통 안지름 0.10→0.12 m: 벽 접촉 뒤 (#198)</li>
+        <li>받침 0.30→0.55 m: 계획 가능 칸 12→16 (#188)</li>
+        <li><span class="chip s-unv">미해결</span> 병원 배치 실측 레일 2.30 m/s &gt; 설정 0.8</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">근거: m0609_arm_node.py · #240/5751030882·5754620387 · PR #228·#198·#188 · docs/practice/simworld/practice-37.md <span class="chip s-isaac">Isaac 확인 · 조제실</span></div>
+  <aside class="notes">40→19 s 는 원통 40–46 s / 모듈 46–52 s → 18.6–21.4 s(실습10·11). 실습20 B(preferred_first) 3연속 실패, 원인 미확정 — 질문 나오면 말한다. 병원 배치는 원통 3/3 뿐, 통합 합격 아님.</aside>
+</section></div>
+
+<!-- 10 UR5 (블록 5) -->
+<div class="frame"><section class="slide" data-block="5 개별 제어 UR5">
+  <div class="pg">10</div>
+  <div class="kicker">5 · 개별 로봇 제어 ② UR5 픽·플레이스</div>
+  <h2>벨트 끝 봉투를 집어 상판에, 침상에서 보관함에</h2>
+  <div class="stats">
+    <div><div class="big">18/18</div><div class="biglabel">픽 첫 시도 성공 (lap14–16, 9바퀴 × 2)</div></div>
+    <div><div class="big">9/9</div><div class="biglabel">트레이 in_slot</div></div>
+    <div><div class="big">≤6.3 mm</div><div class="biglabel">흡착 거리</div></div>
+  </div>
+  <div class="body">
+    <div class="col">
+      <h3>제어 흐름</h3>
+      <p>인터락(base/stopped · 벨트 끝 · order_id) → 검출 대기 → 경유 자세 → 접근 → IK 파지 → 흡착 ON → holding 확인 → 들기(낙하 검사) → 놓기 → 해제 → 결과 뒤 홈</p>
+    </div>
+    <div class="col">
+      <h3>튜닝 — 실패에서 온 값</h3>
+      <ul>
+        <li>lap13: 흡착이 0.55 s 늦게 붙어 판정(0.5 s)과 경쟁 → 확인 시한 <b>2.0 s</b> (#469) → 이후 9/9</li>
+        <li>경유 자세 v4: 벽 여유 −0.003 → +0.023 m</li>
+        <li><span class="chip s-unv">한계</span> 흡착은 거리 판정 attach · 압력 센서 없음 · 병원 씬 0회</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">근거: arm_node.py 1251–1523행 · #240/5758609237·5759013132·5759211441 · PR #469 · docs/practice/practice-30.md <span class="chip s-isaac">Isaac 확인 · 빈월드</span></div>
+  <aside class="notes">v4 경유 자세와 approach_height 0.08 은 저장소 config 가 아니라 runbook 에만 있다. 벨트 픽 흡착 지연 0.4–0.7 s 는 원인 미해결, 시한 대기로 받아낸다.</aside>
+</section></div>
+
+<!-- 11 AMR (블록 5) -->
+<div class="frame"><section class="slide" data-block="5 개별 제어 AMR">
+  <div class="pg">11</div>
+  <div class="kicker">5 · 개별 로봇 제어 ③ AMR 주행</div>
+  <h2>Nav2 는 접근점까지, 마지막 한 뼘은 추종기로</h2>
+  <div class="body">
+    <div class="col">
+      <h3>제어 흐름</h3>
+      <p>GoToZone → 팔 at_home 1 s 안 확인(아니면 출발 거부) → Nav2 로 <b>회전 가능한 접근점</b>까지 → 0.5 m 안이면 Nav2 goal 거두기 → waypoint 추종기로 고정물 옆 0.05 m 정차(<b>이 0.5 m 는 장애물 회피·감속기 미적용</b>) → odom 정지 0.5 s · 공차 안이면 arrived</p>
+      <p style="font-size:14px;color:var(--muted);margin:4px 0 0">위치 추정: 시뮬 도크 기준 TF(odom). AMCL 은 쓰지 않는다.</p>
+      <h3 style="margin-top:14px">결과</h3>
+      <ul>
+        <li>빈월드 waypoints 6/6, 정차 0.018–0.019 m <span class="chip s-isaac">Isaac</span></li>
+        <li>병원 Nav2 반복: 새 기동 3바퀴 3/3, 참값 d_xy ≤ 0.0198 m(8회차) · main 판정 바퀴 2/2 <span class="chip s-isaac">Isaac</span></li>
+        <li>최종 수치: <span class="ph">측정 중(#527 N — 동결 뒤)</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>튜닝 근거</h3>
+      <table>
+        <tr><th>값</th><th>이유 · 전후</th></tr>
+        <tr><td>도착 공차 0.02</td><td>정차 오차 0.14 → 0.019 m (#407)</td></tr>
+        <tr><td>속도·가속 80%</td><td>Nav2 상한 대비 (#453)</td></tr>
+        <tr><td>경로 반경 0.56</td><td>반길이+받침 → 문 여유 0 이었다 (#504)</td></tr>
+        <tr><td>넘김 0.5 m</td><td>정차 자리에 Nav2 궤적 없음 (#508·#514)</td></tr>
+        <tr><td>로컬 static layer</td><td>라이다 옆·뒤 사각</td></tr>
+        <tr><td>속도 두 배 → 되돌림</td><td>두 배 7바퀴 touch 6 · 원래 속도 7바퀴 touch 0 (#526→#547)</td></tr>
+        <tr><td>inflation 1.5 · footprint</td><td>복도 가운데로(#542) · footprint <span class="chip s-none">근거 문서 없음</span></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="src">근거: fleet_node.py 290·337·502–517·589행 · navigation_params.yaml · nav2_params.yaml · #240/5755737538·5788371477</div>
+  <aside class="notes">7회차는 머지 전 트리 cb6eaa5(#523·#524). localization:=odom 은 시뮬 전용 — Isaac odom 이 참값을 따라서 쓸 수 있었다. 자세한 경위는 챌린지 슬라이드.</aside>
+</section></div>
+
+<!-- 12 AI 비전 (블록 6) -->
+<div class="frame"><section class="slide" data-block="6 AI 비전">
+  <div class="pg">12</div>
+  <div class="kicker">6 · AI 비전 인식과 활용</div>
+  <h2>두 갈래 — 설계한 카메라 경로와 시연에 쓴 참값 경로</h2>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="background:#fff;border:1.5px dashed #6b7478">
+        <h3>A. 카메라 비전 <span class="chip s-l12">L1L2</span> <span class="chip s-unv">Isaac 1회 불통과</span></h3>
+        <p style="font-size:15px">손 카메라 → pouch_detector: OpenCV QR 다중 판독 → 접두 ord-/pt-/st- 분류 · YOLO(fail-closed) 또는 HSV → 픽셀+폭 깊이 → 봉투 자세</p>
+        <p style="font-size:14px;color:var(--muted)">YOLO 가중치 없음 · 빈월드 카메라 L3 1회 불통과(QR 한 변 58–61 px 판독 실패), 잘못된 봉투 거부 <code>qr_mismatch</code> 는 동작(실습41) · 윗면 QR GUI 캡처 해독 1장(실습39)</p>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h3>B. 참값 센서 <span class="chip s-isaac">Isaac 확인</span></h3>
+        <p style="font-size:15px">스테이지가 봉투 prim 자세를 읽어 판정 영역 안 · <b>정지한 것만</b> 검출로 낸다 · AMR 자세로 침상 인식표 판독</p>
+        <p style="font-size:14px;color:var(--muted)">lap12–16 빈월드 시연, 병원 리하 v0 집기도 이 경로다</p>
+      </div>
+      <div class="card" style="margin-top:14px;background:#fff3de">
+        <h3 style="color:#b86e00">병원 v0 역할 분리(재범 9/23 확정)</h3>
+        <p style="font-size:15px;margin:0"><b>D455 = 약통 QR 확인</b>(M0609 손 카메라, 보충 전 장착 허용·거부) · <b>UR5 집기 = 시뮬 센서 좌표</b>(참값 센서)</p>
+      </div>
+    </div>
+    <div class="col">
+      <h3>인식 → 행동 (A·B 공통 코드)</h3>
+      <ul>
+        <li>봉투 자세 → UR5 파지 좌표 (order_id 일치 때만)</li>
+        <li>인식표 ID → AUTH_OK / AUTH_FAIL 분기</li>
+        <li>정지 전 봉투 무시 → lap5 파지 오차 0.0988 m 제거</li>
+      </ul>
+      <h3 style="margin-top:14px">처리 부하</h3>
+      <table>
+        <tr><th>손 카메라</th><th>rtf</th><th>GPU</th></tr>
+        <tr><td>켬 (23b)</td><td>0.925</td><td>99 %</td></tr>
+        <tr><td>끔 (24m)</td><td>0.992</td><td>74 %</td></tr>
+      </table>
+      <p style="margin-top:10px">카메라 판독률: <span class="ph">측정 중(#527 AI 비전: 한 장 찍기 판독률)</span></p>
+    </div>
+  </div>
+  <div class="src">근거: tools/demo_v2.sh 231행 · sim/standalone/p3sim/truth_sensors.py · pouch_detector_node.py · PR #254 · #240/5755273685 · docs/practice/emptyworld/practice-39.md</div>
+  <aside class="notes">가장 감점 위험이 큰 슬라이드. "비전으로 집었다"고 말하지 않는다. 카메라 경로로 한 바퀴 또는 판독률 N/M 이 동결 전에 오면 A 의 칩을 바꾼다.</aside>
+</section></div>
+
+<!-- 13 통합 전 구간 (블록 7) -->
+<div class="frame"><section class="slide" data-block="7 통합">
+  <div class="pg">13</div>
+  <div class="kicker">7 · 시스템 통합</div>
+  <h2>로봇 셋이 한 바퀴를 끊김 없이, 연속 세 바퀴</h2>
+  <div class="body">
+    <div class="col">
+      <div class="stats">
+        <div><div class="big">9/9</div><div class="biglabel">lap14·15·16 바퀴 완주 (#469 뒤)</div></div>
+        <div><div class="big">162 s</div><div class="biglabel">한 바퀴 (sim, lap14: 162.0 / 164.5)</div></div>
+      </div>
+      <h3>조율</h3>
+      <ul>
+        <li>UR5 ↔ AMR 인터락: arm/at_home · base/stopped 1.0 s</li>
+        <li>M0609 보충은 트립과 <b>병렬</b> (재고 0 → 보충 → 재개)</li>
+        <li>완료 뒤 재실행: 리셋 barrier, epoch 2→3→4, 늦은 결과 0</li>
+      </ul>
+      <p style="margin-top:10px;font-size:15px"><span class="chip s-unv">미검증</span> M0609 보충과 AMR 한 바퀴를 같은 장면에서 동시에 · AMR 2대</p>
+    </div>
+    <div class="col">
+      <div class="phbox" style="height:300px">전 구간 영상 — 측정 중(#527 통합·동적: 대표 한 바퀴 + 재실행)</div>
+      <p style="font-size:14px;color:var(--muted);margin-top:8px">한계(INTEGRATION_ONLY): 참값 센서 · 거리 판정 흡착 · 1인 1건 · bed_a1 · 빈월드 · 한 PC</p>
+    </div>
+  </div>
+  <div class="src">근거: #240/5758609237·5759013132·5759211441 · docs/practice/practice-30.md · orchestrator_node.py 239–251행 · trip_fsm.py 15–29행 <span class="chip s-isaac">Isaac 확인 · 한 PC</span></div>
+  <aside class="notes">lap14 는 머지 전 #469 포함 트리, lap15·16 은 main 단독. 세 SHA·창 모드/headless 에서 같은 값이 재현됐다. 빈월드 lap run manifest 는 evidence/runs 에 없다(master02 로컬).</aside>
+</section></div>
+
+<!-- 13b 리하 단계 (블록 7) -->
+<div class="frame"><section class="slide" data-block="7 리하">
+  <div class="pg">14</div>
+  <div class="kicker">7 · 리하(리얼 하스피탈)</div>
+  <h2>병원을 실제처럼 돌린다 — v0 → v1 → v2</h2>
+  <div class="body" style="flex-direction:column;gap:14px">
+    <svg viewBox="0 0 1152 110" width="1152" height="110" style="flex-shrink:0" role="img" aria-label="병원 전 구간 구조">
+      <defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#0f4c5c"/></marker></defs>
+      <g font-size="14" text-anchor="middle">
+        <g fill="#eef5f4" stroke="#0f4c5c" stroke-width="1.5">
+          <rect x="0" y="10" width="150" height="70" rx="10"/><rect x="167" y="10" width="150" height="70" rx="10"/>
+          <rect x="334" y="10" width="150" height="70" rx="10"/><rect x="501" y="10" width="150" height="70" rx="10"/>
+          <rect x="668" y="10" width="150" height="70" rx="10"/><rect x="835" y="10" width="150" height="70" rx="10"/>
+          <rect x="1002" y="10" width="150" height="70" rx="10"/>
+        </g>
+        <g fill="#0f4c5c" font-weight="700">
+          <text x="75" y="40">웹 요청</text><text x="242" y="40">M0609 워크셀</text><text x="409" y="40">씬 컨베이어</text>
+          <text x="576" y="40">합본 옆 집기</text><text x="743" y="40">Nav2</text><text x="910" y="40">bed_a1 보관함</text>
+          <text x="1077" y="40">도크 복귀</text>
+        </g>
+        <g fill="#5b6b70" font-size="12">
+          <text x="75" y="62">간호사 화면</text><text x="242" y="62">실측 JSON · 약통 QR</text><text x="409" y="62">표면 속도 → A1 끝</text>
+          <text x="576" y="62">load · 봉투 QR</text><text x="743" y="62">odom · 접근점 넘김</text><text x="910" y="62">인식표 확인</text>
+          <text x="1077" y="62">DOCKED</text>
+        </g>
+        <g stroke="#0f4c5c" stroke-width="2" marker-end="url(#ar3)">
+          <path d="M150 45 H165"/><path d="M317 45 H332"/><path d="M484 45 H499"/><path d="M651 45 H666"/><path d="M818 45 H833"/><path d="M985 45 H1000"/>
+        </g>
+      </g>
+    </svg>
+    <table>
+      <tr><th style="white-space:nowrap">단계</th><th>무엇을 도나</th><th>통과</th><th>상태(9/23 22:30)</th></tr>
+      <tr><td><b>v0</b></td><td>참값 센서로 전 구간 한 바퀴</td><td>DELIVERED, touch 0, 창 모드 녹화</td><td><span class="chip s-isaac">통과(두 장비)</span> 리하01·02 끊김 → 넷 통과(<code>35fb28a</code>·<code>5cb6542</code>·<code>94f19fb</code>·+rail·<code>05339c9</code>, 회차마다 따로) → <b><code>f8eac1c</code> 5/5: master02 1회·master01 2회</b></td></tr>
+      <tr><td><b>v1</b></td><td>카메라 인식(봉투·약통 QR) · 침상 열 곳 · 1350개 진열 · 시드 배치</td><td>v0 + 카메라로 집기·확인, 침상 임의 3곳</td><td><span class="chip s-none">미실행</span></td></tr>
+      <tr><td><b>v2</b></td><td>주문 10건 연속(긴급 끼어듦·재보충) · 간호사 화면 · 평면도 · 촬영</td><td>10건 DELIVERED, 영상</td><td><span class="chip s-none">미실행</span></td></tr>
+    </table>
+    <p style="margin:0;font-size:15px"><b>확정 원인</b> — ① GPU 전력 80 W 상한(최대 78.5 W) ② <code>joint_states</code> 수신 공백 0.67–1.13 s 를 팔 시한으로 셌다(<code>35fb28a</code>) ③ 참값 센서가 세계 속도로 정지를 본다 — 병상에서 <code>speed=0.1056 &gt; 0.02</code> 로 보류 <span class="chip s-unv">수정 SHA 대기</span></p>
+    <p style="margin:0;font-size:15px">회차 기록: <code>docs/reha/reha-NN.md</code> — 다섯 장면(② 보충·약통 QR · ③ A1 적재 · ④ 이동 · ⑤ 내려놓기 · ⑥ 복귀) 도달표. 통과 회차: <code>f8eac1c</code>(reha-02 H·I), 촬영 대표 master02 <code>clip-2.mkv</code></p>
+  </div>
+  <div class="src">근거: #576 · docs/reha/reha-01.md·reha-02.md · #240/5794286395·5794286637 · #553 커밋 35fb28a·232931c · docs/practice/simworld/practice-43.md·practice-44.md</div>
+  <aside class="notes">구조는 9/23 확정: 빈월드 조제실을 옮기지 않고 병원 M0609 워크셀(실측 JSON), 씬 컨베이어는 참조 아래서 그래프가 안 돌아 표면 속도를 직접 쓴다(실습43, 34.58 s), 집기는 dock_1 이 아니라 A1 옆 load(yaw 0), 주행은 Nav2 + localization odom. v0 통과 전에는 "병원 전 구간이 돈다"고 말하지 않는다.</aside>
+</section></div>
+
+<!-- 14 동적 대응 (블록 7) -->
+<div class="frame"><section class="slide" data-block="7 동적 대응">
+  <div class="pg">15</div>
+  <div class="kicker">7 · 동적 대응</div>
+  <h2>위치가 바뀌고, 주문이 끼어들고, 재고가 떨어진다</h2>
+  <div class="body">
+    <div class="col">
+      <h3>랜덤 스폰 <span class="chip s-impl">구현</span></h3>
+      <p>봉투를 벨트 방향 0.05–0.15 m · 옆 ±0.04 m · yaw ±0.3 rad 에서 (seed, epoch, index) 로 뽑는다. M0609 보충 칸도 시드로 무작위 선택.</p>
+      <p><span class="ph">측정 중(#527 통합·동적: 랜덤 스폰 범위 — 시드 N × 성공·실패)</span></p>
+    </div>
+    <div class="col">
+      <h3>외부 이벤트 <span class="chip s-isaac">Isaac 확인 · 조제실</span></h3>
+      <ul>
+        <li>긴급 주문 → 큐 맨 앞, 도착 전 ARRIVING</li>
+        <li>웹 요청 16/16 HTTP 200 · 묶음 2건 → bed_b1 22.9 s</li>
+        <li>재고 임계 → 자동 보충 요청, 보충 21.3–23.2 s</li>
+        <li>진행 중 트립 선점 없음 (busy 면 거부)</li>
+      </ul>
+      <div class="phbox" style="height:120px;margin-top:10px">긴급 주문 장면 — 측정 중(#527 통합·동적: 긴급 주문)</div>
+    </div>
+  </div>
+  <div class="src">근거: sim/standalone/p3sim/pouch.py 25–31행 · pharmacy_stage.py 1414–1439행 · order_pool.py 173–181행 · #240/5753738506·5754620387 · evidence/runs/</div>
+  <aside class="notes">evidence notes 에 "시드 미적용"이라고 적혀 있다. 고정 위치 성공으로 동적 대응을 입증하지 않는다(평가 문서 5절).</aside>
+</section></div>
+
+<!-- 15 검증 지표 (블록 8) -->
+<div class="frame"><section class="slide" data-block="8 지표">
+  <div class="pg">16</div>
+  <div class="kicker">8 · 검증 — 사전 정의 지표</div>
+  <h2>판정선을 먼저 적고, 그다음에 돌렸다</h2>
+  <div class="body">
+    <div class="col">
+      <table>
+        <tr><th>실행</th><th>조건</th><th>성공/시도</th><th>상태</th></tr>
+        <tr><td>조제실 pilot</td><td>protocol frozen 9/19 · master01 · 2 SHA</td><td><b>6/6</b> · lap 12.3–13.3 s</td><td><span class="chip s-isaac">Isaac</span></td></tr>
+        <tr><td>빈월드 lap13</td><td>main · 창 모드</td><td>2/3</td><td><span class="chip s-isaac">Isaac</span></td></tr>
+        <tr><td>빈월드 lap14–16</td><td>#469 뒤 · 3 SHA · 창/headless</td><td><b>9/9</b></td><td><span class="chip s-isaac">Isaac</span></td></tr>
+        <tr><td>M0609 보충</td><td>실습21 · 시연일</td><td>78/79</td><td><span class="chip s-isaac">Isaac</span></td></tr>
+        <tr><td>병원 Nav2</td><td>7회차 · 머지 전 트리</td><td>6/6 goal · 1회</td><td><span class="chip s-unv">미검증</span></td></tr>
+        <tr><td>병원 v0 한 바퀴</td><td><code>f8eac1c</code> · 두 장비</td><td><b>2/2</b> 다섯 장면 5/5</td><td><span class="chip s-isaac">Isaac</span></td></tr>
+        <tr><td>합본 대수 부하</td><td>배송 1 + 대기 N−1 · master01</td><td>N=1–4 완주 · rtf 0.45→0.27</td><td><span class="chip s-isaac">Isaac</span></td></tr>
+        <tr><td>병동 acceptance</td><td>12회 protocol</td><td>—</td><td><span class="chip s-none">미실행</span></td></tr>
+      </table>
+      <p style="margin-top:12px"><span class="ph">측정 중(#527 통합·동적: 성공률 표 — 시행·실패·원인)</span></p>
+    </div>
+    <div class="col" style="flex:.7">
+      <h3>판정선 예 (lap)</h3>
+      <div class="card" style="font-size:15px">
+        <p style="margin:0">막으려는 것 → 재는 값 → 기준</p>
+        <ul style="margin-top:8px">
+          <li>못 집는다 → grasp_failed → 0</li>
+          <li>엉뚱한 환자 → AUTH_FAIL → 0</li>
+          <li>자기 충돌 → touch → 0</li>
+          <li>회차가 지저분 → Traceback · ERROR → 0</li>
+        </ul>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-top:10px">표본이 작아 성공률 신뢰구간은 말하지 않는다.</p>
+    </div>
+  </div>
+  <div class="src">근거: #240/5755830894 (상시 판정선) · experiments/protocols/ · evidence/runs/ (6건) · docs/practice/practice-30.md · docs/policy/metrics.md</div>
+  <aside class="notes">acceptance protocol(ward-lap-b-acceptance-v1)은 proposed, run 0. 결과를 본 뒤 만든 기준을 사전 기준으로 쓰지 않는다.</aside>
+</section></div>
+
+<!-- 16 실패 분석 (블록 8) -->
+<div class="frame"><section class="slide" data-block="8 실패·한계">
+  <div class="pg">17</div>
+  <div class="kicker">8 · 실패 원인과 한계</div>
+  <h2>lap1–12 는 한 번도 ⑩에 닿지 못했다</h2>
+  <div class="body">
+    <div class="col">
+      <svg viewBox="0 0 520 280" width="520" height="280" role="img" aria-label="끊긴 자리별 회차 수">
+        <g font-size="14">
+          <text x="0" y="18" font-weight="700" fill="#0f4c5c">끊긴 자리 — 9/21 첫 회차부터 lap12 까지 14회</text>
+          <g fill="#0f4c5c">
+            <rect x="150" y="40" width="315" height="30" rx="4"/>
+            <rect x="150" y="84" width="90" height="30" rx="4"/>
+            <rect x="150" y="128" width="90" height="30" rx="4"/>
+            <rect x="150" y="172" width="45" height="30" rx="4"/>
+            <rect x="150" y="216" width="90" height="30" rx="4"/>
+          </g>
+          <g fill="#16252b">
+            <text x="0" y="61">⑤ 검출·픽</text><text x="475" y="61">7</text>
+            <text x="0" y="105">② 베이스 고착</text><text x="250" y="105">2</text>
+            <text x="0" y="149">⑦ 인증</text><text x="250" y="149">2</text>
+            <text x="0" y="193">⑧ 전달</text><text x="205" y="193">1</text>
+            <text x="0" y="237">기동·스테이지 사망</text><text x="250" y="237">2</text>
+          </g>
+          <text x="0" y="272" font-size="12" fill="#5b6b70">베이스만 돈 셋째 회차(끊김 없음)는 뺐다</text>
+        </g>
+      </svg>
+    </div>
+    <div class="col">
+      <h3>원인 → 고침</h3>
+      <ul style="font-size:15px">
+        <li>팔 기준 프레임 180° 보정 이중 적용 (#454)</li>
+        <li>관절 직선 경로가 벽·자기 상판에 걸림 (#446)</li>
+        <li>인식표 센서가 관절값을 세계 좌표로 (#465)</li>
+        <li>든 봉투가 검출 장부에서 빠짐 (#468)</li>
+        <li>흡착 판정 경쟁 0.5 s vs 0.55 s (#469)</li>
+      </ul>
+      <h3 style="margin-top:14px">남은 한계</h3>
+      <ul style="font-size:15px">
+        <li>벨트 픽 흡착 지연 0.4–0.7 s 원인 미해결</li>
+        <li>픽 실패 봉투가 벨트 끝에 남으면 운영자 리셋 필요 (결정 50)</li>
+        <li>한 PC · AMR 1대 · 참값 센서</li>
+        <li>M0609 레일 이동이 한 번 실패하면 팔이 접히지 않은 채 굳어 이후 보충이 전부 실패 — 복구 경로 없음 <span class="chip s-unv">#392 열림</span></li>
+        <li>투입구에 놓은 통이 바닥에 떨어져도 <code>REFILL_DONE</code> 이 ok — 안착을 보지 않는 성공 판정 <span class="chip s-unv">#397 열림</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">근거: docs/practice/practice-30.md 60–77행 · #240/5757290294 (결정 50) · PR #446·#454·#465·#468·#469</div>
+  <aside class="notes">막대는 실습30 60–74행 표를 센 것: ② 첫·둘째, ⑤ lap1·2·3·4·5·9·11, ⑦ lap8·10, ⑧ lap12, 기동 lap6·스테이지 사망 lap7.</aside>
+</section></div>
+
+<!-- 17 챌린지 (블록 9) -->
+<div class="frame"><section class="slide" data-block="9 챌린지">
+  <div class="pg">18</div>
+  <div class="kicker">9 · 챌린지 — 병원 Nav2 주행</div>
+  <h2>0/6 에서 6/6 까지, 한 층씩 잘랐다</h2>
+  <div class="body">
+    <div class="col">
+      <svg viewBox="0 0 540 330" width="540" height="330" role="img" aria-label="회차별 Nav2 도착 수">
+        <g font-size="13">
+          <line x1="40" y1="260" x2="530" y2="260" stroke="#d5e0e0"/>
+          <line x1="40" y1="140" x2="530" y2="140" stroke="#eef5f4"/>
+          <line x1="40" y1="20" x2="530" y2="20" stroke="#eef5f4"/>
+          <text x="30" y="264" text-anchor="end" fill="#5b6b70">0</text>
+          <text x="30" y="144" text-anchor="end" fill="#5b6b70">3</text>
+          <text x="30" y="24" text-anchor="end" fill="#5b6b70">6</text>
+          <g fill="#2a7f86">
+            <rect x="60" y="258" width="56" height="2"/><rect x="140" y="258" width="56" height="2"/>
+            <rect x="220" y="140" width="56" height="120" rx="3"/><rect x="300" y="140" width="56" height="120" rx="3"/>
+            <rect x="380" y="140" width="56" height="120" rx="3"/>
+          </g>
+          <rect x="460" y="20" width="56" height="240" rx="3" fill="#0f4c5c"/>
+          <g text-anchor="middle" fill="#16252b" font-weight="700">
+            <text x="88" y="250">0</text><text x="168" y="250">0</text><text x="248" y="132">3</text>
+            <text x="328" y="132">3</text><text x="408" y="132">3</text><text x="488" y="14">6</text>
+          </g>
+          <g text-anchor="middle" fill="#5b6b70">
+            <text x="88" y="280">2회</text><text x="168" y="280">3회</text><text x="248" y="280">4회</text>
+            <text x="328" y="280">5회</text><text x="408" y="280">6회</text><text x="488" y="280">7회</text>
+            <text x="88" y="298" font-size="11">궤적 없음</text><text x="168" y="298" font-size="11">공차 밖</text>
+            <text x="248" y="298" font-size="11">몰딩</text><text x="328" y="298" font-size="11">문짝</text>
+            <text x="408" y="298" font-size="11">문짝</text><text x="488" y="298" font-size="11">touch 0</text>
+          </g>
+          <text x="40" y="324" fill="#5b6b70" font-size="12">Nav2 도착 수 / 6 (1회차는 waypoints 트랙)</text>
+        </g>
+      </svg>
+    </div>
+    <div class="col">
+      <h3>문제 → 가설 → 고침</h3>
+      <ul style="font-size:15px">
+        <li>정차 자리 0.05 m 에 Nav2 궤적 없음 → 접근점까지만 Nav2, 추종기 넘김 (#508·#514)</li>
+        <li>AMCL 0.18–0.31 m 어긋남 → localization:=odom (시뮬 전용)</li>
+        <li>몰딩 z 0.157 이 지도·라이다에 없음 → 전 높이 지도 (한 변수)</li>
+        <li>라이다 옆·뒤 사각 → 로컬 static layer</li>
+        <li>열린 문짝 끝 → 새 씬: 문 제거 (#523·#524)</li>
+      </ul>
+      <p style="margin-top:10px;font-size:15px"><span class="chip s-unv">한계</span> 1회 · 머지 전 트리 · d_xy 는 fleet 값 · 마지막 고침은 씬 · 정적 환경</p>
+      <p><span class="ph">측정 중(#527 챌린지: 8회차 반복·참값)</span></p>
+    </div>
+  </div>
+  <div class="src">근거: docs/presentation/challenge-hospital-nav2.md · #240/5787005979–5788371477 · PR #504·#508·#511·#514·#523·#524</div>
+  <aside class="notes">판정선은 매 회차 전에 런북에 적었다. 3/6 을 "거의 됨"으로 쓰지 않았다. exit −6 은 로그 줄을 받아 원인(rosidl assert)을 찾고 고쳤다.</aside>
+</section></div>
+
+<!-- 18 재현 방법 (블록 10) -->
+<div class="frame"><section class="slide" data-block="10 재현">
+  <div class="pg">19</div>
+  <div class="kicker">10 · 저장소에서 재현하기</div>
+  <h2>git clone 부터 한 바퀴까지</h2>
+  <div class="body">
+    <div class="col">
+      <h3>Isaac 없이 — README 순서 <span class="chip s-l12">L1L2</span></h3>
+      <div class="card" style="font-family:Menlo,Consolas,monospace;font-size:14px;line-height:1.7">
+        git clone …/ROKEY_P3_A3.git<br>
+        colcon build --symlink-install<br>
+        colcon test → 0 errors, 0 failures<br>
+        ros2 launch rokey_p3_bringup stub_loop.launch.py<br>
+        → orders.jsonl "state": "SUCCESS"
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-top:8px">docker ros:jazzy-ros-base-noble 에서 확인(7ac85b7, 225 tests). CI 가 같은 명령을 돈다.</p>
+    </div>
+    <div class="col">
+      <h3>Isaac 까지</h3>
+      <ul>
+        <li>스테이지 · preset · 자산 해시: sim/README.md</li>
+        <li>실제로 친 명령: docs/runbooks/ · docs/practice/</li>
+        <li><span class="chip s-none">빈칸</span> README 에 Isaac 절차 없음</li>
+        <li><span class="chip s-none">빈칸</span> M0609 로봇 자산이 저장소 밖</li>
+        <li><span class="chip s-unv">빈칸</span> P3_* 환경 변수 한 표 없음</li>
+      </ul>
+      <p style="margin-top:10px"><span class="ph">측정 중(#527 설계·납품: 깨끗한 클론 재현)</span></p>
+    </div>
+  </div>
+  <div class="src">근거: README.md 1–6절·확인 출처 · sim/README.md 24–46행 · docs/runbooks/master02-pharmacy-stack.md 41행</div>
+  <aside class="notes">저장소는 익명 HTTPS 로 받을 수 없다(접근 권한 필요). 평가 PC 환경은 미확인(평가 문서 8절).</aside>
+</section></div>
+
+<!-- 19 정리 (블록 10) -->
+<div class="frame"><section class="slide dark" data-block="10 정리">
+  <div class="pg">20</div>
+  <div class="kicker">정리</div>
+  <h2 style="font-size:40px">확인한 것과 남은 것</h2>
+  <div class="body">
+    <div class="col">
+      <h3 style="color:#9fd3cf">Isaac 에서 확인한 것</h3>
+      <ul style="color:#fff">
+        <li>로봇 셋, 한 바퀴 ①–⑩ 연속 3바퀴 × 3회 (한 PC, 빈월드)</li>
+        <li>M0609 보충 반복 · 트립과 병렬</li>
+        <li>리셋 뒤 재실행 · 늦은 결과 버리기</li>
+        <li>판정선을 결과 전에 고정한 측정</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3 style="color:#ffd79a">아직 아닌 것</h3>
+      <ul style="color:#fff">
+        <li>다중 PC 한 시나리오</li>
+        <li>카메라 인식이 로봇 동작을 바꾸는 장면</li>
+        <li>랜덤 스폰 정량 · 병원 전 구간</li>
+        <li>물리 파지(흡착은 거리 판정)</li>
+      </ul>
+      <p style="color:#ffd79a;font-size:15px;margin-top:10px">동결(9/28 18:00) 뒤 이 목록을 다시 쓴다</p>
+    </div>
+  </div>
+  <div class="src">근거: docs/presentation/scorecard.md · #527</div>
+  <aside class="notes">마지막 슬라이드는 동결 뒤 채워진 빈칸에 따라 다시 쓴다.</aside>
+</section></div>
+
+</div>
+<script>
+// 창 폭에 맞춰 1280×720 슬라이드를 줄인다(인쇄 때는 끈다).
+function fit(){
+  var w=Math.min(1,(window.innerWidth-32)/1280);
+  document.querySelectorAll('.frame').forEach(function(f){
+    f.style.width=(1280*w)+'px';f.style.height=(720*w)+'px';
+    f.firstElementChild.style.transform='scale('+w+')';
+  });
+}
+window.addEventListener('resize',fit);fit();
+</script>
+</body>
+</html>

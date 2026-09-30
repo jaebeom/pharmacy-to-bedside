@@ -1,0 +1,27 @@
+{
+  "commit": "fea9b1fb9462f7b29302210adc63a041badea0db",
+  "created_at": "2026-09-22T07:20:28.988843+00:00",
+  "stage_source": "/tmp/p3-intake-pr",
+  "arm_install": "/home/rokey/Dev/cobot3_ws/release/20260922-practice31-321c069/install",
+  "arm_source_diff_from_321c069": "",
+  "domain": 151,
+  "source_hashes": {
+    "sim/standalone/pharmacy_stage.py": "e22d9ac311097c03e7a2498c43e329c90468143adea7f4426b7d2dfd04f87730",
+    "sim/standalone/p3sim/workcell_layout.py": "a9852889f18f1766b730d61d88edb86e5c796632610f4096fcfb6dee98c40080",
+    "sim/standalone/run_workcell_refill_trials.py": "3e3787246744f7a08f83b2b81898c984d1911c14f0bfb9cd0f500d489dbe6e11",
+    "src/rokey_p3_manipulation/rokey_p3_manipulation/m0609_arm_node.py": "235679344b4f1cce1ca66d93a78f8940b5b699251fe4d74002ce60a96c52ea86",
+    "src/rokey_p3_manipulation/rokey_p3_manipulation/scene_v2.py": "d3baf55e6345579fe7632b1a7b9a9a94dacc36873c8a77b0b22b77f7ccf7ccd0"
+  },
+  "uname": {
+    "system": "Linux",
+    "node": "IsaacSim07",
+    "release": "6.14.0-27-generic",
+    "version": "#27~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Jul 22 17:38:49 UTC 2",
+    "machine": "x86_64",
+    "processor": "x86_64"
+  },
+  "os_release": "PRETTY_NAME=\"Ubuntu 24.04.4 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.4 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+  "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU, 580.173.02",
+  "preparation_source": "fea9b1f",
+  "obstacles": 150
+}

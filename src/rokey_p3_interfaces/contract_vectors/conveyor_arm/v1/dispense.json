@@ -1,0 +1,70 @@
+{
+  "boundary": "dispense",
+  "contract": "docs/architecture/delivery-contract-v1.md 11.1-11.2 @ dc172d1",
+  "actor": "벨트 backend(Isaac 스테이지, stub_sim, fake_isaac). 배출 응답과 occupied·at_end·order_id 관측",
+  "params": {"settle_speed": 0.01, "settle_time_s": 0.3, "note": "시험용 값. 합격선이 아니다(BeltModel 기본값과 같다)"},
+  "vectors": [
+    {"id": "D01", "clause": "11.1 11.2", "title": "정상 배출: accepted 는 도착이 아니고, STOP 뒤 정착해야 at_end", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}, "expect": {"accepted": true, "message": "", "dispensed": 1, "occupied": true, "at_end": false, "order_id": "ord-0001"}},
+      {"t": 1.0, "pouch": {"at": "mid", "speed": 0.15}, "expect": {"occupied": true, "at_end": false}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": 0.15}, "expect": {"at_end": false}},
+      {"t": 2.1, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": false}},
+      {"t": 2.45, "pouch": {"at": "end", "speed": 0.0}, "expect": {"occupied": true, "at_end": true, "order_id": "ord-0001"}}
+    ]},
+    {"id": "D02", "clause": "11.2", "title": "점유 중 다른 주문은 belt_occupied", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}, "expect": {"accepted": true}},
+      {"t": 0.5, "dispense": {"request_id": "r001-0001", "order_id": "ord-0002"}, "expect": {"accepted": false, "message": "belt_occupied", "dispensed": 0, "order_id": "ord-0001"}}
+    ]},
+    {"id": "D03", "clause": "11.2", "title": "추적 중인 같은 요청의 재전송은 같은 결과, DISPENSED 는 다시 내지 않음", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}, "expect": {"dispensed": 1}},
+      {"t": 1.0, "pouch": {"at": "mid", "speed": 0.15}},
+      {"t": 2.1, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}, "expect": {"accepted": true, "message": "", "dispensed": 0, "occupied": true}}
+    ]},
+    {"id": "D04", "clause": "11.2", "title": "소실된 봉투의 재전송에는 accepted=true 로 답하지 않음(fail_closed)", "options": {"fail_closed": true}, "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}, "expect": {"dispensed": 1}},
+      {"t": 1.0, "pouch": {"at": "lost"}, "expect": {"occupied": true}},
+      {"t": 2.1, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}, "expect": {"accepted": false, "message": "belt_occupied", "dispensed": 0}}
+    ]},
+    {"id": "D05", "clause": "11.1", "title": "frame 누락: 현재 기본값은 해제", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 1.0, "pouch": {"at": "lost"}, "expect": {"occupied": false, "order_id": ""}}
+    ]},
+    {"id": "D06", "clause": "11.1", "title": "frame 누락: fail_closed 면 점유 유지, 다른 주문은 belt_occupied", "options": {"fail_closed": true}, "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 1.0, "pouch": {"at": "lost"}, "expect": {"occupied": true, "order_id": "ord-0001", "at_end": false}},
+      {"t": 1.5, "dispense": {"request_id": "r001-0001", "order_id": "ord-0002"}, "expect": {"accepted": false, "message": "belt_occupied"}}
+    ]},
+    {"id": "D07", "clause": "11.1", "title": "벨트 밖 이탈(held 아님): fail_closed 면 점유 유지", "options": {"fail_closed": true}, "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 1.0, "pouch": {"at": "off", "speed": 0.3}, "expect": {"occupied": true, "order_id": "ord-0001"}}
+    ]},
+    {"id": "D08", "clause": "11.1", "title": "실제 팔: 파지 첫 순간은 해제가 아니고, 쥔 채 벨트 부피 밖이면 해제", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": 0.0}},
+      {"t": 2.4, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": true}},
+      {"t": 5.0, "pouch": {"at": "end", "held": true}, "expect": {"occupied": true, "order_id": "ord-0001"}},
+      {"t": 5.5, "pouch": {"at": "off", "held": true}, "expect": {"occupied": false, "at_end": false, "order_id": ""}},
+      {"t": 6.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0002"}, "expect": {"accepted": true, "dispensed": 1}}
+    ]},
+    {"id": "D09", "clause": "11.1", "title": "스텁 pick_notice 는 at_end·같은 epoch·같은 주문일 때만 해제", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 1.0, "pick_notice": {"order_id": "ord-0001", "epoch": 1}, "expect": {"occupied": true}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": 0.0}},
+      {"t": 2.4, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": true}},
+      {"t": 3.0, "pick_notice": {"order_id": "ord-0009", "epoch": 1}, "expect": {"occupied": true}},
+      {"t": 3.1, "pick_notice": {"order_id": "ord-0001", "epoch": 2}, "expect": {"occupied": true}},
+      {"t": 3.2, "pick_notice": {"order_id": "ord-0001", "epoch": 1}, "expect": {"occupied": false, "order_id": ""}}
+    ]},
+    {"id": "D10", "clause": "11.1", "title": "종단 도착 시한 초과는 해제가 아님", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 25.0, "pouch": {"at": "mid", "speed": 0.0}, "expect": {"occupied": true, "at_end": false}},
+      {"t": 25.5, "dispense": {"request_id": "r001-0001", "order_id": "ord-0002"}, "expect": {"accepted": false, "message": "belt_occupied"}}
+    ]},
+    {"id": "D11", "clause": "11.1", "title": "리셋 회수는 해제, 새 epoch 에서 다시 배출", "options": {"fail_closed": true}, "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 1.0, "pouch": {"at": "lost"}, "expect": {"occupied": true}},
+      {"t": 2.0, "reset": {"epoch": 2}, "expect": {"occupied": false, "at_end": false, "order_id": ""}},
+      {"t": 3.0, "dispense": {"request_id": "r002-0001", "order_id": "ord-0001"}, "expect": {"accepted": true, "dispensed": 1}}
+    ]}
+  ]
+}

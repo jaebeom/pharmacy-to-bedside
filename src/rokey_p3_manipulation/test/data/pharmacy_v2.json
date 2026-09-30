@@ -1,0 +1,1215 @@
+{
+ "v": 1,
+ "stamp": {
+  "sec": 0,
+  "nanosec": 0
+ },
+ "scene": "v2",
+ "source": "임시(9/18 재범 지시, 세준 실제 USD 로 옮길 때 바뀜)",
+ "items": {
+  "drug-amox": "cylinder",
+  "drug-ibu": "module"
+ },
+ "rail": {
+  "names": [
+   "rail_x",
+   "rail_y",
+   "rail_z"
+  ],
+  "limits": [
+   [
+    -1.4,
+    1.4
+   ],
+   [
+    -0.1,
+    0.33
+   ],
+   [
+    0.0,
+    1.1
+   ]
+  ],
+  "origin": [
+   0.0,
+   0.3,
+   0.25
+  ],
+  "parts": [
+   {
+    "name": "Track",
+    "link": "Base",
+    "moves": [],
+    "collision": true,
+    "center": [
+     0.0,
+     0.3,
+     0.025
+    ],
+    "size": [
+     3.2,
+     0.1,
+     0.05
+    ]
+   },
+   {
+    "name": "YBeam",
+    "link": "CarriageX",
+    "moves": [
+     "x"
+    ],
+    "collision": false,
+    "center": [
+     0.0,
+     0.415,
+     0.13
+    ],
+    "size": [
+     0.14,
+     0.65,
+     0.06
+    ]
+   },
+   {
+    "name": "TruckLeft",
+    "link": "CarriageX",
+    "moves": [
+     "x"
+    ],
+    "collision": false,
+    "center": [
+     0.0,
+     0.15,
+     0.09
+    ],
+    "size": [
+     0.24,
+     0.12,
+     0.06
+    ]
+   },
+   {
+    "name": "TruckRight",
+    "link": "CarriageX",
+    "moves": [
+     "x"
+    ],
+    "collision": false,
+    "center": [
+     0.0,
+     0.68,
+     0.09
+    ],
+    "size": [
+     0.24,
+     0.12,
+     0.06
+    ]
+   },
+   {
+    "name": "Pedestal",
+    "link": "CarriageY",
+    "moves": [
+     "x",
+     "y"
+    ],
+    "collision": false,
+    "center": [
+     0.0,
+     0.3,
+     0.13
+    ],
+    "size": [
+     0.22,
+     0.22,
+     0.16
+    ]
+   },
+   {
+    "name": "YCarriage",
+    "link": "CarriageY",
+    "moves": [
+     "x",
+     "y"
+    ],
+    "collision": false,
+    "center": [
+     0.0,
+     0.3,
+     0.18
+    ],
+    "size": [
+     0.3,
+     0.26,
+     0.05
+    ]
+   },
+   {
+    "name": "LiftPlate",
+    "link": "CarriageZ",
+    "moves": [
+     "x",
+     "y",
+     "z"
+    ],
+    "collision": false,
+    "center": [
+     0.0,
+     0.3,
+     0.23
+    ],
+    "size": [
+     0.28,
+     0.28,
+     0.04
+    ]
+   },
+   {
+    "name": "LiftColumn",
+    "link": "CarriageZ",
+    "moves": [
+     "x",
+     "y",
+     "z"
+    ],
+    "collision": false,
+    "center": [
+     0.0,
+     0.3,
+     -0.35
+    ],
+    "size": [
+     0.16,
+     0.16,
+     1.12
+    ]
+   }
+  ]
+ },
+ "cells": [
+  {
+   "cell": "floor_left/r0c0",
+   "canister_id": "can-floor_left-r0c0",
+   "item": "drug-amox",
+   "shelf": "floor_left",
+   "row": 0,
+   "col": 0,
+   "type": "cylinder",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -1.15,
+     0.91,
+     0.61
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "diameter": 0.07,
+    "height": 0.12
+   }
+  },
+  {
+   "cell": "floor_left/r0c1",
+   "canister_id": "can-floor_left-r0c1",
+   "item": "drug-amox",
+   "shelf": "floor_left",
+   "row": 0,
+   "col": 1,
+   "type": "cylinder",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.85,
+     0.91,
+     0.61
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "diameter": 0.07,
+    "height": 0.12
+   }
+  },
+  {
+   "cell": "floor_left/r1c0",
+   "canister_id": "can-floor_left-r1c0",
+   "item": "drug-amox",
+   "shelf": "floor_left",
+   "row": 1,
+   "col": 0,
+   "type": "cylinder",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -1.15,
+     0.91,
+     0.91
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "diameter": 0.07,
+    "height": 0.12
+   }
+  },
+  {
+   "cell": "floor_left/r1c1",
+   "canister_id": "can-floor_left-r1c1",
+   "item": "drug-amox",
+   "shelf": "floor_left",
+   "row": 1,
+   "col": 1,
+   "type": "cylinder",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.85,
+     0.91,
+     0.91
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "diameter": 0.07,
+    "height": 0.12
+   }
+  },
+  {
+   "cell": "floor_right/r0c0",
+   "canister_id": "can-floor_right-r0c0",
+   "item": "drug-amox",
+   "shelf": "floor_right",
+   "row": 0,
+   "col": 0,
+   "type": "cylinder",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.45,
+     0.91,
+     0.61
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "diameter": 0.07,
+    "height": 0.12
+   }
+  },
+  {
+   "cell": "floor_right/r0c1",
+   "canister_id": "can-floor_right-r0c1",
+   "item": "drug-amox",
+   "shelf": "floor_right",
+   "row": 0,
+   "col": 1,
+   "type": "cylinder",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.15,
+     0.91,
+     0.61
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "diameter": 0.07,
+    "height": 0.12
+   }
+  },
+  {
+   "cell": "floor_right/r1c0",
+   "canister_id": "can-floor_right-r1c0",
+   "item": "drug-amox",
+   "shelf": "floor_right",
+   "row": 1,
+   "col": 0,
+   "type": "cylinder",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.45,
+     0.91,
+     0.91
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "diameter": 0.07,
+    "height": 0.12
+   }
+  },
+  {
+   "cell": "floor_right/r1c1",
+   "canister_id": "can-floor_right-r1c1",
+   "item": "drug-amox",
+   "shelf": "floor_right",
+   "row": 1,
+   "col": 1,
+   "type": "cylinder",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.15,
+     0.91,
+     0.91
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "diameter": 0.07,
+    "height": 0.12
+   }
+  },
+  {
+   "cell": "upper_left/r0c0",
+   "canister_id": "can-upper_left-r0c0",
+   "item": "drug-ibu",
+   "shelf": "upper_left",
+   "row": 0,
+   "col": 0,
+   "type": "module",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -1.15,
+     0.91,
+     1.24
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "x": 0.06,
+    "y": 0.1,
+    "z": 0.14
+   }
+  },
+  {
+   "cell": "upper_left/r0c1",
+   "canister_id": "can-upper_left-r0c1",
+   "item": "drug-ibu",
+   "shelf": "upper_left",
+   "row": 0,
+   "col": 1,
+   "type": "module",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.85,
+     0.91,
+     1.24
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "x": 0.06,
+    "y": 0.1,
+    "z": 0.14
+   }
+  },
+  {
+   "cell": "upper_left/r1c0",
+   "canister_id": "can-upper_left-r1c0",
+   "item": "drug-ibu",
+   "shelf": "upper_left",
+   "row": 1,
+   "col": 0,
+   "type": "module",
+   "access": "top",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -1.15,
+     0.91,
+     1.54
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "x": 0.06,
+    "y": 0.1,
+    "z": 0.14
+   }
+  },
+  {
+   "cell": "upper_left/r1c1",
+   "canister_id": "can-upper_left-r1c1",
+   "item": "drug-ibu",
+   "shelf": "upper_left",
+   "row": 1,
+   "col": 1,
+   "type": "module",
+   "access": "top",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.85,
+     0.91,
+     1.54
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "x": 0.06,
+    "y": 0.1,
+    "z": 0.14
+   }
+  },
+  {
+   "cell": "upper_right/r0c0",
+   "canister_id": "can-upper_right-r0c0",
+   "item": "drug-ibu",
+   "shelf": "upper_right",
+   "row": 0,
+   "col": 0,
+   "type": "module",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.45,
+     0.91,
+     1.24
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "x": 0.06,
+    "y": 0.1,
+    "z": 0.14
+   }
+  },
+  {
+   "cell": "upper_right/r0c1",
+   "canister_id": "can-upper_right-r0c1",
+   "item": "drug-ibu",
+   "shelf": "upper_right",
+   "row": 0,
+   "col": 1,
+   "type": "module",
+   "access": "front",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.15,
+     0.91,
+     1.24
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "x": 0.06,
+    "y": 0.1,
+    "z": 0.14
+   }
+  },
+  {
+   "cell": "upper_right/r1c0",
+   "canister_id": "can-upper_right-r1c0",
+   "item": "drug-ibu",
+   "shelf": "upper_right",
+   "row": 1,
+   "col": 0,
+   "type": "module",
+   "access": "top",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.45,
+     0.91,
+     1.54
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "x": 0.06,
+    "y": 0.1,
+    "z": 0.14
+   }
+  },
+  {
+   "cell": "upper_right/r1c1",
+   "canister_id": "can-upper_right-r1c1",
+   "item": "drug-ibu",
+   "shelf": "upper_right",
+   "row": 1,
+   "col": 1,
+   "type": "module",
+   "access": "top",
+   "present": true,
+   "pose": {
+    "xyz": [
+     -0.15,
+     0.91,
+     1.54
+    ],
+    "yaw": 0.0
+   },
+   "size": {
+    "x": 0.06,
+    "y": 0.1,
+    "z": 0.14
+   }
+  }
+ ],
+ "targets": {
+  "round": {
+   "center": [
+    0.9,
+    0.56,
+    0.98
+   ],
+   "inner_diameter": 0.12,
+   "floor_z": 0.86,
+   "depth": 0.12,
+   "axis": [
+    0.0,
+    0.0,
+    -1.0
+   ]
+  },
+  "module": {
+   "entry_center": [
+    1.15,
+    0.7,
+    1.02
+   ],
+   "opening": {
+    "x": 0.08,
+    "z": 0.16
+   },
+   "depth": 0.15,
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ]
+  }
+ },
+ "obstacles": [
+  {
+   "name": "FloorLeftShelfBack",
+   "center": [
+    -1.0,
+    1.08,
+    0.575
+   ],
+   "size": [
+    0.6,
+    0.02,
+    1.15
+   ]
+  },
+  {
+   "name": "FloorLeftShelfSideLeft",
+   "center": [
+    -1.31,
+    0.91,
+    0.575
+   ],
+   "size": [
+    0.02,
+    0.32,
+    1.15
+   ]
+  },
+  {
+   "name": "FloorLeftShelfSideRight",
+   "center": [
+    -0.6900000000000001,
+    0.91,
+    0.575
+   ],
+   "size": [
+    0.02,
+    0.32,
+    1.15
+   ]
+  },
+  {
+   "name": "FloorLeftShelfBoard0",
+   "center": [
+    -1.0,
+    0.91,
+    0.54
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "FloorLeftShelfBoard1",
+   "center": [
+    -1.0,
+    0.91,
+    0.8400000000000001
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "FloorLeftShelfBoard2",
+   "center": [
+    -1.0,
+    0.91,
+    1.14
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "FloorRightShelfBack",
+   "center": [
+    -0.3,
+    1.08,
+    0.575
+   ],
+   "size": [
+    0.6,
+    0.02,
+    1.15
+   ]
+  },
+  {
+   "name": "FloorRightShelfSideLeft",
+   "center": [
+    -0.61,
+    0.91,
+    0.575
+   ],
+   "size": [
+    0.02,
+    0.32,
+    1.15
+   ]
+  },
+  {
+   "name": "FloorRightShelfSideRight",
+   "center": [
+    0.01,
+    0.91,
+    0.575
+   ],
+   "size": [
+    0.02,
+    0.32,
+    1.15
+   ]
+  },
+  {
+   "name": "FloorRightShelfBoard0",
+   "center": [
+    -0.3,
+    0.91,
+    0.54
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "FloorRightShelfBoard1",
+   "center": [
+    -0.3,
+    0.91,
+    0.8400000000000001
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "FloorRightShelfBoard2",
+   "center": [
+    -0.3,
+    0.91,
+    1.14
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "UpperLeftShelfBack",
+   "center": [
+    -1.0,
+    1.08,
+    1.46
+   ],
+   "size": [
+    0.6,
+    0.02,
+    0.62
+   ]
+  },
+  {
+   "name": "UpperLeftShelfSideLeft",
+   "center": [
+    -1.31,
+    0.91,
+    1.46
+   ],
+   "size": [
+    0.02,
+    0.32,
+    0.62
+   ]
+  },
+  {
+   "name": "UpperLeftShelfSideRight",
+   "center": [
+    -0.6900000000000001,
+    0.91,
+    1.46
+   ],
+   "size": [
+    0.02,
+    0.32,
+    0.62
+   ]
+  },
+  {
+   "name": "UpperLeftShelfBoard0",
+   "center": [
+    -1.0,
+    0.91,
+    1.16
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "UpperLeftShelfBoard1",
+   "center": [
+    -1.0,
+    0.91,
+    1.46
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "UpperRightShelfBack",
+   "center": [
+    -0.3,
+    1.08,
+    1.46
+   ],
+   "size": [
+    0.6,
+    0.02,
+    0.62
+   ]
+  },
+  {
+   "name": "UpperRightShelfSideLeft",
+   "center": [
+    -0.61,
+    0.91,
+    1.46
+   ],
+   "size": [
+    0.02,
+    0.32,
+    0.62
+   ]
+  },
+  {
+   "name": "UpperRightShelfSideRight",
+   "center": [
+    0.01,
+    0.91,
+    1.46
+   ],
+   "size": [
+    0.02,
+    0.32,
+    0.62
+   ]
+  },
+  {
+   "name": "UpperRightShelfBoard0",
+   "center": [
+    -0.3,
+    0.91,
+    1.16
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "UpperRightShelfBoard1",
+   "center": [
+    -0.3,
+    0.91,
+    1.46
+   ],
+   "size": [
+    0.6,
+    0.32,
+    0.02
+   ]
+  },
+  {
+   "name": "DispenserBody",
+   "center": [
+    1.0,
+    1.075,
+    0.8
+   ],
+   "size": [
+    0.7000000000000001,
+    0.45000000000000007,
+    1.6
+   ]
+  },
+  {
+   "name": "DispenserFrontLeft",
+   "center": [
+    0.8799999999999999,
+    0.7749999999999999,
+    0.8
+   ],
+   "size": [
+    0.45999999999999985,
+    0.15000000000000002,
+    1.6
+   ]
+  },
+  {
+   "name": "DispenserFrontRight",
+   "center": [
+    1.27,
+    0.7749999999999999,
+    0.8
+   ],
+   "size": [
+    0.16000000000000014,
+    0.15000000000000002,
+    1.6
+   ]
+  },
+  {
+   "name": "DispenserFrontBelow",
+   "center": [
+    1.15,
+    0.7749999999999999,
+    0.47000000000000003
+   ],
+   "size": [
+    0.08000000000000007,
+    0.15000000000000002,
+    0.9400000000000001
+   ]
+  },
+  {
+   "name": "DispenserFrontAbove",
+   "center": [
+    1.15,
+    0.7749999999999999,
+    1.35
+   ],
+   "size": [
+    0.08000000000000007,
+    0.15000000000000002,
+    0.5
+   ]
+  },
+  {
+   "name": "DispenserLedge",
+   "center": [
+    0.9,
+    0.59,
+    0.84
+   ],
+   "size": [
+    0.19999999999999996,
+    0.21999999999999997,
+    0.02
+   ]
+  },
+  {
+   "name": "RoundBinFloor",
+   "center": [
+    0.9,
+    0.56,
+    0.855
+   ],
+   "size": [
+    0.13999999999999999,
+    0.13999999999999999,
+    0.01
+   ]
+  },
+  {
+   "name": "RoundBinWall00",
+   "center": [
+    0.9650000000000001,
+    0.56,
+    0.9199999999999999
+   ],
+   "size": [
+    0.01,
+    0.02756747553525044,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall01",
+   "center": [
+    0.9600521696132337,
+    0.5848744231037308,
+    0.9199999999999999
+   ],
+   "size": [
+    0.019788411484583147,
+    0.02929586073367441,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall02",
+   "center": [
+    0.9459619407771256,
+    0.6059619407771256,
+    0.9199999999999999
+   ],
+   "size": [
+    0.026564216703035305,
+    0.02656421670303531,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall03",
+   "center": [
+    0.9248744231037309,
+    0.6200521696132337,
+    0.9199999999999999
+   ],
+   "size": [
+    0.02929586073367441,
+    0.01978841148458315,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall04",
+   "center": [
+    0.9,
+    0.625,
+    0.9199999999999999
+   ],
+   "size": [
+    0.02756747553525044,
+    0.010000000000000002,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall05",
+   "center": [
+    0.8751255768962692,
+    0.6200521696132337,
+    0.9199999999999999
+   ],
+   "size": [
+    0.029295860733674406,
+    0.019788411484583143,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall06",
+   "center": [
+    0.8540380592228745,
+    0.6059619407771256,
+    0.9199999999999999
+   ],
+   "size": [
+    0.02656421670303531,
+    0.026564216703035305,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall07",
+   "center": [
+    0.8399478303867663,
+    0.584874423103731,
+    0.9199999999999999
+   ],
+   "size": [
+    0.01978841148458315,
+    0.02929586073367441,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall08",
+   "center": [
+    0.835,
+    0.56,
+    0.9199999999999999
+   ],
+   "size": [
+    0.010000000000000004,
+    0.02756747553525044,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall09",
+   "center": [
+    0.8399478303867663,
+    0.5351255768962693,
+    0.9199999999999999
+   ],
+   "size": [
+    0.019788411484583143,
+    0.02929586073367441,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall10",
+   "center": [
+    0.8540380592228745,
+    0.5140380592228745,
+    0.9199999999999999
+   ],
+   "size": [
+    0.02656421670303531,
+    0.026564216703035312,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall11",
+   "center": [
+    0.8751255768962691,
+    0.49994783038676643,
+    0.9199999999999999
+   ],
+   "size": [
+    0.029295860733674406,
+    0.019788411484583157,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall12",
+   "center": [
+    0.9,
+    0.49500000000000005,
+    0.9199999999999999
+   ],
+   "size": [
+    0.027567475535250442,
+    0.010000000000000005,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall13",
+   "center": [
+    0.9248744231037309,
+    0.49994783038676643,
+    0.9199999999999999
+   ],
+   "size": [
+    0.029295860733674406,
+    0.01978841148458315,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall14",
+   "center": [
+    0.9459619407771256,
+    0.5140380592228745,
+    0.9199999999999999
+   ],
+   "size": [
+    0.026564216703035312,
+    0.02656421670303531,
+    0.12
+   ]
+  },
+  {
+   "name": "RoundBinWall15",
+   "center": [
+    0.9600521696132337,
+    0.5351255768962692,
+    0.9199999999999999
+   ],
+   "size": [
+    0.01978841148458316,
+    0.029295860733674406,
+    0.12
+   ]
+  },
+  {
+   "name": "RailXLeft",
+   "center": [
+    0.0,
+    0.14999999999999997,
+    0.04
+   ],
+   "size": [
+    3.1999999999999997,
+    0.06,
+    0.08
+   ]
+  },
+  {
+   "name": "RailXRight",
+   "center": [
+    0.0,
+    0.6799999999999999,
+    0.04
+   ],
+   "size": [
+    3.1999999999999997,
+    0.06,
+    0.08
+   ]
+  }
+ ],
+ "last_release": null
+}

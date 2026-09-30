@@ -1,0 +1,23 @@
+{
+  "spawn": [
+    -9.828,
+    11.1,
+    0.925
+  ],
+  "end": [
+    -8.194,
+    5.12,
+    0.395
+  ],
+  "reroute": [
+    "/World/Conveyor/ConveyorTrack_02/Sorter/ActionGraph/reroute.inputs:value"
+  ],
+  "inventory": "/home/rokey/markle_tmp/m2-original-intakes-practice-01/stock-all-tiers-mixed.local.json",
+  "graph_velocities": {
+    "/World/Conveyor/ConveyorTrack_07/ConveyorBeltGraph.graph:variable:Velocity": -0.5
+  },
+  "terminal_prim": "/World/Conveyor/ConveyorTrack_02/Rollers_01",
+  "terminal_direction": "-y",
+  "edge_margin_m": 0.03,
+  "height_tolerance_m": 0.02
+}

@@ -1,0 +1,11 @@
+# M0609 arm -> orchestrator: may this canister be mounted? QR/DB/camera contract v1, section 2.3.
+# The arm reads the canister QR (cn-NNNN) right before grasping and asks. The orchestrator owns the DB:
+# it records the scan and answers with can_mount (expired, recalled or unknown -> not allowed).
+# No answer within the arm's time limit counts as not allowed.
+string container_id      # QR text, cn-NNNN (the whole text is the id)
+string robot_id          # who read it, m0609
+string cell_id           # stage shelf cell the arm chose (record only)
+uint32 epoch             # epoch of the last RESET_DONE the arm saw
+---
+bool allowed
+string reason            # ok, expired, recalled, unknown_id, bad_format, stale_epoch

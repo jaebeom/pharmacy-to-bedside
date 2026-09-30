@@ -1,0 +1,44 @@
+# 빈월드(K1)의 경로 경유점. 주행 routes.py 스키마(#407)다.
+#
+# **이 파일은 자동 생성물이다. 손으로 고치지 않는다.**
+#   단일 출처는 sim/standalone/p3sim/layout.py 의 routes 이고,
+#   sim/tests/test_full_loop_routes.py 가 파일과 코드가 어긋나면 잡는다.
+#   다시 만들기: python3 sim/standalone/pharmacy_layout_json.py --routes emptyworld
+#
+# `waypoints: []` 는 "직선으로 가도 된다고 따져 봤다" 는 뜻이다. 줄을 빼면 "안 따져 봤다" 와
+#   구별되지 않으므로 빈 쌍도 적는다(작전 9/21).
+# 여유는 정지 기하로만 계산했다 — 추종 오차도 위치 추정 오차도 빠져 있다. 실제 이격은 L3 에서 잰다.
+
+schema_version: 1
+frame: map
+routes:
+  - {from: dock_1, to: load, waypoints: []}
+  - {from: load, to: dock_1, waypoints: []}
+  - {from: load, to: bed_a1, waypoints: [[3.75, 0.55], [11.36, 0.55], [11.36, -0.93], [13.15, -0.93]]}
+  - {from: bed_a1, to: dock_1, waypoints: [[13.15, -0.93], [11.36, -0.93], [11.36, 0.55]]}
+  - {from: dock_1, to: bed_a1, waypoints: [[11.36, 0.55], [11.36, -0.93], [13.15, -0.93]]}
+  - {from: bed_a1, to: load, waypoints: [[13.15, -0.93], [11.36, -0.93], [11.36, 0.55], [3.75, 0.55]]}
+  - {from: load, to: bed_a2, waypoints: [[3.75, 0.55], [11.36, 0.55], [11.36, -0.93], [14.35, -0.93]]}
+  - {from: bed_a2, to: dock_1, waypoints: [[14.35, -0.93], [11.36, -0.93], [11.36, 0.55]]}
+  - {from: dock_1, to: bed_a2, waypoints: [[11.36, 0.55], [11.36, -0.93], [14.35, -0.93]]}
+  - {from: bed_a2, to: load, waypoints: [[14.35, -0.93], [11.36, -0.93], [11.36, 0.55], [3.75, 0.55]]}
+  - {from: load, to: bed_b1, waypoints: [[3.75, 0.55], [11.36, 0.55], [11.36, -0.93], [15.55, -0.93]]}
+  - {from: bed_b1, to: dock_1, waypoints: [[15.55, -0.93], [11.36, -0.93], [11.36, 0.55]]}
+  - {from: dock_1, to: bed_b1, waypoints: [[11.36, 0.55], [11.36, -0.93], [15.55, -0.93]]}
+  - {from: bed_b1, to: load, waypoints: [[15.55, -0.93], [11.36, -0.93], [11.36, 0.55], [3.75, 0.55]]}
+  - {from: load, to: bed_b2, waypoints: [[3.75, 0.55], [11.36, 0.55], [11.36, -0.93], [16.75, -0.93]]}
+  - {from: bed_b2, to: dock_1, waypoints: [[16.75, -0.93], [11.36, -0.93], [11.36, 0.55]]}
+  - {from: dock_1, to: bed_b2, waypoints: [[11.36, 0.55], [11.36, -0.93], [16.75, -0.93]]}
+  - {from: bed_b2, to: load, waypoints: [[16.75, -0.93], [11.36, -0.93], [11.36, 0.55], [3.75, 0.55]]}
+  - {from: bed_a1, to: bed_a2, waypoints: [[13.15, -0.93], [14.35, -0.93]]}
+  - {from: bed_a1, to: bed_b1, waypoints: [[13.15, -0.93], [15.55, -0.93]]}
+  - {from: bed_a1, to: bed_b2, waypoints: [[13.15, -0.93], [16.75, -0.93]]}
+  - {from: bed_a2, to: bed_a1, waypoints: [[14.35, -0.93], [13.15, -0.93]]}
+  - {from: bed_a2, to: bed_b1, waypoints: [[14.35, -0.93], [15.55, -0.93]]}
+  - {from: bed_a2, to: bed_b2, waypoints: [[14.35, -0.93], [16.75, -0.93]]}
+  - {from: bed_b1, to: bed_a1, waypoints: [[15.55, -0.93], [13.15, -0.93]]}
+  - {from: bed_b1, to: bed_a2, waypoints: [[15.55, -0.93], [14.35, -0.93]]}
+  - {from: bed_b1, to: bed_b2, waypoints: [[15.55, -0.93], [16.75, -0.93]]}
+  - {from: bed_b2, to: bed_a1, waypoints: [[16.75, -0.93], [13.15, -0.93]]}
+  - {from: bed_b2, to: bed_a2, waypoints: [[16.75, -0.93], [14.35, -0.93]]}
+  - {from: bed_b2, to: bed_b1, waypoints: [[16.75, -0.93], [15.55, -0.93]]}

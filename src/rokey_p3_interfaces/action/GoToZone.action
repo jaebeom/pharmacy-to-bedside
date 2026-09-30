@@ -1,0 +1,7 @@
+# AMR moves to a zone id. Uses Nav2 internally. Zone ids are scenario section 7 candidates.
+string zone_id
+---
+bool arrived
+string message
+---
+float32 distance_remaining   # meters

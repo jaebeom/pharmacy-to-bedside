@@ -1,0 +1,58 @@
+{
+  "source_commit": "db9d9ada454f9345892a8a488d4704fc22b8864b",
+  "source_asset_name": "Automatic Blister Packing Machine (DPB-80)/model.usd",
+  "source_sha256": "731307e2c6ca2e3e9ea790112fba1bbd6e399023cf4ca84b818c1a5b631cb3ef",
+  "asset_sha256": "cd2591a821d96e44e3a0a90ef66ee33e6fd1b432582618163094bb22242ddaf2",
+  "asset_bytes": 336026,
+  "default_prim": "/Dispenser",
+  "units": "meters",
+  "up_axis": "Z",
+  "origin_in_hospital": [
+    -8.78522324,
+    11.7254655,
+    0
+  ],
+  "anchors_local": {
+    "PillOpening": [
+      0.7352232399999998,
+      -0.6104655000000001,
+      0.98
+    ],
+    "ModuleEntry": [
+      1.0852232400000004,
+      -0.610000040000001,
+      1.02
+    ],
+    "ConveyorOpening": [
+      -1.0372767599999992,
+      -0.4600000400000006,
+      1.105
+    ]
+  },
+  "bounds_min": [
+    -1.4596082639996215,
+    -0.8015600365574223,
+    0.0
+  ],
+  "bounds_max": [
+    1.5403917360003785,
+    0.4600000887194275,
+    2.295576219755931
+  ],
+  "mesh_count": 288,
+  "removed_physics_api_count": 0,
+  "checks": {
+    "reopen": true,
+    "root_identity": true,
+    "no_external_references": true,
+    "relationship_targets": true,
+    "mesh_indices": true
+  },
+  "not_validated": [
+    "collision",
+    "watertight_manifold",
+    "robot_motion",
+    "runtime_hospital_integration"
+  ],
+  "source_license": "Original bundled asset license not independently verified; no new license asserted."
+}

@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "run_id": "20260925T005200Z-master02-bfa8f4d2",
+  "created_at": "2026-09-25T00:52:00Z",
+  "code": {
+    "commit": "64e5ab7ae1cdd325896ee6d8bb3c91f89c5f2971",
+    "dirty": false
+  },
+  "host_id": "master02",
+  "environment": {
+    "versions": {
+      "os": "Ubuntu 24.04.4 LTS kernel 6.14.0-27-generic",
+      "ros": "jazzy",
+      "isaac_sim": "5.1.0-rc.19+release.26219.9c81211b.gl",
+      "rmw": "rmw_fastrtps_cpp",
+      "gpu_driver": "580.173.02",
+      "cuda": "13.0"
+    },
+    "fingerprints": {
+      "config": {
+        "sha256": "edcf16c1551cb877ab2ab39c5e842a473deed7e8e8fb6875f1ad41ff556c79b4"
+      },
+      "scene": {
+        "sha256": "ce4c955d7cb061a11791b9aab57eb836d75d5a3adfdf86b485b5fccca1a1e100"
+      },
+      "model": {
+        "not_applicable": "학습 모델을 쓰지 않았다. 판독은 OpenCV QR, 집기 좌표는 시뮬 센서다."
+      },
+      "dataset": {
+        "not_applicable": "학습 · 평가 데이터셋을 쓰지 않았다."
+      }
+    }
+  },
+  "clocks": {
+    "duration": "simulation",
+    "timeout": "monotonic"
+  },
+  "seed": 7,
+  "repetition_index": 6,
+  "protocol": {
+    "path": "experiments/protocols/hospital-full-acceptance-v1.json",
+    "sha256": "6cbd564a73388ba930ba3f72a38470e16ba4cf7a65eefde0b15f4af8854b286a"
+  },
+  "phase": "acceptance",
+  "outcome": "failed",
+  "artifacts": [
+    {
+      "uri": "sha256/da51e47c9e59ed4ebc6efa1131b3f7bf0c86c8224c25943a18e38de5b758f413/env.sh",
+      "sha256": "da51e47c9e59ed4ebc6efa1131b3f7bf0c86c8224c25943a18e38de5b758f413",
+      "size_bytes": 1455
+    },
+    {
+      "uri": "sha256/9c0369c1b3c8f48a38d8a5a7849c0430e9c0a522e307df624657f7cd81639534/up.console",
+      "sha256": "9c0369c1b3c8f48a38d8a5a7849c0430e9c0a522e307df624657f7cd81639534",
+      "size_bytes": 2421
+    },
+    {
+      "uri": "sha256/31ed4df5caa04554f6703456f5de1cdbaa53b11f21e6ae2487bf095c96fd364d/orders.log",
+      "sha256": "31ed4df5caa04554f6703456f5de1cdbaa53b11f21e6ae2487bf095c96fd364d",
+      "size_bytes": 1585
+    },
+    {
+      "uri": "sha256/331f061b5cc48c27304a7f0f6aea30c95af4a45afdac2c21837abedb5d6e37c7/dryrun.log",
+      "sha256": "331f061b5cc48c27304a7f0f6aea30c95af4a45afdac2c21837abedb5d6e37c7",
+      "size_bytes": 558
+    },
+    {
+      "uri": "sha256/8c0a9967c44ea6734b1870432b06035d13a0fb114d767374f559a8d40743e344/clip-1.mkv",
+      "sha256": "8c0a9967c44ea6734b1870432b06035d13a0fb114d767374f559a8d40743e344",
+      "size_bytes": 1076094206
+    },
+    {
+      "uri": "sha256/304ad9c4b49a8bbd300844bffc5b136e187cc47020e12f2756fee238fc016705/gpu.csv",
+      "sha256": "304ad9c4b49a8bbd300844bffc5b136e187cc47020e12f2756fee238fc016705",
+      "size_bytes": 450114
+    },
+    {
+      "uri": "sha256/7b7e4e550381ce57f66d8902581c7fb90f9c87e6ff2336c329fb4044cf00cbfd/top.txt",
+      "sha256": "7b7e4e550381ce57f66d8902581c7fb90f9c87e6ff2336c329fb4044cf00cbfd",
+      "size_bytes": 52121303
+    },
+    {
+      "uri": "sha256/8294030c3a468879d98c749a28cfdb82cc98b77942e88b72832ca9c3d3ce56d1/logs/20260925-082233-arm.log",
+      "sha256": "8294030c3a468879d98c749a28cfdb82cc98b77942e88b72832ca9c3d3ce56d1",
+      "size_bytes": 20289
+    },
+    {
+      "uri": "sha256/65b837a5093d930df46e8e051fa0f92c9159bf84d4ff85acac86dd662ef2f628/logs/20260925-082233-kit.log",
+      "sha256": "65b837a5093d930df46e8e051fa0f92c9159bf84d4ff85acac86dd662ef2f628",
+      "size_bytes": 17353404
+    },
+    {
+      "uri": "sha256/a98064a2776d19670b6ece88681b96c7b72f50d4fc7dc9ac410b1ae79c545b0e/logs/20260925-082233-nav.log",
+      "sha256": "a98064a2776d19670b6ece88681b96c7b72f50d4fc7dc9ac410b1ae79c545b0e",
+      "size_bytes": 388696
+    },
+    {
+      "uri": "sha256/e702ece844c832270530e1ec3d41c480a755442e39aaf041264bb7a167b8c9ab/logs/20260925-082233-stack.log",
+      "sha256": "e702ece844c832270530e1ec3d41c480a755442e39aaf041264bb7a167b8c9ab",
+      "size_bytes": 30880
+    },
+    {
+      "uri": "sha256/2001a06329cdf75e7dac2bb5ae0e962e982e32b5bc6109a7436e5bb7bb6cf725/logs/20260925-082233-stage.log",
+      "sha256": "2001a06329cdf75e7dac2bb5ae0e962e982e32b5bc6109a7436e5bb7bb6cf725",
+      "size_bytes": 1641154
+    },
+    {
+      "uri": "sha256/081a763948e9215b58039ad2b1187cbfe9d7b48cf1c36bcfe539d3db39d58c2f/logs/20260925-082233-tree.txt",
+      "sha256": "081a763948e9215b58039ad2b1187cbfe9d7b48cf1c36bcfe539d3db39d58c2f",
+      "size_bytes": 125
+    },
+    {
+      "uri": "sha256/16f016c8b6cf08003fe1abae6fd1720c49ff48809814a7dd9a2504a640c7f9f7/logs/20260925-082233-web.log",
+      "sha256": "16f016c8b6cf08003fe1abae6fd1720c49ff48809814a7dd9a2504a640c7f9f7",
+      "size_bytes": 1074908
+    }
+  ],
+  "metrics": [
+    {
+      "name": "attempt_success",
+      "value": 0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_workcell_ready",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_refill_both",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_container_qr",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "pouch_to_end_s",
+      "value": 33.5,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_pouch_at_end",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_pick_in_slot",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_delivered_docked",
+      "value": 0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "amr_touch_count",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_margin_lines",
+      "value": 717,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_full_speed_lines",
+      "value": 89,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_unknown_lines",
+      "value": 14,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "boot_check_pass",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "orders10_delivered",
+      "value": 10,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "orders_beds_all_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "orders10_multipc_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "record_fps_min",
+      "value": 30.0,
+      "unit": "fps",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_drop_ratio_max",
+      "value": 0.0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_corrupt_sum",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "unplanned_intervention_count",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "avoidance_encounters",
+      "value": 33,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_limit_lines_during_encounters",
+      "value": 147,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "vision_detect_rate",
+      "value": 0.6,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "vision_latency_ms",
+      "value": 0.0,
+      "unit": "ms",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "fresh_clone_step_wall_s",
+      "value": null,
+      "unit": "s",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "fresh_clone_asset_sha_ok",
+      "value": null,
+      "unit": "ratio",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "rtf",
+      "value": 0.402,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "attempt_wall_s",
+      "value": 5396.15,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "reset_dock_pose_error_m",
+      "value": null,
+      "unit": "m",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "reset_arm_park_error_rad",
+      "value": null,
+      "unit": "rad",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "pouch_spawn_records",
+      "value": 10,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    }
+  ],
+  "notes": "campaign 1 · attempt 6 · 원문 #240 5824830092. 원본은 master02 ~/markle_tmp/m2-c1-a06-ten-64e5ab7 다(호스트 IsaacSim07). SHA256SUMS 파일의 sha256 은 3793c91f92c57357ffbb7de2a01e7367a97e3f22a7b5c9a2da1edfb81c4658f7 다. artifacts 에는 크기(ls -l)와 전체 sha256 이 함께 보고된 파일만 넣었다. config 지문은 release 트리의 experiments/fixtures/hospital-integrated-09/deployment.json, scene 지문은 master02 의 워크셀 준비 base.usda 다(master01 attempt 의 scene 지문과 다른 파일이다). created_at 은 ls 의 분 단위 시각(SHA256SUMS 09:52 KST)에서 초를 0 으로 둔 값이다. 녹화는 웹 창을 포함한 전체 화면 1파일이다(gst ximagesrc 1280x840 30 fps). metrics 는 tools/aggregate_runs.py(#709 b38b74b) --attempt 6 --json 출력 그대로다. 관측(원문): hospital_orders exit 0, 10/10 delivered, CABINET_LOCKED · ORDER_DONE 10/10. 도구 판정 FAIL 은 scene_delivered_docked 0 때문이다 — event_run/cabinet.jsonl 에 ord-0006 · ord-0007 의 present=true 가 없다(병실 묶음 0005–0007 → station_d 에서 station_d/cabinet 이 ord-0005 하나만 보고). 해석은 검증 몫(원문). 검토(마1검증, #711): failed 유지가 맞다. 판정선은 attempt 마다 (a)–(e) 전부다. station_d/cabinet 이 병실 묶음 일부 주문의 present 를 내지 않은 원인은 fed2373(\"보관함 참값이 안에 있는 주문마다 present 를 낸다\")이 특정 · 수정하는 버그다."
+}

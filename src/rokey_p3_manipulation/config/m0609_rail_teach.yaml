@@ -1,0 +1,75 @@
+# M0609 레일 보충 teach. `m0609_arm` 이 `rail_enabled:=true` 일 때 읽는다(기본 경로, `rail_teach_file` 로 덮는다).
+# 조제실 스테이지(sim/standalone/pharmacy_stage.py)의 2축 레일 위 M0609. 레일 관절 rail_x·rail_y(m, 0 = 레일 원점,
+# 월드 (0, 0.30, 0)), 팔 joint_1..joint_6(rad). 레일 토픽은 계약 v1 밖이다.
+#
+# 출처(값을 가공하지 않은 것):
+# - "실측": 마클2 master02 9/18 10:05 창 모드 selfdemo, sim 174bb6a(`--preset demo-ros`, 레일 드라이브 1e5/1e4/5e4),
+#   로그 master02:/home/rokey/markle_tmp/demo18_stage.log 의 단계별 reached 줄(teach_raw_174bb6a.txt).
+#   cycle 1 = 투입구 a, cycle 2 = 투입구 b, 둘 다 TIMEOUT 0, canister_in_inlet=True. Simu 가 옮겨 보냈다(9/18).
+#   선반 쪽 단계는 cycle 1 값을 a·b 둘 다에 쓴다(Simu: cycle 2 는 소수 셋째 자리까지 같다).
+# - 레일 목표: 같은 실행의 selfdemo 목표값(layout.py plan_rail_refill, 기하 기본값). 실측 도착값이 아니다.
+# - "IK": m0609_kinematics(#144, 명목 blue URDF) + TCP = link_6 z 0.19671 m(Simu), 오프라인 계산(팔, 9/18).
+#   이 모델의 FK 가 위 실측 자세 9개를 스테이지 TCP 목표와 1 mm 안에서 맞췄다(above_inlet 은 스테이지가 보고한
+#   via 오차 0.026 m 그대로). 그래서 두 가지를 IK 로 채웠다.
+#   1) 투입구 쪽(above_inlet·inlet_top·inlet_mid·insert·retreat) 전부 IK 다. 9/18 실습3 뒤 스테이지가 투입구를
+#      y 0.65 → 0.58 로 옮겼다(Simu fix/sim-practice3-fixes: 손목이 조제기 앞면 y 0.70 을 쳤다, link_4↔DispenserBody).
+#      TCP 베이스 기준 above_inlet (0, 0.33, 0.50), inlet_top·inlet_mid·insert (0, 0.33, z 0.45·0.39·0.335),
+#      retreat (0, 0.23, 0.50). 실측 insert·release 는 레일이 밀린 상태의 보상값이라 처음부터 쓰지 않았고,
+#      실측 above_inlet·retreat 은 옛 투입구(y 0.40) 것이라 버렸다. 관절 보간 경로의 수평 편차 1.5 mm 이하.
+#      FK 로 본 조제기 앞면(베이스 기준 y 0.45)까지 link_4·5 원점 거리: 옛 값 0.048 m(z 1.34, 실습3 접촉점 z 1.346 과
+#      같은 자리), 새 값 0.119 m. 링크 형상 반지름은 모델에 없다(미확인).
+#   2) 선반 드나들기: shelf_front↔above_canister, lift↔pull_out 을 관절 직선으로 이으면 TCP 가 1.9 cm 떠오른다.
+#      TCP z 0.38 직선 위 1/3·2/3 점을 IK 로 넣어 편차 4.6 mm·떠오름 3 mm 로 줄였다.
+#   IK 값은 Isaac 에서 아직 실행하지 않았다(미실행).
+# - tolerance_rad 0.0025(inlet_top·inlet_mid·insert): 투입구 안쪽 0.08 에 캐니스터 폭 0.06(Simu)이라 한쪽 여유가 1 cm 다.
+#   이 허용오차로 도착을 확인한 뒤 다음 점으로 내려간다. 자코비안 위치 열 길이 합(y 0.33 기준 inlet_top 1.664,
+#   insert 1.748 m/rad) × 0.0025 = 최악 TCP 오차 4.2-4.4 mm.
+
+home:
+  joints: [0.0, 0.0, 1.5883, 0.0, 1.5778, 0.0]    # 실측, `arm ready … home=`
+  rail: [0.0, 0.0]
+
+# 레일은 팔이 홈 또는 이 단계 자세에 있을 때만 움직인다(스테이지 selfdemo 와 같다: raise·retreat 자세로 레일 이동).
+rail_safe_phases: [raise, retreat]
+
+slots:
+  a:
+    - {phase: rail_to_shelf, rail: [-0.10, 0.18]}
+    - {phase: shelf_front, joints: [0.7549, -0.2835, 1.3782, 0.0021, 2.0468, -2.3855]}      # 실측
+    - {phase: shelf_in_1, joints: [0.9952, -0.1169, 1.2527, 0.002, 2.0054, -2.1453]}        # IK
+    - {phase: shelf_in_2, joints: [1.1333, 0.0829, 1.057, 0.002, 2.001, -2.0073]}           # IK
+    - {phase: above_canister, joints: [1.2216, 0.3235, 0.7561, -0.0006, 2.0612, -1.9202]}   # 실측
+    - {phase: descend, joints: [1.2210, 0.2241, 1.2033, 0.0010, 1.7148, -1.9206]}           # 실측
+    - {phase: grasp, gripper: close}
+    - {phase: lift, joints: [1.2217, 0.3225, 0.7596, -0.0005, 2.0591, -1.9201]}             # 실측
+    - {phase: shelf_out_1, joints: [1.1349, 0.0827, 1.0572, -0.0005, 2.0012, -2.0069]}      # IK
+    - {phase: shelf_out_2, joints: [0.9965, -0.1173, 1.253, -0.0004, 2.0053, -2.1452]}      # IK
+    - {phase: pull_out, joints: [0.7567, -0.2835, 1.3781, -0.0011, 2.0469, -2.3859]}        # 실측
+    - {phase: raise, joints: [0.7556, -0.0831, 0.8153, 0.0008, 2.4087, -2.3856]}            # 실측
+    - {phase: rail_to_inlet, rail: [0.94, -0.05]}
+    - {phase: above_inlet, joints: [1.5517, 0.2323, 0.4599, 0.0006, 2.448, -1.5895]}            # IK (0, 0.33, 0.50)
+    - {phase: inlet_top, joints: [1.5518, 0.0915, 0.825, 0.0005, 2.2238, -1.5897], tolerance_rad: 0.0025}  # IK z 0.45
+    - {phase: inlet_mid, joints: [1.5518, -0.0018, 1.116, 0.0004, 2.0261, -1.5898], tolerance_rad: 0.0025}  # IK z 0.39
+    - {phase: insert, joints: [1.5518, -0.0543, 1.3275, 0.0004, 1.8669, -1.5898], tolerance_rad: 0.0025}  # IK z 0.335
+    - {phase: release, gripper: open}
+    - {phase: retreat, joints: [1.5433, -0.0431, 0.7795, 0.0006, 2.4038, -1.598]}               # IK (0, 0.23, 0.50)
+  b:
+    - {phase: rail_to_shelf, rail: [-0.10, 0.18]}
+    - {phase: shelf_front, joints: [0.7549, -0.2835, 1.3782, 0.0021, 2.0468, -2.3855]}      # 실측(cycle 1)
+    - {phase: shelf_in_1, joints: [0.9952, -0.1169, 1.2527, 0.002, 2.0054, -2.1453]}        # IK
+    - {phase: shelf_in_2, joints: [1.1333, 0.0829, 1.057, 0.002, 2.001, -2.0073]}           # IK
+    - {phase: above_canister, joints: [1.2216, 0.3235, 0.7561, -0.0006, 2.0612, -1.9202]}   # 실측(cycle 1)
+    - {phase: descend, joints: [1.2210, 0.2241, 1.2033, 0.0010, 1.7148, -1.9206]}           # 실측(cycle 1)
+    - {phase: grasp, gripper: close}
+    - {phase: lift, joints: [1.2217, 0.3225, 0.7596, -0.0005, 2.0591, -1.9201]}             # 실측(cycle 1)
+    - {phase: shelf_out_1, joints: [1.1349, 0.0827, 1.0572, -0.0005, 2.0012, -2.0069]}      # IK
+    - {phase: shelf_out_2, joints: [0.9965, -0.1173, 1.253, -0.0004, 2.0053, -2.1452]}      # IK
+    - {phase: pull_out, joints: [0.7567, -0.2835, 1.3781, -0.0011, 2.0469, -2.3859]}        # 실측(cycle 1)
+    - {phase: raise, joints: [0.7554, -0.0831, 0.8154, 0.0007, 2.4085, -2.3859]}            # 실측(cycle 2)
+    - {phase: rail_to_inlet, rail: [1.06, -0.05]}
+    - {phase: above_inlet, joints: [1.5517, 0.2329, 0.4591, 0.0006, 2.4487, -1.5895]}           # IK (0, 0.33, 0.50)
+    - {phase: inlet_top, joints: [1.5518, 0.0919, 0.8245, 0.0005, 2.2243, -1.5897], tolerance_rad: 0.0025}  # IK z 0.45
+    - {phase: inlet_mid, joints: [1.5518, -0.0015, 1.1156, 0.0004, 2.0266, -1.5898], tolerance_rad: 0.0025}  # IK z 0.39
+    - {phase: insert, joints: [1.5518, -0.0539, 1.3272, 0.0004, 1.8674, -1.5898], tolerance_rad: 0.0025}  # IK z 0.335
+    - {phase: release, gripper: open}
+    - {phase: retreat, joints: [1.5433, -0.0427, 0.7792, 0.0006, 2.4042, -1.598]}               # IK (0, 0.23, 0.50)

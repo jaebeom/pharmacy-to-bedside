@@ -1,0 +1,7 @@
+# Orchestrator -> dispenser: drop one pouch for this order onto the belt.
+# The orchestrator checks the release conditions (belt empty, AMR docked, orders left) before calling.
+string request_id
+string order_id
+---
+bool accepted
+string message

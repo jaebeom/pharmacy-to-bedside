@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>튜터 평가표 대응</title>
+<style>
+:root{--teal:#0f4c5c;--teal2:#2a7f86;--tint:#eaf3f2;--ink:#16252b;--mute:#5b6b70;--amber:#b86e00;--amberT:#fff3de;--line:#d5e2e0;--bg:#fff;--page:#dfe8e6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--page:#1b2427}}
+:root[data-theme="dark"]{--page:#1b2427}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",Arial,sans-serif;color:var(--ink)}
+.frame{width:1280px;height:720px;margin:24px auto;overflow:hidden}
+.slide{width:1280px;height:720px;background:var(--bg);position:relative;padding:28px 40px 30px;box-shadow:0 2px 10px rgba(0,0,0,.15);transform-origin:top left}
+.slide.dark{background:var(--teal);color:#fff;padding:120px 80px}
+.dark h1{font-size:46px;margin:14px 0}.dark .kick,.dark .meta{color:#cfe7e5}.dark .lead{font-size:21px}.dark .big{font-size:44px;font-weight:700;color:#cfe7e5}
+.dark .meta{position:absolute;bottom:90px;font-size:14px}
+h2{font-size:32px;margin:0}h3{font-size:17px;color:var(--teal);margin:0 0 12px}h4{font-size:14px;color:var(--teal);margin:0 0 8px}
+.head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+h2{font-size:28px;margin:0}.num{color:var(--teal2)}.pts{font-size:22px;font-weight:700;color:var(--teal)}
+.chip{display:inline-block;color:#fff;font-weight:700;font-size:11.5px;padding:3px 10px;border-radius:6px;white-space:nowrap}
+.cards{display:grid;gap:14px;height:596px}
+.g4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g2{grid-template-columns:1fr 1fr}.g1{grid-template-columns:1fr}
+.card{border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.ch{display:flex;justify-content:space-between;align-items:center;font-size:17px;color:var(--teal)}
+blockquote{margin:0;background:var(--tint);border-radius:8px;padding:6px 10px;font-style:italic;font-size:12.5px;line-height:1.4}
+.plain{font-size:14px;line-height:1.55;flex:1}.g1 .plain,.g2 .plain{font-size:18px}.g3 .plain{font-size:15px}
+.dh{font-size:12px;font-weight:700;color:var(--teal2);margin:12px 0 4px}.plain ul{margin:0;padding-left:18px}.plain li{font-size:13px;line-height:1.45;margin-bottom:4px;color:var(--ink)}.g1 .plain li,.g2 .plain li{font-size:14.5px}
+.key{font-size:14.5px;font-weight:700;color:var(--teal)}.g1 .key,.g2 .key{font-size:17px}
+.card ul{margin:0;padding-left:18px;flex:1}.card li{font-size:12.5px;line-height:1.4;margin-bottom:3px}
+.g1 .card li,.g2 .card li{font-size:14px;margin-bottom:6px}.g1 blockquote,.g2 blockquote{font-size:14px}
+.ev{font-size:11px;color:var(--mute);line-height:1.35}
+.left{background:var(--amberT);border-radius:8px;padding:6px 10px;font-size:13px;line-height:1.35;color:var(--ink)}
+.foot{position:absolute;left:48px;right:48px;bottom:10px;display:flex;justify-content:space-between;font-size:10px;color:var(--mute)}
+@media (max-width:1320px){.frame{width:calc(100vw - 32px);height:calc((100vw - 32px)*0.5625);margin:16px}}
+@media print{body{background:#fff}.frame{margin:0;page-break-after:always}.slide{box-shadow:none;transform:none!important}}
+</style></head><body>
+<div class="frame"><section class="slide">
+  <div class="head"><h2><span class="num">3.1</span> 디지털 트윈 설계 및 납품 품질</h2><span class="pts">20점</span></div>
+  <div class="cards g4"><div class="card">
+      <div class="ch"><b>문제 정의</b><span class="chip" style="background:#6d4c9a">문서</span></div>
+      <blockquote>“해결하려는 현실 문제와 디지털 트윈으로 검증해야 하는 이유가 명확히 서술되어 있다.”</blockquote>
+      <div class="plain">병원에서 약이 조제실에서 병상까지 가는 과정(보충 → 조제 → 운반 → 전달 → 복귀)을 하나의 흐름으로 정의했습니다. 실제 병동에서 로봇을 반복 실험하기는 위험하고 비싸서, 시뮬레이션에서 먼저 흐름과 실패 처리를 검증합니다.</div>
+      <div class="key">▸ 보충 → 조제 → 병상 → 복귀 한 흐름 · 종료 상태 4개(9/16 확정)</div>
+      <div class="ev">docs/planning/scenario.md 10–27행(흐름) · 183–196행(종료 상태)</div>
+      <div class="left">남은 것 · "왜 디지털 트윈" 문장 확정</div>
+    </div><div class="card">
+      <div class="ch"><b>현실 반영도</b><span class="chip" style="background:#2e7d32">계약 합격</span></div>
+      <blockquote>“다중 로봇 작업 흐름이 실제 현장을 반영하고, 검증 목표(성공률, 한계)가 정의되어 있다.”</blockquote>
+      <div class="plain">로봇 셋(약통을 채우는 팔 M0609, 봉투를 집는 팔 UR5, 운반하는 AMR)이 한 주문을 차례로 넘겨받습니다. 무엇을 통과로 볼지는 실행 전에 먼저 적어 두었고, 시도 횟수가 적다는 한계도 숫자로 밝혔습니다.</div>
+      <div class="key">▸ 로봇 3대가 한 주문을 넘겨받음 · 판정선 선고정(protocol v4) · v1.0 14/14</div>
+      <div class="ev">experiments/protocols/hospital-full-acceptance-v4.json</div>
+      <div class="left">남은 것 · 다중 PC 두 칸 미실행</div>
+    </div><div class="card">
+      <div class="ch"><b>저장소 완결성</b><span class="chip" style="background:#6d4c9a">문서</span></div>
+      <blockquote>“실행에 필요한 모든 파일과 버전·패키지·환경 변수가 저장소에 문서화되어 있다.”</blockquote>
+      <div class="plain">실행에 필요한 설정값, 실행 명령 한 장짜리 안내서, 외부 자산 파일의 지문을 저장소에 모았습니다. 녹화 원본 170개의 지문 목록도 저장소에 있습니다.</div>
+      <div class="key">▸ 인자 표 · 골든 런카드 · 자산 해시 · 녹화 SHA-256 170행</div>
+      <div class="ev">docs/architecture/stage-arguments.md</div>
+      <div class="left">남은 것 · 환경 변수 90종 한 표</div>
+    </div><div class="card">
+      <div class="ch"><b>실행 재현성</b><span class="chip" style="background:#2e7d32">계약 합격</span></div>
+      <blockquote>“README 순서만 따라 하면 어느 PC에서도 절대 경로 의존 없이 실행이 재현된다.”</blockquote>
+      <div class="plain">새 컴퓨터처럼 저장소를 처음부터 받아 문서만 보고 돌려 봤습니다. 처음엔 주문 전에 멈췄고, 막힌 곳을 문서에 채운 뒤 5단계 중 4단계까지 갔습니다.</div>
+      <div class="key">▸ 새 clone: 주문 전 중단 → 문서 보강 → 4/5 → phase F PASS(503 s)</div>
+      <div class="ev">#240 5800028169(회차32) · 5800180626(회차33)</div>
+      <div class="left">남은 것 · v1.0 새 clone 소요 시간 값 없음</div>
+    </div></div><div class="foot"><span>2026-09-28, main 66eeee8 · v1.0.0 → a5d1107 · 수치는 evidence 의 v0.5.0 · v1.0.0 배포 기록에서 옮겼다</span><span>1</span></div></section></div>
+<div class="frame"><section class="slide">
+  <div class="head"><h2><span class="num">3.2</span> 시뮬레이션 환경 구성</h2><span class="pts">10점</span></div>
+  <div class="cards g4"><div class="card">
+      <div class="ch"><b>씬 구성</b><span class="chip" style="background:#2e7d32">계약 합격</span></div>
+      <blockquote>“환경·로봇·물체·센서 배치가 작업 목적에 적합하게 구성되어 있다.”</blockquote>
+      <div class="plain">실제 병원 3D 모델 위에 조제실(레일 위 로봇 팔, 약통 선반, 조제기, 컨베이어)과 운반 로봇, 센서(라이다, 카메라), 병상 10개를 목적에 맞게 배치했습니다.</div>
+      <div class="key">▸ 병원 USD + 조제실 + 로봇 3 + 라이다 · 카메라 · 병상 10</div>
+      <div class="ev">docs/architecture/system-overview.md</div>
+      <div class="left">남은 것 · 바닥 데코 main 반영</div>
+    </div><div class="card">
+      <div class="ch"><b>물리 속성</b><span class="chip" style="background:#2a7f86">L3 관측</span></div>
+      <blockquote>“RigidBody·Collider·Mass·마찰력 등이 올바르게 설정되어 있다.”</blockquote>
+      <div class="plain">물체마다 무게와 충돌 모양을 코드에 적었습니다. 선반 충돌이 매 순간 경고를 쏟아내던 문제와 레일 팔이 멈추던 문제를 물리 설정으로 고쳤습니다.</div>
+      <div class="key">▸ PhysX 경고 419,292 → 0 · 레일 멈춤 5 → 0</div>
+      <div class="ev">sim/standalone/p3sim/scene.py</div>
+      <div class="left">남은 것 · 마찰 미측정 · 흡착은 attach</div>
+    </div><div class="card">
+      <div class="ch"><b>ROS2 연동</b><span class="chip" style="background:#2a7f86">L3 관측</span></div>
+      <blockquote>“clock, 이미지, tf 등 시뮬레이션 데이터가 ROS2로 정상적으로 연동된다.”</blockquote>
+      <div class="plain">시뮬레이션 시계, 로봇 위치(tf), 라이다, 카메라가 ROS2로 연결됩니다. 시뮬레이터와 ROS2의 파이썬 버전이 달라서 중간에 번역기(어댑터)를 두었습니다.</div>
+      <div class="key">▸ /clock 1개 · scan 16 Hz → 감속기 · JSON → 어댑터</div>
+      <div class="ev">#240 5787139396(scan 16.0 Hz)</div>
+      <div class="left">남은 것 · 카메라 Hz 판정선에</div>
+    </div><div class="card">
+      <div class="ch"><b>재현성(Play/Stop)</b><span class="chip" style="background:#2e7d32">계약 합격</span></div>
+      <blockquote>“Play/Stop 반복 실행 시 매번 동일한 초기 상태에서 동일한 동작 결과가 재현된다.”</blockquote>
+      <div class="plain">시뮬레이션을 멈췄다가 다시 켜도 자동으로 복구되고, 초기화한 뒤 같은 주문을 다시 넣으면 다시 배송까지 성공합니다. 여러 회차에서 확인했습니다.</div>
+      <div class="key">▸ Stop → 자동 Play → 리셋 → 다시 DELIVERED · protocol attempt 7 · 8 PASS</div>
+      <div class="ev">#240 5802419185 · 5810138800 · 5815786839 · 5814610703 · 5816054551</div>
+      <div class="left">남은 것 · 초기 자세 대조 줄</div>
+    </div></div><div class="foot"><span>2026-09-28, main 66eeee8 · v1.0.0 → a5d1107 · 수치는 evidence 의 v0.5.0 · v1.0.0 배포 기록에서 옮겼다</span><span>2</span></div></section></div>
+<div class="frame"><section class="slide">
+  <div class="head"><h2><span class="num">3.3</span> 개별 로봇 제어</h2><span class="pts">25점</span></div>
+  <div class="cards g2"><div class="card">
+      <div class="ch"><b>개별 로봇 동작</b><span class="chip" style="background:#2e7d32">계약 합격</span></div>
+      <blockquote>“Pick &amp; Place 또는 자율주행이 안정적으로 완수되고, 파라미터 튜닝 근거를 설명할 수 있다.”</blockquote>
+      <div class="plain">세 로봇이 각자 맡은 일(약통 보충, 봉투 집기, 병상까지 운반)을 반복해서 끝냅니다. 병상 10개 모두에 배송했고, 설정을 바꿀 때마다 전후 수치를 남겼습니다.<div class="dh">자세히</div><ul><li>M0609: 원통 · 모듈 보충, 약통 QR 확인 뒤 장착. 속도는 두산 사양 80 %</li><li>UR5: A1 끝 봉투 흡착 → 트레이 in_slot. 접근점 회전으로 ArmRiser 접촉 57 → 0</li><li>AMR: Nav2 접근점 + 추종기. 감속기는 LETHAL 100 만 벽으로(4d01333), 복도 113 → 72 s</li><li>병상 D1–D10 전부 10/10(beds-all) 여러 회차</li></ul></div>
+      <div class="key">▸ 병상 D1–D10 10/10 · ArmRiser 접촉 57 → 0 · 복도 113 → 72 s</div>
+      <div class="ev">beds-all #240 5810523930 · 5811299608 · 5814924837 · 5816206952</div>
+      <div class="left">남은 것 · 속도 90 % 판정</div>
+    </div><div class="card">
+      <div class="ch"><b>설계-구현 일치</b><span class="chip" style="background:#6d4c9a">문서</span></div>
+      <blockquote>“문서화된 설계가 코드에서 동일하게 동작하고, 센서·토픽 등 외부 데이터가 동작 결정에 반영된다.”</blockquote>
+      <div class="plain">시스템 그림을 실제 코드에서 옮겨 그렸고, 처음 설계와 지금 구현이 다른 13곳을 숨기지 않고 표로 정리했습니다. 센서 값이 로봇의 판단(도착, 잡았는지, 속도 줄이기)을 바꿉니다.<div class="dh">자세히</div><ul><li>시스템 그림은 main 코드에서 옮겼다(노드 · 토픽 · 액션)</li><li>확정 시나리오 ↔ as-built 13건 표(값 · 결정 출처 · 회차)</li><li>센서 → 결정: joint_states 도착 · holding 파지 · at_home 출발 거부 · scan 감속 · 약통 QR 장착 허용</li></ul></div>
+      <div class="key">▸ 코드에서 옮긴 시스템 그림 · 설계↔구현 차이 13건 공개</div>
+      <div class="ev">docs/architecture/system-overview.md</div>
+      <div class="left">남은 것 · 결정 기록 없는 4건 · ADR</div>
+    </div></div><div class="foot"><span>2026-09-28, main 66eeee8 · v1.0.0 → a5d1107 · 수치는 evidence 의 v0.5.0 · v1.0.0 배포 기록에서 옮겼다</span><span>3</span></div></section></div>
+<div class="frame"><section class="slide">
+  <div class="head"><h2><span class="num">3.4</span> AI 비전 인식 및 활용</h2><span class="pts">10점</span></div>
+  <div class="cards g3"><div class="card">
+      <div class="ch"><b>인식 안정성</b><span class="chip" style="background:#2a7f86">L3 관측</span></div>
+      <blockquote>“감지 모델(YOLO, HSV 등)이 대상을 안정적으로 인식하고, 인식률 개선 과정을 설명할 수 있다.”</blockquote>
+      <div class="plain">M0609 손 카메라가 약통의 QR 코드를 처음엔 못 읽었습니다. QR 위치를 옮기고, 비뚤어진 코드를 펴서 읽고, 작으면 키워 읽도록 고쳐서 읽게 만들었습니다.<div class="dh">자세히</div><ul><li>약통 QR 을 윗면 → 옆면 스티커로(2276027)</li><li>네 점으로 펴서 다시 읽기 · 2배로 키워 다시 읽기(429ac27 · 05339c9)</li><li>모듈 잡는 높이 +0.03 m → 가림 해소 → cn-0204 장착 허용(f8eac1c)</li></ul></div>
+      <div class="key">▸ 약통 QR 못 읽음 → 스티커 · 펴기 · 키우기 → 장착 허용</div>
+      <div class="ev">docs/presentation/qr-reading-rounds.md</div>
+      <div class="left">남은 것 · 판독률 N/M · YOLO 가중치 없음</div>
+    </div><div class="card">
+      <div class="ch"><b>인식 결과 활용</b><span class="chip" style="background:#2a7f86">L3 관측</span></div>
+      <blockquote>“인식 결과가 로봇 동작에 실제로 반영된다.”</blockquote>
+      <div class="plain">카메라로 읽은 약통 QR이 맞는 약이면 로봇 팔이 약통을 끼우고, 틀리거나 유효기간이 지났으면 거부합니다. 인식 결과가 로봇 동작을 직접 바꿉니다.<div class="dh">자세히</div><ul><li>D455 → 약통 QR → /orchestrator/check_container → 장착 허용이면 놓고, 못 읽음 · 거부면 닫지 않는다</li><li>유효기간 지난 약통은 expired 로 거부(실습41 B)</li><li>봉투 집기 · 인식표 인증은 v1.0 판정 구성에서 참값 센서(P3_CAMERA_POUCHES=0)</li></ul></div>
+      <div class="key">▸ 약통 QR 판독이 M0609 장착 허용 · 거부를 가른다</div>
+      <div class="ev">docs/presentation/qr-reading-rounds.md 2절</div>
+      <div class="left">남은 것 · 봉투 집기는 참값(v0)</div>
+    </div><div class="card">
+      <div class="ch"><b>처리 효율</b><span class="chip" style="background:#2a7f86">L3 관측</span></div>
+      <blockquote>“추론 주기 제한 등 실시간 대응과 시스템 부하를 고려한 설계가 있다.”</blockquote>
+      <div class="plain">화면 그리기를 두 번에 한 번으로 줄여 시뮬레이션 속도를 1.65배 올렸고, 카메라는 초당 10장 이하로 제한해 컴퓨터 부하를 관리했습니다.<div class="dh">자세히</div><ul><li>카메라 ≤ 10 Hz · 1 s 넘은 검출 폐기 · 정지 뒤 한 장(계약)</li><li>손 카메라 끄면 rtf 0.925 → 0.992, GPU 99 → 74 %</li><li>render_every 2: rtf 0.418 → 0.690(같은 SHA · master01)</li></ul></div>
+      <div class="key">▸ render_every 2: rtf 0.418 → 0.690 · 카메라 ≤ 10 Hz</div>
+      <div class="ev">#240 5755273685 · 5796069792</div>
+      <div class="left">남은 것 · 프레임 지연 ms 미측정</div>
+    </div></div><div class="foot"><span>2026-09-28, main 66eeee8 · v1.0.0 → a5d1107 · 수치는 evidence 의 v0.5.0 · v1.0.0 배포 기록에서 옮겼다</span><span>4</span></div></section></div>
+<div class="frame"><section class="slide">
+  <div class="head"><h2><span class="num">3.5</span> 시스템 통합 및 동적 대응 검증</h2><span class="pts">35점</span></div>
+  <div class="cards g4"><div class="card">
+      <div class="ch"><b>시스템 통합</b><span class="chip" style="background:#b86e00">부분</span></div>
+      <blockquote>“다중 PC 간 ROS2 통신이 정상이고, 시작부터 완료까지 전체 파이프라인이 끊김 없이 연결된다.”</blockquote>
+      <div class="plain">시뮬레이터는 1번 컴퓨터, 로봇 제어·웹은 2번 컴퓨터로 나눠서 한 주문을 끝까지 돌린 기록이 있습니다. 판정 protocol 에도 다중 PC 칸(attempt 12 · 13)을 넣었지만, v1.0 에서는 두 번째 PC 로 돌리지 못했습니다. 기본 실행은 한 대입니다.</div>
+      <div class="key">▸ 두 PC 계약 합격(회차19) · 다중 PC 판정 run 은 회전 1–3 · v1.0 미실행</div>
+      <div class="ev">#240 5797973069 · 5797973429(회차19)</div>
+      <div class="left">남은 것 · v1.0 다중 PC</div>
+    </div><div class="card">
+      <div class="ch"><b>다중 로봇 조율</b><span class="chip" style="background:#2e7d32">계약 합격</span></div>
+      <blockquote>“2대 이상 로봇의 작업 순서·역할이 충돌 없이 조율되고, 작업 완료 후 재실행이 가능하다.”</blockquote>
+      <div class="plain">로봇들이 서로 기다리고 넘겨주며 부딪히지 않습니다. 주문 10건을 연속으로 넣었을 때 10건 모두 배송했고, 로봇이 어디에도 닿지 않았습니다.</div>
+      <div class="key">▸ 10건 연속 10/10 · 접촉 0 · 배출 실패 0</div>
+      <div class="ev">#240 5808852884(10건 I)</div>
+      <div class="left">남은 것 · 10건 재현 회차</div>
+    </div><div class="card">
+      <div class="ch"><b>동적 대응</b><span class="chip" style="background:#2e7d32">계약 합격</span></div>
+      <blockquote>“물체 위치가 매번 달라져도(랜덤 스폰) 정상 동작하고, 외부 이벤트에 따라 동작이 결정된다.”</blockquote>
+      <div class="plain">약통 배치를 무작위로 바꿔도 정상 동작하고, 급한 주문이 중간에 들어오면 먼저 처리합니다. 재고가 떨어지면 자동으로 보충합니다.</div>
+      <div class="key">▸ 진열 seed 0 → 7 에서 5/5 · 긴급 주문 끼어듦</div>
+      <div class="ev">#240 5802558111(회차40)</div>
+      <div class="left">남은 것 · seed 추가 · 회피 더미 회차</div>
+    </div><div class="card">
+      <div class="ch"><b>검증 및 분석</b><span class="chip" style="background:#2e7d32">계약 합격</span></div>
+      <blockquote>“성공률·소요 시간 등 사전 정의 기준으로 정량 측정하고, 실패 원인과 한계를 분석했다.”</blockquote>
+      <div class="plain">통과 기준을 먼저 적고 돌렸습니다. 실패하면 원인을 찾아 고치고 다시 쟀고, 10건 연속 성공률이 5건에서 10건까지 오른 과정을 기록했습니다.</div>
+      <div class="key">▸ 판정 run 63/53/10(v0.5.0) → 14/14(v1.0) · 실패 10 분류</div>
+      <div class="ev">docs/reha/rounds-240.md</div>
+      <div class="left">남은 것 · 실패 분류 · 원인 · 재시도</div>
+    </div></div><div class="foot"><span>2026-09-28, main 66eeee8 · v1.0.0 → a5d1107 · 수치는 evidence 의 v0.5.0 · v1.0.0 배포 기록에서 옮겼다</span><span>5</span></div></section></div>
+<div class="frame"><section class="slide">
+  <div class="head"><h2><span class="num">3.6</span> 발표 및 시연</h2><span class="pts">5점</span></div>
+  <div class="cards g2"><div class="card">
+      <div class="ch"><b>최종 영상 발표</b><span class="chip" style="background:#6d4c9a">문서</span></div>
+      <blockquote>“최종 영상으로 발표!! 기능을 직관적으로 확인할 수 있는 영상 및 편집 필요!”</blockquote>
+      <div class="plain">판정에 쓴 실제 실행(run)의 녹화를 이어 붙여 한 주문이 처음부터 끝까지 가는 모습을 보여 줍니다. 컷마다 어떤 run 인지와 파일 지문(sha256), 배속을 화면에 남겨서, 영상이 실제 실행이라는 것을 확인할 수 있게 했습니다.<div class="dh">자세히</div><ul><li>편집 계획: 안전판 = v0.5.0(a4b1a4e) 등록 PASS run 녹화 6개(한 바퀴 · seed 11/23 · 10건 · Play/Stop · AMR 2대)</li><li>시간표 300 s: 영상 158 s(M0609 보충은 1× 50 s) · 슬라이드 142 s(본 발표 7쪽 + 제어 · 구조 · 스택 3쪽)</li><li>첫 화면 "서로 다른 run 6개를 이어 붙였다", 끝 화면 run_id · sha256 표. 배속 구간은 ×N 계속 표시</li><li>촬영 계획 v5(여섯 뷰)는 본촬영 기록이 없어 기록(동결)으로 남겼다</li></ul></div>
+      <div class="key">▸ 300 s = 영상 158 s + 슬라이드 142 s · 등록 run 6개 · 컷마다 run ID · 배속</div>
+      <div class="ev">docs/presentation/edit-plan-5min.md</div>
+      <div class="left">남은 것 · 편집본 · 리허설 시간 기록</div>
+    </div><div class="card">
+      <div class="ch"><b>문서 구성 · 시간</b><span class="chip" style="background:#6d4c9a">문서</span></div>
+      <blockquote>“PPT 및 발표가 제시한 문서 구성과 시간을 준수 여부를 평가 — flowchart, 시스템 아키텍쳐, 기술 스택 등”</blockquote>
+      <div class="plain">요구한 흐름도, 시스템 구조도, 기술 스택을 실제 코드와 똑같이 그렸고, 발표를 5분에 맞춘 시간표를 만들었습니다.<div class="dh">자세히</div><ul><li>로봇별 제어 flowchart · 시스템 아키텍처(PC · 역할 · 노드 · 도메인) · 기술 스택 3장, 값은 main 파일:줄에서</li><li>쓰지 않는 말 8개를 근거와 함께 적었다(참값 센서 집기 · 봉투 스폰 · AMCL 없음 · MoveIt 아님 등)</li><li>5분 시간표: 영상 158 s + 슬라이드 142 s</li></ul></div>
+      <div class="key">▸ flowchart · 아키텍처(코드와 동일본) · 기술 스택 · 5분표</div>
+      <div class="ev">docs/presentation/tech-3.html</div>
+      <div class="left">남은 것 · 리허설 시간 기록(9/29)</div>
+    </div></div><div class="foot"><span>2026-09-28, main 66eeee8 · v1.0.0 → a5d1107 · 수치는 evidence 의 v0.5.0 · v1.0.0 배포 기록에서 옮겼다</span><span>6</span></div></section></div>
+<div class="frame"><section class="slide">
+  <div class="head"><h2><span class="num">3.7</span> 챌린지</h2><span class="pts">5점</span></div>
+  <div class="cards g1"><div class="card">
+      <div class="ch"><b>기술 리포트</b><span class="chip" style="background:#6d4c9a">문서</span></div>
+      <blockquote>“공학적 탐구, 알고리즘 개선 · 센싱 데이터 분석 및 머신러닝 · 성능 개선을 위한 다양한 시도 기술 리포트”</blockquote>
+      <div class="plain">주행 실패(6곳 중 0곳 도착)를 한 원인씩 잘라 6곳 모두 도착하게 만든 과정과, 시뮬레이션 속도를 두 배로 올린 과정을 리포트 두 편으로 씁니다.<div class="dh">자세히</div><ul><li>① 병원 Nav2 0/6 → 6/6: 한 층씩 원인을 잘랐다</li><li>② rtf 0.34 → 0.69: 충돌체 · 레일 드라이브 · render_every · 계획 캐시(장비별 표)</li><li>곁가지: 감속기 세 층(QoS · 팽창 띠 99 · scan 토픽)</li></ul></div>
+      <div class="key">▸ Nav2 0/6 → 6/6 · rtf 0.34 → 0.69</div>
+      <div class="ev">docs/presentation/challenge-hospital-nav2.md</div>
+      <div class="left">남은 것 · 리포트 ② 본문</div>
+    </div></div><div class="foot"><span>2026-09-28, main 66eeee8 · v1.0.0 → a5d1107 · 수치는 evidence 의 v0.5.0 · v1.0.0 배포 기록에서 옮겼다</span><span>7</span></div></section></div>
+<script>
+function fit(){document.querySelectorAll('.frame').forEach(f=>{const s=f.firstElementChild;const k=f.clientWidth/1280;s.style.transform=k<1?'scale('+k+')':'none'})}
+addEventListener('resize',fit);fit();
+</script>
+</body></html>

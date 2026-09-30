@@ -1,0 +1,106 @@
+# 빈월드(K1, 전 구간 한 바퀴)의 구역과 고정 프레임. 계약 v1 3절의 형식이다.
+#
+# **이 파일은 자동 생성물이다. 손으로 고치지 않는다.**
+#   단일 출처는 sim/standalone/p3sim/layout.py 의 full_loop_zones·ZONE_TOL 이고,
+#   sim/tests/test_full_loop_layout.py 가 파일과 코드가 어긋나면 잡는다.
+#   다시 만들기: python3 sim/standalone/pharmacy_layout_json.py --zones emptyworld
+#
+# **값은 전부 임시다(출처 "임시"). 아무것도 재지 않았다.**
+#   빈월드는 구현을 먼저 돌리려고 만든 장면이다(재범 9/21 "구현부터").
+#   세준님 USD 가 오면 심월드는 config/zones.yaml 쪽에서 따로 채운다 — 이 파일과 섞지 않는다.
+#
+# 침상 넷은 주문 풀의 목적지와 같아야 한다(통합&정비: 없는 zone 은 fleet 에서만 거부된다).
+# 공차는 양수여야 한다. 0 이면 fleet 가 arrived 를 영원히 내지 않는다(주행 9/21).
+# 고르는 법: launch 인자나 P3_ZONES 로 이 파일의 절대 경로를 준다.
+#   기본값은 config/zones.yaml 이라 기본 동작은 그대로다.
+
+frame: map
+zones:
+  load:
+    kind: load
+    x: 3.75
+    y: 0.95
+    yaw: 0.0
+    tol_xy: 0.15
+    tol_yaw: 0.2
+  dock_1:
+    kind: dock
+    x: 4.6
+    y: 0.55
+    yaw: 0.0
+    tol_xy: 0.15
+    tol_yaw: 0.2
+  bed_a1:
+    kind: bed
+    x: 13.15
+    y: -0.39
+    yaw: 0.0
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    cabinet:
+      x: 12.8
+      y: 0.3
+      z: 0.7
+      yaw: 0.0
+    tag:
+      x: 12.8
+      y: 0.3
+      z: 0.95
+      yaw: 0.0
+  bed_a2:
+    kind: bed
+    x: 14.35
+    y: -0.39
+    yaw: 0.0
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    cabinet:
+      x: 14.0
+      y: 0.3
+      z: 0.7
+      yaw: 0.0
+    tag:
+      x: 14.0
+      y: 0.3
+      z: 0.95
+      yaw: 0.0
+  bed_b1:
+    kind: bed
+    x: 15.55
+    y: -0.39
+    yaw: 0.0
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    cabinet:
+      x: 15.2
+      y: 0.3
+      z: 0.7
+      yaw: 0.0
+    tag:
+      x: 15.2
+      y: 0.3
+      z: 0.95
+      yaw: 0.0
+  bed_b2:
+    kind: bed
+    x: 16.75
+    y: -0.39
+    yaw: 0.0
+    tol_xy: 0.15
+    tol_yaw: 0.2
+    cabinet:
+      x: 16.4
+      y: 0.3
+      z: 0.7
+      yaw: 0.0
+    tag:
+      x: 16.4
+      y: 0.3
+      z: 0.95
+      yaw: 0.0
+pharmacy:
+  belt_end:
+    x: 2.95
+    y: 1.0
+    z: 0.75
+    yaw: 0.0

@@ -1,0 +1,146 @@
+name: CI
+
+# 항상 돈다. 대신 colcon 이 보지 않는 경로(문서, sim/, web/, tests/)만 바뀐 변경에서는
+# colcon(ROS 2 이미지 컨테이너에서 빌드·테스트)을 건너뛴다.
+# Draft PR 에서도 colcon 을 건너뛴다. Ready 로 바꾸는 순간(ready_for_review) 다시 돈다.
+# `CI gate` 가 항상 끝나는 job 이라 required check 로 걸어도 문서·Draft PR 이 pending 에 머물지 않는다.
+# docs/process/github-governance.md 의 "봇 머지 조건" 1번.
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+
+# 같은 PR 에 연달아 push 하면 이전 run 을 죽인다. 어차피 버릴 결과에 러너를 태우지 않는다.
+# main push 는 커밋마다 group 이 달라서 취소되지 않는다. 머지된 커밋은 전부 검증한다.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  changes:
+    name: Changed paths
+    runs-on: ubuntu-24.04
+    outputs:
+      ros: ${{ steps.filter.outputs.ros }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: filter
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
+        run: |
+          # pull_request 는 merge ref 의 첫 부모(PR_BASE 는 옛 base 일 수 있다), push 는 before. 규칙은 tools/ci_changed_paths.py.
+          BASE=$(python3 tools/ci_changed_paths.py --base "$EVENT" "$HEAD" "$PR_BASE" "$PUSH_BEFORE")
+          echo "기준 $BASE"
+          if [[ -z "$BASE" ]]; then
+            echo "기준 커밋이 없다. 무거운 시험을 돈다."
+            echo "ros=true" >> "$GITHUB_OUTPUT"
+            echo "sim=true" >> "$GITHUB_OUTPUT"
+            echo "usd=true" >> "$GITHUB_OUTPUT"
+            echo "unit=true" >> "$GITHUB_OUTPUT"
+            echo "lint=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          changed=$(git diff --name-only "$BASE" "$HEAD")
+          echo "$changed"
+          # colcon 이 보지 않는 경로(문서·sim·web·tests·이슈·PR 틀·CODEOWNERS)만 바뀌면 빌드 대상이 없다.
+          # 판정 규칙과 근거는 tools/ci_changed_paths.py, 단위 테스트는 tests/test_ci_changed_paths.py.
+          echo "$changed" | python3 tools/ci_changed_paths.py | tee -a "$GITHUB_OUTPUT"
+
+  build-and-test:
+    name: L1 · L2 (colcon build + test)
+    needs: changes
+    # Draft 는 반복 push 가 많다. 컨테이너+apt+sequential colcon 을 Ready 때까지 미룬다.
+    # push 이벤트에는 pull_request 가 없어 draft 가 null 이고, null != true 라 main 은 그대로 돈다.
+    if: needs.changes.outputs.ros == 'true' && github.event.pull_request.draft != true
+    runs-on: ubuntu-24.04
+    # ROS 2 Jazzy 가 이미 든 공식 이미지에서 돈다. setup-ros(apt 로 ROS 설치)는 9/17 colcon job 시간의 절반
+    # (평균 3.32 분 × 105 job)이었고 설치 단계에서 두 번 실패했다. 정비 docker 검증과 같은 이미지다.
+    # 이미지에는 colcon·colcon-mixin·rosdep·pytest·numpy·git 이 있다. package.xml 에 선언됐지만 이미지에 없는
+    # nav2_msgs·python3-opencv·cv_bridge 는 아래 step 이 apt 로 넣는다(rosdep install 은 쓰지 않는다).
+    # pytest-cov·pytest-repeat·pytest-rerunfailures 는 없지만 이 저장소 테스트는 쓰지 않는다.
+    # 태그를 따라가므로 이미지 갱신으로 거동이 바뀔 수 있다(digest 고정은 하지 않음).
+    container:
+      image: ros:jazzy-ros-base-noble
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install declared dependencies missing from the image
+        shell: bash
+        run: |
+          # package.xml 에 선언됐지만 이미지에 없고, 없으면 제품 코드의 시험이 skip·error 가 되는 것만 넣는다.
+          # - nav2_msgs: navigation 의 fleet 이 import 한다. 없으면 importorskip 으로 조용히 건너뛴다.
+          # - python3-opencv, cv_bridge: perception 의 pouch_detector_node 가 import 한다. 없으면 import error 다.
+          # rosdep install 은 nav2 스택 전체(exec_depend)까지 깔아 job 이 길어지므로 쓰지 않는다.
+          # 이 설치 뒤 rosdep check 로 남는 것은 navigation 의 exec_depend(nav2 실행 노드 11개)뿐이다(9/20, #260).
+          # L1·L2 시험은 그 노드를 띄우지 않는다.
+          apt-get update
+          apt-get install -y --no-install-recommends ros-jazzy-nav2-msgs python3-opencv ros-jazzy-cv-bridge
+          source /opt/ros/jazzy/setup.bash
+          python3 -c "import nav2_msgs.action, cv2, cv_bridge; print('import OK: nav2_msgs, cv2', cv2.__version__, 'cv_bridge')"
+
+      - name: colcon build
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon build --symlink-install --event-handlers console_direct+
+
+      - name: colcon test
+        shell: bash
+        env:
+          # L2 는 한 프로세스에 노드 여럿을 띄운다. 9/17 에 같은 프로세스 안 발견 실패가 2번 났다(test_stub_loop).
+          # 발견을 이 러너의 localhost 로 좁히고 도메인을 run 마다 바꿔 다른 DDS 트래픽과 섞이지 않게 한다.
+          # 테스트 step 안에서만 쓴다. 마스터 PC 의 launch 에는 영향이 없다.
+          # --executor sequential: colcon 은 기본으로 패키지 테스트를 동시에 돌려 같은 도메인에 다른 패키지의
+          # 노드·서버가 섞인다. 순서대로 돌려 패키지 사이 DDS 간섭을 없앤다(docker 4 CPU 에서 303.5 s → 305.8 s).
+          ROS_AUTOMATIC_DISCOVERY_RANGE: LOCALHOST
+        run: |
+          export ROS_DOMAIN_ID=$(( (GITHUB_RUN_ID + GITHUB_RUN_ATTEMPT) % 101 + 1 ))
+          echo "ROS_AUTOMATIC_DISCOVERY_RANGE=$ROS_AUTOMATIC_DISCOVERY_RANGE ROS_DOMAIN_ID=$ROS_DOMAIN_ID"
+          source /opt/ros/jazzy/setup.bash
+          source install/setup.bash
+          colcon test --executor sequential --event-handlers console_direct+
+          colcon test-result --verbose
+
+      # colcon test-result 는 skip 을 실패로 보지 않는다. 9/20 #258 은 초록이었지만 navigation 이 "collected 0 items"
+      # 였다. 패키지마다 실행된 시험 수를 한 줄씩 찍고, 시험 파일이 있는데 0 개면 실패한다(tools/ci_test_counts.py).
+      - name: Check that every package with tests ran some
+        shell: bash
+        run: python3 tools/ci_test_counts.py --src src --build build
+
+  gate:
+    name: CI gate
+    needs: [changes, build-and-test]
+    # always() 가 아니라 !cancelled() 다. 새 push 가 이전 run 을 취소하면(concurrency) gate 도 같이
+    # 취소돼 대체된 커밋에 가짜 빨간불이 남지 않는다. 문서·Draft PR 의 build-and-test 는 skipped 라
+    # cancelled 가 아니므로 gate 가 돌아 ros=false 로 통과한다. 진짜 빌드 실패는 그대로 빨갛다.
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-24.04
+    steps:
+      - shell: bash
+        env:
+          CHANGES: ${{ needs.changes.result }}
+          ROS: ${{ needs.changes.outputs.ros }}
+          BUILD: ${{ needs.build-and-test.result }}
+          DRAFT: ${{ github.event.pull_request.draft }}
+        run: |
+          echo "changes=$CHANGES ros=$ROS build=$BUILD draft=$DRAFT"
+          if [[ "$CHANGES" != "success" ]]; then echo "경로 판정 job 이 실패했다."; exit 1; fi
+          if [[ "$DRAFT" == "true" ]]; then echo "통과. Draft 라 colcon 을 생략했다. Ready 에서 돈다."; exit 0; fi
+          if [[ "$ROS" == "true" && "$BUILD" != "success" ]]; then echo "colcon L1·L2 가 성공하지 않았다."; exit 1; fi
+          echo "통과. ros=$ROS 이면 colcon 결과가 포함된 것이다."
+
+# L3(Isaac Sim 헤드리스)는 여기서 돌리지 않는다. GPU 가 필요하고 그 GPU 는
+# 폐쇄망 안의 공용 실습 PC 에 있다. 각자 로컬에서 sim/tests/ 를 돌리고
+# 결과를 PR 본문에 적는다 — docs/process/development-process.md 참고.

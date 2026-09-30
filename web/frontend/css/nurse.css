@@ -1,0 +1,503 @@
+/* 간호사·설정 화면 — 밝고 조용한 바탕, 큰 글자. 개발자 화면(app.css)과 따로 간다.
+   색은 전부 토큰으로. 어두운 바탕은 설정에서 고른다(<html data-theme="dark">).
+   글자 크기는 설정의 "크게" 가 <html data-size="large"> 로 한 단계 올린다. */
+
+:root {
+  --n-bg:      #f4f6f9;
+  --n-card:    #ffffff;
+  --n-line:    #dde3ea;
+  --n-sunken:  #eef2f6;
+  --n-fg:      #18212c;
+  --n-dim:     #56637a;   /* 흰 바탕 대비 6.0:1 */
+  --n-faint:   #6b778c;   /* 흰 바탕 대비 4.6:1 */
+
+  --n-accent:  #1d5fd1;
+  --n-accent-fg: #ffffff;
+  --n-ok:      #1a7f45;
+  --n-ok-bg:   #e3f4ea;
+  --n-info:    #1d5fd1;
+  --n-info-bg: #e5eefc;
+  --n-warn:    #9a5b00;
+  --n-warn-bg: #fdf1dc;
+  --n-bad:     #c4291c;
+  --n-bad-bg:  #fde7e5;
+  --n-urgent:  #c4291c;
+  --n-idle:    #56637a;
+  --n-idle-bg: #eef2f6;
+
+  --map-free: #ffffff; --map-wall: #4a5566; --map-unknown: #e6ebf1;
+  --map-bed: #1d5fd1; --map-dock: #6b778c; --map-load: #9a5b00;
+  --map-robot: #1a7f45; --map-stale: #8d99ab; --map-target: #c4291c;
+  --map-text: #18212c; --map-halo: #ffffff;
+  --map-scan: #d63355;
+  --map-spare: #7a3fd1; --map-dummy: #c9a100;
+
+  --n-radius: 12px;
+  --n-base: 16px;
+  --n-mono: ui-monospace, "JetBrains Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --n-bg:      #0f141b;
+  --n-card:    #171e27;
+  --n-line:    #2a3441;
+  --n-sunken:  #121820;
+  --n-fg:      #e6ebf2;
+  --n-dim:     #a4b0c2;
+  --n-faint:   #8d99ab;
+  --n-accent:  #5b9dff;
+  --n-accent-fg: #0b1220;
+  --n-ok:      #4cc27a;
+  --n-ok-bg:   #15301f;
+  --n-info:    #6aa8ff;
+  --n-info-bg: #16263e;
+  --n-warn:    #e8b04d;
+  --n-warn-bg: #33270f;
+  --n-bad:     #ff7a6e;
+  --n-bad-bg:  #3a1a17;
+  --n-urgent:  #ff7a6e;
+  --n-idle:    #a4b0c2;
+  --n-idle-bg: #1d2530;
+  --map-free: #1d2530; --map-wall: #a4b0c2; --map-unknown: #121820;
+  --map-bed: #6aa8ff; --map-dock: #8d99ab; --map-load: #e8b04d;
+  --map-robot: #4cc27a; --map-stale: #8d99ab; --map-target: #ff7a6e;
+  --map-text: #e6ebf2; --map-halo: #0f141b;
+  --map-scan: #ff6b86;
+  --map-spare: #b48cff; --map-dummy: #f2cc0c;
+  color-scheme: dark;
+}
+
+:root[data-size="large"] { --n-base: 19px; }
+
+* { box-sizing: border-box; }
+html { font-size: var(--n-base); }
+body.nurse {
+  margin: 0; min-height: 100vh;
+  background: var(--n-bg); color: var(--n-fg);
+  font: 1rem/1.5 "Pretendard", "Noto Sans KR", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+[hidden] { display: none !important; }
+.n-mono { font-family: var(--n-mono); font-size: .9em; }
+
+/* ---------- 머리 ---------- */
+
+.n-top {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 10px 20px; min-height: 64px;
+  background: var(--n-card); border-bottom: 1px solid var(--n-line);
+}
+.n-brand { display: flex; align-items: center; gap: 8px; }
+.n-brand-mark {
+  font-family: var(--n-mono); font-weight: 700; font-size: .75rem; letter-spacing: .06em;
+  color: var(--n-accent-fg); background: var(--n-accent); border-radius: 5px; padding: 3px 7px;
+}
+.n-brand-name { font-weight: 700; font-size: 1.1rem; white-space: nowrap; }
+.n-spacer { flex: 1; }
+
+.n-nav { display: flex; gap: 4px; padding: 4px; background: var(--n-sunken); border-radius: 10px; }
+.n-nav .nav-link {
+  font-size: .9rem; font-weight: 600; color: var(--n-dim); text-decoration: none;
+  padding: 6px 14px; border-radius: 7px; white-space: nowrap;
+}
+.n-nav .nav-link:hover { color: var(--n-fg); background: var(--n-card); }
+.n-nav .nav-link.is-active { color: var(--n-accent-fg); background: var(--n-accent); }
+.n-nav .nav-link:focus-visible, .n-btn:focus-visible, .n-seg-btn:focus-visible, .n-bed:focus-visible {
+  outline: 3px solid var(--n-accent); outline-offset: 2px;
+}
+
+.n-sim { font-size: .85rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; color: #fff; background: var(--n-warn); white-space: nowrap; }
+.n-conn { display: inline-flex; align-items: center; gap: 7px; font-size: .9rem; font-weight: 600; color: var(--n-dim); white-space: nowrap; }
+.n-conn-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--n-faint); }
+.n-conn.is-ok .n-conn-dot { background: var(--n-ok); }
+.n-conn.is-warn .n-conn-dot { background: var(--n-warn); }
+.n-conn.is-bad { color: var(--n-bad); }
+.n-conn.is-bad .n-conn-dot { background: var(--n-bad); animation: n-pulse 1.1s ease-in-out infinite; }
+@keyframes n-pulse { 50% { opacity: .25; } }
+
+.n-btn {
+  font: inherit; font-weight: 700; font-size: 1rem;
+  color: var(--n-fg); background: var(--n-card);
+  border: 1px solid var(--n-line); border-radius: 10px;
+  padding: 10px 18px; cursor: pointer; min-height: 44px;
+}
+.n-btn:hover { background: var(--n-sunken); }
+.n-btn-primary { color: var(--n-accent-fg); background: var(--n-accent); border-color: var(--n-accent); }
+.n-btn-primary:hover { background: var(--n-accent); filter: brightness(1.08); }
+.n-btn:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+a.n-btn { display: inline-flex; align-items: center; text-decoration: none; }
+
+/* ---------- 상황 띠 ---------- */
+
+.n-banner { padding: 12px 20px; font-weight: 600; border-bottom: 1px solid var(--n-line); }
+.n-banner.is-info { color: var(--n-info); background: var(--n-info-bg); }
+.n-banner.is-warn { color: var(--n-warn); background: var(--n-warn-bg); }
+.n-banner.is-bad  { color: var(--n-bad);  background: var(--n-bad-bg); }
+
+body.is-disconnected .n-main { opacity: .5; filter: saturate(.3); }
+
+/* ---------- 본문 ---------- */
+
+.n-main {
+  display: grid; gap: 16px; padding: 16px 20px 32px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  grid-template-areas: "now alerts" "map map" "patients patients";
+  max-width: 1500px; margin: 0 auto;
+}
+.n-now { grid-area: now; }
+.n-alerts { grid-area: alerts; }
+.n-patients { grid-area: patients; }
+.n-map { grid-area: map; }
+/* 1280 폭에서 병상 이름표(D1…)가 보이는 크기(1 m ≥ 14 px)가 되도록 높이를 잡는다. */
+.fmap { position: relative; height: 440px; display: grid; place-items: center; overflow: hidden; }
+@media (max-width: 900px) { .fmap { height: 300px; } }
+.fmap-canvas { display: block; }
+.fmap-note { position: absolute; left: 8px; bottom: 6px; font-size: .85rem; color: var(--n-warn); }
+.fmap-note:empty { display: none; }
+.fmap-meta-warn { color: var(--n-warn); }
+.fmap-meta-fleet { color: var(--n-dim); margin-left: 8px; }
+.fmap-meta-target { color: var(--n-bad); font-weight: 700; margin-left: 8px; }
+@media (max-width: 900px) {
+  .n-main { grid-template-columns: minmax(0, 1fr); grid-template-areas: "now" "alerts" "map" "patients"; padding: 12px 16px 24px; }
+  .n-top { padding: 8px 16px; gap: 10px; }
+}
+
+/* 반쪽 폭(1920 녹화의 오른쪽 절반 960×1040, 1100 이하) — 스크롤 없이 한 장, 글자는 크게.
+   지금 배송 · (간호사 알림이 있을 때만) 알림 · 지도 300 px · 환자별 약(두 칸 목록). 촬영 화면(?film=1)은 따로 간다. */
+@media (max-width: 1100px) {
+  :root:has(body.nurse:not(.is-film)) { --n-base: 18px; }
+  body.nurse:not(.is-film) .n-main {
+    grid-template-columns: minmax(0, 1fr); grid-template-areas: "now" "alerts" "map" "patients";
+    padding: 8px 10px 10px; gap: 8px;
+  }
+  body.nurse:not(.is-film) .n-top { min-height: 52px; padding: 6px 12px; }
+  body.nurse:not(.is-film) .n-card { padding: 10px 12px; }
+  body.nurse:not(.is-film) .n-card h2 { margin-bottom: 6px; font-size: .9rem; }
+  body.nurse:not(.is-film) .n-alerts.no-nurse-alert { display: none; }
+  body.nurse:not(.is-film) .n-now-head { margin-bottom: 8px; }
+  body.nurse:not(.is-film) .n-steps { margin-bottom: 6px; }
+  body.nurse:not(.is-film) .n-step-item { padding: 8px 4px; font-size: .85rem; }
+  body.nurse:not(.is-film) .n-phase { margin-bottom: 6px; }
+  body.nurse:not(.is-film) .n-now-orders li { padding: 6px 10px; }
+  body.nurse:not(.is-film) .fmap { height: 350px; }
+  /* 간호사 알림이 떠 있으면 그 자리를 지도에서 뺀다 — 환자별 약이 화면 밖으로 밀리지 않게. */
+  body.nurse:not(.is-film) .n-main:has(.n-alerts:not(.no-nurse-alert)) .fmap { height: 190px; }
+  body.nurse:not(.is-film) .n-alert { padding: 6px 10px; }
+  body.nurse:not(.is-film) .n-alert-title { font-size: 1rem; }
+  body.nurse:not(.is-film) .n-alert-where { display: inline; margin-left: 8px; font-size: .85rem; }
+  body.nurse:not(.is-film) .n-alert-title { display: inline; }
+  body.nurse:not(.is-film) .n-alert-act { margin-top: 2px; font-size: .9rem; }
+  body.nurse:not(.is-film) .n-alert-tech { display: none; }
+  body.nurse:not(.is-film) #alerts { gap: 6px; }
+  body.nurse:not(.is-film) .n-done { padding: 8px 12px; margin-bottom: 4px; }
+  body.nurse:not(.is-film) .n-done + .n-idle { padding: 2px 0 0; }
+  body.nurse:not(.is-film) .n-done + .n-idle .n-idle-title { font-size: 1rem; }
+  body.nurse:not(.is-film) .n-done + .n-idle .n-idle-sub { display: none; }
+  /* 환자별 약: 표를 두 칸 목록으로(환자 · 병상 · 상태/확인). 약 이름은 지금 배송 칸에 있다. */
+  body.nurse:not(.is-film) .n-table thead { display: none; }
+  body.nurse:not(.is-film) .n-table tbody { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 10px; }
+  body.nurse:not(.is-film) .n-table tr { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 6px;
+    padding: 4px 8px; border-radius: 8px; background: var(--n-sunken); }
+  body.nurse:not(.is-film) .n-table td { padding: 0; border: 0; background: transparent !important; white-space: nowrap; }
+  body.nurse:not(.is-film) .n-table td:nth-child(2) { display: none; }
+  body.nurse:not(.is-film) .n-table tr.is-live { background: var(--n-info-bg); outline: 2px solid var(--n-accent); }
+  body.nurse:not(.is-film) .n-table .n-who { font-size: .95rem; }
+  body.nurse:not(.is-film) .n-table .n-tag { font-size: .75rem; }
+  body.nurse:not(.is-film) .n-state { display: flex; gap: 4px; align-items: center; }
+}
+
+.n-card {
+  background: var(--n-card); border: 1px solid var(--n-line); border-radius: var(--n-radius);
+  padding: 18px 20px; min-width: 0;
+}
+.n-card h2 { margin: 0 0 14px; font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.n-count { font-size: .8rem; color: var(--n-accent-fg); background: var(--n-bad); border-radius: 999px; padding: 1px 9px; }
+.n-count:empty { display: none; }
+.n-sub { font-size: .85rem; font-weight: 500; color: var(--n-dim); }
+.n-empty { margin: 0; color: var(--n-dim); padding: 10px 0; }
+.n-empty.is-ok { color: var(--n-ok); font-weight: 600; }
+
+/* 지금 배송 */
+.n-idle { padding: 18px 0 8px; }
+.n-idle-title { font-size: 1.9rem; font-weight: 800; color: var(--n-dim); }
+.n-idle-title.is-ok { color: var(--n-ok); }
+.n-idle-sub { font-size: 1.05rem; color: var(--n-dim); margin-top: 4px; }
+
+/* 방금 끝난 배송 — 다음 트립이 올 때까지 남는다. */
+.n-done { border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; border-left: 6px solid; }
+.n-done.is-ok   { border-color: var(--n-ok);   background: var(--n-ok-bg); }
+.n-done.is-bad  { border-color: var(--n-bad);  background: var(--n-bad-bg); }
+.n-done.is-warn { border-color: var(--n-warn); background: var(--n-warn-bg); }
+.n-done.is-idle { border-color: var(--n-idle); background: var(--n-idle-bg); }
+.n-done-head { display: flex; align-items: baseline; gap: 10px; }
+.n-done-title { font-size: 1.35rem; font-weight: 800; }
+.n-done.is-ok .n-done-title { color: var(--n-ok); }
+.n-done.is-bad .n-done-title { color: var(--n-bad); }
+.n-done.is-warn .n-done-title { color: var(--n-warn); }
+.n-done-time { font-size: .85rem; color: var(--n-dim); }
+.n-done-dest { font-family: var(--n-mono); font-weight: 700; margin: 2px 0 8px; }
+.n-done .n-now-orders li { background: var(--n-card); }
+.n-done + .n-idle { padding-top: 8px; }
+.n-done + .n-idle .n-idle-title { font-size: 1.3rem; }
+
+.n-now-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.n-mode { font-size: 1.05rem; font-weight: 800; padding: 5px 14px; border-radius: 999px; color: var(--n-info); background: var(--n-info-bg); }
+.n-mode-1 { color: #fff; background: var(--n-urgent); }
+.n-mode-x { color: var(--n-idle); background: var(--n-idle-bg); }
+.n-dest { font-family: var(--n-mono); font-size: 1.3rem; font-weight: 700; }
+
+.n-steps { list-style: none; margin: 0 0 12px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.n-step-item {
+  text-align: center; font-weight: 700; font-size: .95rem; padding: 12px 6px; border-radius: 10px;
+  color: var(--n-faint); background: var(--n-sunken); border: 2px solid transparent;
+}
+.n-step-item.is-done { color: var(--n-ok); background: var(--n-ok-bg); }
+.n-step-item.is-current { color: var(--n-accent-fg); background: var(--n-accent); font-size: 1.05rem; }
+.n-step-item.is-bad { color: #fff; background: var(--n-bad); }
+.n-phase { font-size: .95rem; color: var(--n-dim); margin-bottom: 14px; }
+.n-phase-label { font-weight: 700; }
+
+.n-now-orders { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.n-now-orders li { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 12px; background: var(--n-sunken); border-radius: 8px; }
+.n-who { font-weight: 700; }
+.n-what { font-family: var(--n-mono); color: var(--n-dim); }
+.n-now-orders .n-tag { margin-left: auto; }
+
+.n-tag { display: inline-block; font-size: .85rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.n-tag.is-ok   { color: var(--n-ok);   background: var(--n-ok-bg); }
+.n-tag.is-info { color: var(--n-info); background: var(--n-info-bg); }
+.n-tag.is-warn { color: var(--n-warn); background: var(--n-warn-bg); }
+.n-tag.is-bad  { color: var(--n-bad);  background: var(--n-bad-bg); }
+.n-tag.is-idle { color: var(--n-idle); background: var(--n-idle-bg); }
+
+.n-urgent-dot {
+  display: inline-block; margin-left: 8px; font-size: .75rem; font-weight: 800;
+  color: #fff; background: var(--n-urgent); border-radius: 4px; padding: 1px 6px; vertical-align: middle;
+}
+
+/* 도크 충전 대기 배지 */
+.n-charge-row { display: inline-flex; gap: 6px; margin-left: 10px; vertical-align: middle; }
+.n-charge { font-size: .9rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; color: var(--n-ok); background: var(--n-ok-bg); border: 1.5px solid var(--n-ok); }
+.n-idle .n-charge-row { display: flex; margin: 6px 0 0; }
+
+/* 환자 확인(인식표 인증) 결과 칩 */
+.n-auth { display: inline-block; font-size: .8rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+.n-auth.is-ok   { color: var(--n-ok);  background: var(--n-card); border: 1.5px solid var(--n-ok); }
+.n-auth.is-fail { color: #fff; background: var(--n-bad); }
+.n-auth::before { content: "✓ "; }
+.n-auth.is-fail::before { content: "✕ "; }
+.n-state { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+/* 알림 */
+#alerts { display: grid; gap: 8px; }
+.n-alert { padding: 12px 14px; border-radius: 10px; border-left: 6px solid; }
+.n-alert.is-urgent { border-color: var(--n-urgent); background: var(--n-bad-bg); }
+.n-alert.is-bad    { border-color: var(--n-bad);  background: var(--n-bad-bg); }
+.n-alert.is-warn   { border-color: var(--n-warn); background: var(--n-warn-bg); }
+.n-alert-title { font-weight: 800; font-size: 1.05rem; }
+.n-alert.is-urgent .n-alert-title, .n-alert.is-bad .n-alert-title { color: var(--n-bad); }
+.n-alert.is-warn .n-alert-title { color: var(--n-warn); }
+.n-alert-where { font-family: var(--n-mono); font-size: .9rem; margin-top: 2px; }
+.n-alert-act { margin-top: 4px; }
+.n-alert-tech { display: block; font-size: .85rem; color: var(--n-dim); padding: 6px 2px; }
+
+/* 환자별 약 */
+.n-table { width: 100%; border-collapse: collapse; }
+.n-table th { text-align: left; font-size: .85rem; font-weight: 600; color: var(--n-dim); padding: 6px 10px; border-bottom: 1px solid var(--n-line); }
+.n-table td { padding: 10px; border-bottom: 1px solid var(--n-line); }
+.n-table tr:last-child td { border-bottom: 0; }
+.n-table tr.is-live td { background: var(--n-info-bg); }
+@media (max-width: 560px) {
+  .n-table th:nth-child(2), .n-table td:nth-child(2) { display: none; }
+}
+
+/* ---------- 요청 창 ---------- */
+
+.n-dialog {
+  width: min(640px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
+  padding: 0; border: 1px solid var(--n-line); border-radius: 16px;
+  background: var(--n-card); color: var(--n-fg);
+}
+.n-dialog::backdrop { background: rgb(10 20 30 / .45); }
+.n-dialog form { padding: 20px 22px; display: grid; gap: 16px; }
+.n-dialog h3 { margin: 0; font-size: 1.25rem; }
+
+.n-step { border: 0; margin: 0; padding: 0; min-width: 0; }
+.n-step:disabled { opacity: .45; }
+.n-step legend { font-weight: 700; margin-bottom: 8px; padding: 0; display: flex; align-items: center; gap: 8px; }
+.n-step-no {
+  display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
+  font-size: .8rem; color: var(--n-accent-fg); background: var(--n-accent);
+}
+
+.n-pick { display: grid; gap: 6px; max-height: 260px; overflow-y: auto; }
+.n-pick-card {
+  display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 12px;
+  padding: 10px 12px; border: 2px solid var(--n-line); border-radius: 10px; cursor: pointer;
+}
+.n-pick-card:hover { border-color: var(--n-accent); }
+.n-pick-card.is-on { border-color: var(--n-accent); background: var(--n-info-bg); }
+.n-pick-card input { width: 20px; height: 20px; margin: 0; accent-color: var(--n-accent); }
+.n-pick-who { font-weight: 700; }
+.n-pick-what, .n-pick-bed { font-family: var(--n-mono); font-size: .9rem; color: var(--n-dim); }
+.n-pick-card .n-urgent-dot { grid-column: 2 / -1; justify-self: start; margin-left: 0; }
+
+.n-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.n-seg-btn {
+  font: inherit; text-align: left; cursor: pointer; min-height: 56px;
+  padding: 10px 14px; border-radius: 10px; border: 2px solid var(--n-line);
+  background: var(--n-card); color: var(--n-fg); display: grid; gap: 2px;
+}
+.n-seg-btn:hover { border-color: var(--n-accent); }
+.n-seg-btn.is-on { border-color: var(--n-accent); background: var(--n-info-bg); }
+.n-seg-btn.is-urgent.is-on { border-color: var(--n-urgent); background: var(--n-bad-bg); }
+.n-seg-t { font-weight: 800; }
+.n-seg-s { font-size: .85rem; color: var(--n-dim); }
+
+.n-where-note { font-size: .95rem; color: var(--n-dim); margin-bottom: 8px; }
+.n-where-note.is-warn { color: var(--n-warn); font-weight: 600; }
+.n-beds { display: grid; gap: 8px; }
+.n-bed-group { display: grid; grid-template-columns: 72px 1fr; gap: 8px; align-items: start; }
+.n-bed-group-label { font-size: .85rem; color: var(--n-dim); padding-top: 9px; }
+.n-bed-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.n-bed {
+  font: inherit; font-family: var(--n-mono); font-size: .9rem; font-weight: 600; cursor: pointer;
+  min-width: 76px; min-height: 40px; padding: 6px 10px; border-radius: 8px;
+  border: 2px solid var(--n-line); background: var(--n-card); color: var(--n-fg);
+}
+.n-bed:hover { border-color: var(--n-accent); }
+.n-bed.is-mine { border-style: dashed; border-color: var(--n-accent); }
+.n-bed.is-on { border-style: solid; border-color: var(--n-accent); background: var(--n-accent); color: var(--n-accent-fg); }
+
+.n-req-error { padding: 10px 12px; border-radius: 8px; color: var(--n-bad); background: var(--n-bad-bg); font-weight: 600; }
+
+.n-dialog-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.n-summary { margin-right: auto; font-size: .95rem; color: var(--n-dim); }
+.n-summary.is-warn { color: var(--n-warn); font-weight: 700; }
+
+.n-toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 20;
+  padding: 12px 20px; border-radius: 10px; font-weight: 600;
+  color: var(--n-accent-fg); background: var(--n-fg);
+  max-width: calc(100vw - 32px);
+}
+:root[data-theme="dark"] .n-toast { color: var(--n-bg); }
+
+/* ---------- 설정 ---------- */
+
+.s-main { max-width: 960px; margin: 0 auto; padding: 16px 20px 40px; display: grid; gap: 16px; }
+.s-row { display: grid; grid-template-columns: 180px 1fr; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--n-line); }
+.s-row:last-child { border-bottom: 0; }
+.s-key { font-weight: 600; color: var(--n-dim); }
+.s-val { min-width: 0; overflow-wrap: anywhere; }
+.s-hint { display: block; font-size: .85rem; color: var(--n-faint); margin-top: 2px; }
+.s-list { margin: 6px 0 0; padding-left: 18px; }
+.s-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 600px) { .s-row { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ---------- 촬영 화면 (?film=1) ----------
+   1920 녹화의 오른쪽 반(960×1040). 한 장에 다 들어가고 바깥 스크롤이 없다. 글자는 크게.
+   순서: 상황 띠 · 큰 단계 배너 · 병원 지도(남는 높이 전부) · 주문 큐 · 알림(있을 때만). */
+body.is-film { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+:root:has(body.is-film) { --n-base: 20px; }
+body.is-film .n-top { position: static; min-height: 52px; padding: 6px 14px; }
+body.is-film .n-nav { display: none; }
+body.is-film .n-brand-name::after { content: " · 병원 약제 물류"; font-weight: 600; color: var(--n-dim); }
+body.is-film .n-banner { padding: 6px 14px; font-size: .9rem; }
+body.is-film .n-main {
+  flex: 1; min-height: 0; max-width: none; width: 100%; padding: 8px 10px; gap: 8px;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  grid-template-areas: "now" "map" "patients" "alerts";
+}
+body.is-film .n-card { padding: 8px 12px; }
+body.is-film .n-card h2 { margin: 0 0 6px; font-size: .85rem; color: var(--n-dim); }
+body.is-film .n-now { padding: 0; border: 0; background: transparent; }
+body.is-film .n-now h2 { display: none; }
+body.is-film .n-alerts.is-empty { display: none; }
+/* 알림은 한 줄씩만(제목) — 회차46 녹화에서 알림 칸이 지도를 좁히고 아래가 잘렸다. 뜻은 제목이 말한다. */
+body.is-film .n-alerts { max-height: 96px; overflow: hidden; padding: 6px 12px; }
+body.is-film .n-alerts h2 { display: none; }
+body.is-film .n-alert-where { display: none; }
+body.is-film .n-alert { padding: 6px 10px; }
+body.is-film .n-alert-act { display: none; }
+body.is-film .n-alert-tech { display: none; }
+body.is-film .n-map { display: flex; flex-direction: column; min-height: 0; }
+body.is-film .fmap-wrap { flex: 1; min-height: 0; display: flex; }
+body.is-film .fmap { flex: 1; min-height: 0; height: auto; }
+body.is-film .n-patients .n-sub { display: none; }
+
+/* 큰 단계 배너 */
+.f-banner { border-radius: 12px; padding: 12px 16px 10px; border: 2px solid transparent; background: var(--n-card); }
+.f-banner.is-live   { background: var(--n-info-bg); border-color: var(--n-accent); }
+.f-banner.is-urgent { border-color: var(--n-urgent); }
+.f-banner.is-ok     { background: var(--n-ok-bg);   border-color: var(--n-ok); }
+.f-banner.is-bad    { background: var(--n-bad-bg);  border-color: var(--n-bad); }
+.f-banner.is-warn   { background: var(--n-warn-bg); border-color: var(--n-warn); }
+.f-banner.is-refill { background: var(--n-warn-bg); border-color: var(--n-warn); }
+.f-banner.is-idle   { background: var(--n-card);    border-color: var(--n-line); }
+.f-big-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.f-big { font-size: 2.7rem; font-weight: 900; line-height: 1.1; letter-spacing: -.01em; }
+.f-banner.is-live .f-big   { color: var(--n-accent); }
+.f-banner.is-urgent .f-big { color: var(--n-urgent); }
+.f-banner.is-ok .f-big     { color: var(--n-ok); }
+.f-banner.is-bad .f-big    { color: var(--n-bad); }
+.f-banner.is-warn .f-big, .f-banner.is-refill .f-big { color: var(--n-warn); }
+.f-banner.is-idle .f-big   { color: var(--n-dim); }
+.f-sub { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 6px 0 10px; font-size: 1.05rem; }
+.f-dest { font-family: var(--n-mono); font-weight: 800; font-size: 1.25rem; }
+.f-who { color: var(--n-dim); }
+.f-chip { font-size: .95rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; }
+.f-chip.is-speed-slow { color: var(--n-warn); background: var(--n-warn-bg); border: 2px solid var(--n-warn); }
+.f-chip.is-speed-stop { color: #fff; background: var(--n-bad); }
+.f-chip.is-speed-stale { color: var(--n-idle); background: var(--n-idle-bg); }
+.fmap-speed { font-weight: 800; margin-left: 8px; }
+.fmap-speed.is-slow { color: var(--n-warn); }
+.fmap-speed.is-stop { color: var(--n-bad); }
+.fmap-speed.is-stale { color: var(--n-idle); }
+.f-chip.is-refill { color: var(--n-accent-fg); background: var(--n-warn); }
+.f-phase { margin-top: 6px; font-size: .85rem; color: var(--n-dim); }
+
+.n-steps-film { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin: 0; }
+.n-steps-film .n-step-item { font-size: .9rem; padding: 8px 2px; line-height: 1.2; }
+.n-step-item.is-skip { color: var(--n-faint); background: var(--n-sunken); opacity: .6; }
+/* 배너가 초록·주황이면 지나간 칸이 바탕에 묻힌다 — 흰 칸으로 띄운다. */
+.f-banner:not(.is-live):not(.is-idle) .n-step-item.is-done { background: var(--n-card); }
+.n-step-item.is-refill { color: var(--n-accent-fg); background: var(--n-warn); }
+
+/* 주문 큐 — 두 칸 */
+.f-queue { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 10px; }
+.f-queue li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 8px; padding: 4px 10px; border-radius: 8px; background: var(--n-sunken); font-size: .95rem; }
+.f-queue li.is-live { background: var(--n-info-bg); outline: 2px solid var(--n-accent); }
+.f-q-who { font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.f-q-bed { font-family: var(--n-mono); color: var(--n-dim); }
+.f-queue .n-tag { font-size: .8rem; }
+
+/* ---------- 촬영 화면 카메라 창(평면도 오른쪽 위, --live-sensors) ---------- */
+/* 지도 위에 겹치지 않고 옆에 둔다 — 병원 지도는 오른쪽 위·아래가 병실(목적지)이라 겹치면 목적지 고리를 가린다.
+   카메라가 열리면 지도 칸이 그만큼 좁아지고, 평면도는 폭에 맞춰 다시 그린다. */
+/* 지도 칸은 늘 감싸개 높이로 늘인다(stretch) — 가운데 맞춤이면 지도 높이가 제 그림에서 나와, 카메라를 닫아도
+   다시 커지지 않았다(그림이 칸을, 칸이 그림을 정하는 되먹임). 카메라만 가운데에 둔다. */
+.fmap-wrap { position: relative; display: flex; gap: 8px; align-items: stretch; }
+.fmap-wrap .fmap { flex: 1; min-width: 0; }
+.cam-pip { flex: 0 0 340px; align-self: center; }
+.cam-pip:empty { display: none; }
+.cam-pip .cam { margin: 0; background: var(--n-card); border: 2px solid var(--n-accent); border-radius: 10px; padding: 4px; box-shadow: 0 4px 16px rgb(0 0 0 / .18); }
+.cam-pip .cam-frame { position: relative; aspect-ratio: 16 / 10; background: #0b0f14; border-radius: 6px; overflow: hidden; }
+.cam-pip .cam-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.cam-pip .cam-img:not([src]), .cam-pip .cam-img[src=""] { visibility: hidden; }
+.cam-pip .cam-over { position: absolute; left: 6px; top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+.cam-pip .cam-tag { font-family: var(--n-mono); font-size: .75rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; color: #fff; background: rgb(11 18 32 / .78); }
+.cam-pip .cam-tag.is-ok { background: var(--n-ok); }
+.cam-pip .cam-tag.is-bad { background: var(--n-bad); }
+.cam-pip .cam-msg { position: absolute; inset: auto 6px 6px 6px; font-size: .75rem; color: #fff; background: rgb(11 18 32 / .78); padding: 3px 6px; border-radius: 6px; }
+.cam-pip .cam-msg[hidden] { display: none; }
+.cam-pip .cam-cap { display: flex; justify-content: space-between; gap: 8px; margin-top: 3px; font-size: .8rem; font-weight: 700; }
+.cam-pip .cam-meta { font-family: var(--n-mono); font-weight: 500; color: var(--n-dim); }
+
+/* 로봇 카메라가 읽은 QR 의 내용(§1.12, 재범 9/29): 약 이름·환자 번호·병상. 주문 줄 아래 한 줄 */
+.n-qr { flex-basis: 100%; font-size: 0.85em; color: var(--n-dim); margin-top: 2px; }
+
+/* 약제실 재고 한 줄(§6.1 stock, 재범 9/29 N3) */
+.n-stock { padding: 6px 20px; font-size: 0.9rem; color: var(--n-dim); border-bottom: 1px solid var(--n-line); }

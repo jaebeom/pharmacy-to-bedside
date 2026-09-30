@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "run_id": "20260924T235628Z-master01-671407a1",
+  "created_at": "2026-09-24T23:56:28Z",
+  "code": {
+    "commit": "64e5ab7ae1cdd325896ee6d8bb3c91f89c5f2971",
+    "dirty": false
+  },
+  "host_id": "master01",
+  "environment": {
+    "versions": {
+      "os": "Ubuntu 24.04.4 LTS kernel 6.14.0-27-generic",
+      "ros": "jazzy 7.1.11-1noble.20260615.133206",
+      "isaac_sim": "5.1.0-rc.19",
+      "rmw": "rmw_fastrtps_cpp 8.4.4-1noble.20260615.124621",
+      "gpu_driver": "NVIDIA GeForce RTX 5080 Laptop GPU, 580.173.02",
+      "cuda": "13.0"
+    },
+    "fingerprints": {
+      "config": {
+        "sha256": "313d61a760c8b49c666ec29bf6f5600fe2cbe8428c9374c6ec6b66b00f585caa"
+      },
+      "scene": {
+        "sha256": "8c144b9b85b1967ee946eb827a117a96be8b8270e026463f1910f1e79744bba0"
+      },
+      "model": {
+        "not_applicable": "학습 모델을 쓰지 않았다. 판독은 OpenCV QR, 집기 좌표는 시뮬 센서다."
+      },
+      "dataset": {
+        "not_applicable": "학습 · 평가 데이터셋을 쓰지 않았다."
+      }
+    }
+  },
+  "clocks": {
+    "duration": "simulation",
+    "timeout": "monotonic"
+  },
+  "seed": 7,
+  "repetition_index": 4,
+  "protocol": {
+    "path": "experiments/protocols/hospital-full-acceptance-v1.json",
+    "sha256": "6cbd564a73388ba930ba3f72a38470e16ba4cf7a65eefde0b15f4af8854b286a"
+  },
+  "phase": "acceptance",
+  "outcome": "succeeded",
+  "artifacts": [
+    {
+      "uri": "sha256/fcdd47150014b81924eb256000e051b033647a7a470603cb97f70d58603538f7/screen.mp4",
+      "sha256": "fcdd47150014b81924eb256000e051b033647a7a470603cb97f70d58603538f7",
+      "size_bytes": 62276709
+    },
+    {
+      "uri": "sha256/38ed335aeb315d53de6492d1a2918cfdefe1abeecc3a4a00878ffd0c55301156/web.mkv",
+      "sha256": "38ed335aeb315d53de6492d1a2918cfdefe1abeecc3a4a00878ffd0c55301156",
+      "size_bytes": 49813950
+    },
+    {
+      "uri": "sha256/313d61a760c8b49c666ec29bf6f5600fe2cbe8428c9374c6ec6b66b00f585caa/deployment.json",
+      "sha256": "313d61a760c8b49c666ec29bf6f5600fe2cbe8428c9374c6ec6b66b00f585caa",
+      "size_bytes": 3214
+    },
+    {
+      "uri": "sha256/6deb283d7616667ee68841fb3a3ecb5fe2e52340ab982edf0b472bcddb69224c/SUMMARY.txt",
+      "sha256": "6deb283d7616667ee68841fb3a3ecb5fe2e52340ab982edf0b472bcddb69224c",
+      "size_bytes": 307
+    },
+    {
+      "uri": "sha256/e8cb4cb4071c094388705a8510b92c447306a1db96da64f38b65248dd5ed436d/tally.txt",
+      "sha256": "e8cb4cb4071c094388705a8510b92c447306a1db96da64f38b65248dd5ed436d",
+      "size_bytes": 1386
+    },
+    {
+      "uri": "sha256/ae161dcba0ff259c5c63523bc8ea8db282dd65c9e705634fe973c17f5a572782/versions.txt",
+      "sha256": "ae161dcba0ff259c5c63523bc8ea8db282dd65c9e705634fe973c17f5a572782",
+      "size_bytes": 1034
+    }
+  ],
+  "metrics": [
+    {
+      "name": "attempt_success",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_workcell_ready",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_refill_both",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_container_qr",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "pouch_to_end_s",
+      "value": 33.5,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_pouch_at_end",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_pick_in_slot",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_delivered_docked",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "amr_touch_count",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_margin_lines",
+      "value": 63,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_full_speed_lines",
+      "value": 3,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_unknown_lines",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "boot_check_pass",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "orders10_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "orders_beds_all_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "orders10_multipc_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "record_fps_min",
+      "value": 30.0,
+      "unit": "fps",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_drop_ratio_max",
+      "value": 0.0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_corrupt_sum",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "unplanned_intervention_count",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "avoidance_encounters",
+      "value": 2,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_limit_lines_during_encounters",
+      "value": 7,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "vision_detect_rate",
+      "value": 1.0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "vision_latency_ms",
+      "value": 0.0,
+      "unit": "ms",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "fresh_clone_step_wall_s",
+      "value": null,
+      "unit": "s",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "fresh_clone_asset_sha_ok",
+      "value": null,
+      "unit": "ratio",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "rtf",
+      "value": 0.504,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "attempt_wall_s",
+      "value": 541.992,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "reset_dock_pose_error_m",
+      "value": null,
+      "unit": "m",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "reset_arm_park_error_rad",
+      "value": null,
+      "unit": "rad",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "pouch_spawn_records",
+      "value": 1,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    }
+  ],
+  "notes": "campaign 1 · attempt 4 · 원문 #240 5824269877, 5824321598. 원본은 master01 /home/rokey/markle_tmp/m1-camp1-a04-station_b-64e5ab7-98 다. 폴더 SHA256SUMS 전문의 sha256 은 841b66eaff96aedd14a37f39f696a4dfc5335ef856ae98bc2957d4f88ad351ea 다. artifacts 에는 크기(ls -l)와 전체 sha256 이 함께 보고된 파일만 넣었다. config 지문은 deployment.json, scene 지문은 sim/scenes/hospital_navigationv1.usda 다. metrics 는 tools/aggregate_runs.py(#709 b38b74b) --attempt 4 --json 출력을 그대로 옮겼다(#240 5824321598). boot_check 는 --skip window(전체 창 촬영 예외). 목적지는 station_b(ord-0011, 1인). vision 은 기록만: ok 1/1 프레임, 지연 0 ms, 참값과 차 0.003 m, 자리 검출. attempt 3 정정대로 이 attempt 는 옛 회차 스크립트(120 s 조기 종료)로 돌았고 DOCKED 에 닿았다. deployment.json 의 env 에서 공백이 든 값(P3_SCREEN_SIZE · M1_BOOT_ARGS)은 첫 낱말만 기록됐다. 원문은 폴더 run.env 에 그대로 있다(작전, attempt 8 부터 고침). environment 칸은 versions · 지문만 쓰고 env 값은 싣지 않는다."
+}

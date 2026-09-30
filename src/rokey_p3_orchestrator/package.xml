@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<package format="3">
+  <name>rokey_p3_orchestrator</name>
+  <version>0.0.0</version>
+  <description>요청 수락·배차·조제기 재고 로직·종료 상태·메트릭. orchestration 담당.</description>
+  <maintainer email="l.jaebeom@gmail.com">JAEBEOM LIM</maintainer>
+  <license>TODO: License declaration</license>
+
+  <depend>action_msgs</depend>
+  <depend>rclpy</depend>
+  <depend>rosgraph_msgs</depend>
+  <depend>rokey_p3_interfaces</depend>
+  <depend>std_msgs</depend>
+  <depend>rokey_p3_navigation</depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

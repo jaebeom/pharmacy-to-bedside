@@ -1,0 +1,16 @@
+# UR5 picks one pouch and places it: belt end -> deck slot, or deck slot -> cabinet slot.
+string order_id
+uint8 source
+uint8 SOURCE_BELT=0
+uint8 SOURCE_DECK=1
+int32 target_slot            # deck slot index; -1 means cabinet
+string zone_id               # cabinet placement: which bed. Empty = the arm's cabinet_frame
+                             # parameter (contract v1 section 10.1). Ignored when target_slot >= 0.
+---
+bool success
+string outcome               # one of: ok, not_detected, qr_mismatch, grasp_failed, dropped,
+                             # timeout, rejected_interlock. Contract v1 section 2.3.
+                             # Which outcome closes an order in which terminal state is in
+                             # ADR 0001 and, in full, in docs/architecture/exception-outcomes-v1.md
+---
+string phase

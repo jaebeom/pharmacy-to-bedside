@@ -1,0 +1,13 @@
+# Python 패키지(ROS 2 Jazzy 와 Isaac Sim 5.1 은 따로 설치한다. README "제출 요약" 4절).
+# ROS 패키지 의존성은 rosdep 으로 받는다: rosdep install --from-paths src --ignore-src -y
+numpy>=1.26
+pyyaml>=6.0
+opencv-python>=4.9        # 손 카메라 QR 판독. ROS 쪽은 apt 의 python3-opencv·ros-jazzy-cv-bridge
+# 관제 웹 백엔드(web/backend/requirements.txt 와 같은 버전)
+fastapi==0.115.6
+uvicorn==0.34.0
+websockets==17.1
+httpx==0.28.1
+# 시험
+pytest==7.4.4
+usd-core>=24.5            # sim/tests 의 USD 시험(Isaac 없이)

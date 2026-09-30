@@ -1,0 +1,135 @@
+name: Evidence harness
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# CI 와 같은 규칙. 같은 PR 의 이전 run 은 죽이고, main 커밋은 전부 검증한다.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Repository and evidence checks
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Classify changed paths
+        id: filter
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
+        run: |
+          # 규칙은 tools/ci_changed_paths.py. 기준이 없으면 sim·usd 를 모두 돈다.
+          BASE=$(python3 tools/ci_changed_paths.py --base "$EVENT" "$HEAD" "$PR_BASE" "$PUSH_BEFORE")
+          echo "기준 $BASE"
+          if [[ -z "$BASE" ]]; then
+            echo "기준 커밋이 없다. 무거운 시험을 돈다."
+            echo "sim=true" >> "$GITHUB_OUTPUT"
+            echo "usd=true" >> "$GITHUB_OUTPUT"
+            echo "unit=true" >> "$GITHUB_OUTPUT"
+            echo "lint=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          changed=$(git diff --name-only "$BASE" "$HEAD")
+          echo "$changed"
+          echo "$changed" | python3 tools/ci_changed_paths.py | tee -a "$GITHUB_OUTPUT"
+      - name: Check repository boundaries and links
+        run: python3 tools/check_repository.py
+      - name: Test the validators with synthetic failures
+        if: steps.filter.outputs.unit == 'true'
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      # sim/ 은 COLCON_IGNORE 라 colcon 이 보지 않는다. 여기서 안 돌리면 어디서도 안 돈다.
+      # Isaac 을 띄우지 않는 인자·배치·루프 조건 검사라 ROS 없이 끝난다.
+      # usd-core 패스가 돌아갈 Ready·main 에서는 이 단계를 건너뛴다(같은 시험을 두 번 돌리지 않는다).
+      # Draft 이거나 usd 를 안 까는 변경에서만 일반 python3 로 한 번 돈다. USD 시험 4개는 skip 이 허용된다.
+      - name: Test the Isaac launcher logic (no Isaac, no ROS)
+        if: steps.filter.outputs.sim == 'true' && (steps.filter.outputs.usd != 'true' || github.event.pull_request.draft == true)
+        run: python3 -m unittest discover -s sim/tests -p 'test_*.py'
+      # usd-core 가 없어 USD 시험 4개를 건너뛰던 구멍을 막는다. 건너뛰면 실패로 본다.
+      # Isaac Sim 5.1(Kit 107.3)은 OpenUSD 24.05, 내부 Python 3.11 이다. usd-core 24.5 는 3.12 휠이 없어 3.11 을 따로 쓴다.
+      # update-environment: false — 이 job 의 다른 단계가 쓰는 python3 는 바꾸지 않는다.
+      # Draft 에서는 pip 설치를 미룬다. Ready 와 main push 에서만 깐다.
+      - name: Set up Python 3.11 for usd-core
+        id: py311
+        if: steps.filter.outputs.usd == 'true' && github.event.pull_request.draft != true
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          update-environment: false
+      - name: Test the USD scene logic with usd-core 24.5 (no Isaac, no ROS)
+        if: steps.filter.outputs.usd == 'true' && github.event.pull_request.draft != true
+        shell: bash
+        env:
+          PY: ${{ steps.py311.outputs.python-path }}
+        run: |
+          set -o pipefail  # explicit: a failing test must fail this step through the tee
+          "$PY" -m pip install --disable-pip-version-check --quiet usd-core==24.5
+          "$PY" -c 'from pxr import Usd; print("usd", Usd.GetVersion())'
+          "$PY" -m unittest discover -s sim/tests -p 'test_*.py' -v 2>&1 | tee "$RUNNER_TEMP/sim-usd.log"
+          if grep -q "skipped 'usd-core not installed'" "$RUNNER_TEMP/sim-usd.log"; then
+            echo "::error::usd-core tests were skipped"
+            exit 1
+          fi
+      - name: Validate records and append-only history
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        shell: bash
+        run: |
+          if [[ -n "$BASE_SHA" && "$BASE_SHA" != "0000000000000000000000000000000000000000" ]]; then
+            python3 tools/evidence.py validate --base "$BASE_SHA"
+          else
+            python3 tools/evidence.py validate
+          fi
+
+  lint:
+    name: Python lint (ruff)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Classify changed paths
+        id: filter
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
+        run: |
+          BASE=$(python3 tools/ci_changed_paths.py --base "$EVENT" "$HEAD" "$PR_BASE" "$PUSH_BEFORE")
+          echo "기준 $BASE"
+          if [[ -z "$BASE" ]]; then
+            echo "lint=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          changed=$(git diff --name-only "$BASE" "$HEAD")
+          echo "$changed"
+          echo "$changed" | python3 tools/ci_changed_paths.py | tee -a "$GITHUB_OUTPUT"
+      # 버전을 고정한다. 새 규칙이 늘어나 어제 통과한 PR 이 오늘 빨개지지 않게 한다.
+      - name: Install ruff
+        if: steps.filter.outputs.lint == 'true'
+        run: pipx install ruff==0.15.8
+      # 설정은 저장소 루트 ruff.toml. 포맷 강제는 하지 않는다.
+      - name: ruff check
+        if: steps.filter.outputs.lint == 'true'
+        run: ruff check --output-format github .
+      - name: Skip ruff (no Python in this change)
+        if: steps.filter.outputs.lint != 'true'
+        run: echo "Python 이 안 바뀌어 ruff 를 생략한다."

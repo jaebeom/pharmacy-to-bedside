@@ -1,0 +1,21 @@
+# 병원 주문 풀의 개발용 사본 — 원문은 src/rokey_p3_orchestrator/config/order_pool.hospital.yaml(#553, feat/hospital-full).
+# #553 이 main 에 들어오면 이 사본을 지우고 원문을 쓴다. hospital_trip.json 을 녹화할 때 스택과 웹이 이 내용을 읽었다.
+
+# 병원 월드(zones.hospital.yaml) 합성 주문 풀 — 침상 10개(PDF D1–D10 = bed_a1–a4·bed_b1–b6)에 하나씩.
+# 형식·규칙은 order_pool.yaml 과 같다(계약 7절: order_id = 봉투 QR 내용, 환자 인식표 = pt-<patient_id>).
+# 빈월드·조제실 월드는 order_pool.yaml 을 그대로 쓴다. 병원 전체 시나리오(#527)에서 P3_ORDER_POOL 로 고른다.
+# 숫자로만 된 ID 는 따옴표로 감싼다.
+
+version: 1
+
+orders:
+  - {order_id: ord-0001, patient_id: "2001", item_id: drug-amox, bed: bed_a1}
+  - {order_id: ord-0002, patient_id: "2002", item_id: drug-ibu, bed: bed_a2, mode: urgent}
+  - {order_id: ord-0003, patient_id: "2003", item_id: drug-amox, bed: bed_a3}
+  - {order_id: ord-0004, patient_id: "2004", item_id: drug-ibu, bed: bed_a4}
+  - {order_id: ord-0005, patient_id: "2005", item_id: drug-amox, bed: bed_b1}
+  - {order_id: ord-0006, patient_id: "2006", item_id: drug-ibu, bed: bed_b2}
+  - {order_id: ord-0007, patient_id: "2007", item_id: drug-amox, bed: bed_b3}
+  - {order_id: ord-0008, patient_id: "2008", item_id: drug-ibu, bed: bed_b4}
+  - {order_id: ord-0009, patient_id: "2009", item_id: drug-amox, bed: bed_b5}
+  - {order_id: ord-0010, patient_id: "2010", item_id: drug-ibu, bed: bed_b6}

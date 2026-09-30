@@ -1,0 +1,649 @@
+{
+ "schema_version": 1,
+ "source": {
+  "usd": "sim/scenes/hospital_navigationv1.usda",
+  "sha256": "8c144b9b85b1967ee946eb827a117a96be8b8270e026463f1910f1e79744bba0",
+  "default_prim": "/World",
+  "note": "bbox 는 렌더 기하의 world 축 정렬 상자다. 단위 m, map = USD world(계약 3절)."
+ },
+ "beds": {
+  "D1": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_01",
+   "min": [
+    22.454,
+    7.8931,
+    0.001
+   ],
+   "max": [
+    23.546,
+    10.1069,
+    0.8919
+   ],
+   "center": [
+    23.0,
+    9.0,
+    0.4464
+   ],
+   "yaw_deg": 0.0,
+   "outside_default_prim": false
+  },
+  "D2": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4",
+   "min": [
+    25.454,
+    7.8931,
+    0.001
+   ],
+   "max": [
+    26.546,
+    10.1069,
+    0.8919
+   ],
+   "center": [
+    26.0,
+    9.0,
+    0.4464
+   ],
+   "yaw_deg": 0.0,
+   "outside_default_prim": false
+  },
+  "D3": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_03",
+   "min": [
+    22.454,
+    2.9931,
+    0.001
+   ],
+   "max": [
+    23.546,
+    5.2069,
+    0.8919
+   ],
+   "center": [
+    23.0,
+    4.1,
+    0.4464
+   ],
+   "yaw_deg": 180.0,
+   "outside_default_prim": false
+  },
+  "D4": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_02",
+   "min": [
+    25.454,
+    2.9963,
+    0.001
+   ],
+   "max": [
+    26.546,
+    5.2102,
+    0.8919
+   ],
+   "center": [
+    26.0,
+    4.1032,
+    0.4464
+   ],
+   "yaw_deg": 180.0,
+   "outside_default_prim": false
+  },
+  "D5": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_08",
+   "min": [
+    22.454,
+    0.4931,
+    0.001
+   ],
+   "max": [
+    23.546,
+    2.7069,
+    0.8919
+   ],
+   "center": [
+    23.0,
+    1.6,
+    0.4464
+   ],
+   "yaw_deg": 0.0,
+   "outside_default_prim": false
+  },
+  "D6": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_07",
+   "min": [
+    25.454,
+    0.4931,
+    0.001
+   ],
+   "max": [
+    26.546,
+    2.7069,
+    0.8919
+   ],
+   "center": [
+    26.0,
+    1.6,
+    0.4464
+   ],
+   "yaw_deg": 0.0,
+   "outside_default_prim": false
+  },
+  "D7": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_06",
+   "min": [
+    28.454,
+    0.4931,
+    0.001
+   ],
+   "max": [
+    29.546,
+    2.7069,
+    0.8919
+   ],
+   "center": [
+    29.0,
+    1.6,
+    0.4464
+   ],
+   "yaw_deg": 0.0,
+   "outside_default_prim": false
+  },
+  "D8": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_09",
+   "min": [
+    22.454,
+    -4.2069,
+    0.001
+   ],
+   "max": [
+    23.546,
+    -1.9931,
+    0.8919
+   ],
+   "center": [
+    23.0,
+    -3.1,
+    0.4464
+   ],
+   "yaw_deg": 180.0,
+   "outside_default_prim": false
+  },
+  "D9": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_05",
+   "min": [
+    25.454,
+    -4.2069,
+    0.001
+   ],
+   "max": [
+    26.546,
+    -1.9931,
+    0.8919
+   ],
+   "center": [
+    26.0,
+    -3.1,
+    0.4464
+   ],
+   "yaw_deg": 180.0,
+   "outside_default_prim": false
+  },
+  "D10": {
+   "prim": "/World/Environment/hospital/SM_HospitalBed_02d4_04",
+   "min": [
+    28.454,
+    -4.2069,
+    0.001
+   ],
+   "max": [
+    29.546,
+    -1.9931,
+    0.8919
+   ],
+   "center": [
+    29.0,
+    -3.1,
+    0.4464
+   ],
+   "yaw_deg": 180.0,
+   "outside_default_prim": false
+  }
+ },
+ "bedside_tables": {
+  "D1": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b3_01",
+   "min": [
+    22.75,
+    7.3605,
+    0.001
+   ],
+   "max": [
+    23.25,
+    7.89,
+    0.631
+   ],
+   "center": [
+    23.0,
+    7.6252,
+    0.316
+   ],
+   "yaw_deg": 90.0,
+   "outside_default_prim": false
+  },
+  "D2": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b3",
+   "min": [
+    25.75,
+    7.3678,
+    0.001
+   ],
+   "max": [
+    26.25,
+    7.8973,
+    0.631
+   ],
+   "center": [
+    26.0,
+    7.6326,
+    0.316
+   ],
+   "yaw_deg": 90.0,
+   "outside_default_prim": false
+  },
+  "D3": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b3_03",
+   "min": [
+    22.75,
+    5.1949,
+    0.001
+   ],
+   "max": [
+    23.25,
+    5.7244,
+    0.631
+   ],
+   "center": [
+    23.0,
+    5.4596,
+    0.316
+   ],
+   "yaw_deg": -90.0,
+   "outside_default_prim": false
+  },
+  "D4": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b3_02",
+   "min": [
+    25.75,
+    5.1949,
+    0.001
+   ],
+   "max": [
+    26.25,
+    5.7244,
+    0.631
+   ],
+   "center": [
+    26.0,
+    5.4596,
+    0.316
+   ],
+   "yaw_deg": -90.0,
+   "outside_default_prim": false
+  },
+  "D5": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b2_04",
+   "min": [
+    22.75,
+    -0.0212,
+    0.001
+   ],
+   "max": [
+    23.25,
+    0.5083,
+    0.631
+   ],
+   "center": [
+    23.0,
+    0.2436,
+    0.316
+   ],
+   "yaw_deg": 90.0,
+   "outside_default_prim": false
+  },
+  "D6": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b2_03",
+   "min": [
+    25.75,
+    -0.0212,
+    0.001
+   ],
+   "max": [
+    26.25,
+    0.5083,
+    0.631
+   ],
+   "center": [
+    26.0,
+    0.2436,
+    0.316
+   ],
+   "yaw_deg": 90.0,
+   "outside_default_prim": false
+  },
+  "D7": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b2_02",
+   "min": [
+    28.75,
+    -0.0212,
+    0.001
+   ],
+   "max": [
+    29.25,
+    0.5083,
+    0.631
+   ],
+   "center": [
+    29.0,
+    0.2436,
+    0.316
+   ],
+   "yaw_deg": 90.0,
+   "outside_default_prim": false
+  },
+  "D8": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b_136",
+   "min": [
+    22.75,
+    -2.0,
+    0.001
+   ],
+   "max": [
+    23.25,
+    -1.4705,
+    0.631
+   ],
+   "center": [
+    23.0,
+    -1.7352,
+    0.316
+   ],
+   "yaw_deg": -90.0,
+   "outside_default_prim": false
+  },
+  "D9": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b_135",
+   "min": [
+    25.75,
+    -2.0,
+    0.001
+   ],
+   "max": [
+    26.25,
+    -1.4705,
+    0.631
+   ],
+   "center": [
+    26.0,
+    -1.7352,
+    0.316
+   ],
+   "yaw_deg": -90.0,
+   "outside_default_prim": false
+  },
+  "D10": {
+   "prim": "/World/Environment/hospital/SM_BedSideTable_01b_134",
+   "min": [
+    28.75,
+    -2.0,
+    0.001
+   ],
+   "max": [
+    29.25,
+    -1.4705,
+    0.631
+   ],
+   "center": [
+    29.0,
+    -1.7352,
+    0.316
+   ],
+   "yaw_deg": -90.0,
+   "outside_default_prim": false
+  }
+ },
+ "nursing_desk": {
+  "prims": [
+   "/World/Environment/hospital/SM_ReceptionDesk_01a_46",
+   "/World/Environment/hospital/SM_ReceptionDesk_01a2_52"
+  ],
+  "min": [
+   7.8479,
+   -2.1557,
+   0.0
+  ],
+  "max": [
+   10.3011,
+   3.1976,
+   1.322
+  ],
+  "center": [
+   9.0745,
+   0.521,
+   0.661
+  ]
+ },
+ "doors": {
+  "C1": {
+   "prim": "/World/Environment/hospital/Geo_M1_DoorWall24",
+   "min": [
+    20.76,
+    6.4573,
+    0.0
+   ],
+   "max": [
+    20.8503,
+    8.4332,
+    0.0
+   ],
+   "center": [
+    20.8052,
+    7.4452,
+    0.0
+   ],
+   "width": 1.9759,
+   "slice_z": 1.0,
+   "outside_default_prim": false
+  },
+  "C2": {
+   "prim": "/World/Environment/hospital/Geo_O_DoorWall_918",
+   "min": [
+    20.76,
+    -1.5811,
+    0.0
+   ],
+   "max": [
+    20.8617,
+    0.3921,
+    0.0
+   ],
+   "center": [
+    20.8109,
+    -0.5945,
+    0.0
+   ],
+   "width": 1.9732,
+   "slice_z": 1.0,
+   "outside_default_prim": false
+  }
+ },
+ "outlets": {
+  "A1": {
+   "track": {
+    "prim": "/World/Conveyor/ConveyorTrack_02",
+    "min": [
+     -9.1495,
+     4.96,
+     0.0
+    ],
+    "max": [
+     -7.0274,
+     6.4736,
+     0.5832
+    ],
+    "center": [
+     -8.0884,
+     5.7168,
+     0.2916
+    ],
+    "yaw_deg": 180.0,
+    "outside_default_prim": false
+   },
+   "shelf": {
+    "prim": "/World/Environment/hospital/SM_SideTable_02a_74",
+    "min": [
+     -8.4177,
+     4.758,
+     0.0
+    ],
+    "max": [
+     -7.9587,
+     5.1792,
+     0.3655
+    ],
+    "center": [
+     -8.1882,
+     4.9686,
+     0.1828
+    ],
+    "yaw_deg": 0.0,
+    "outside_default_prim": false
+   }
+  },
+  "A2": {
+   "track": {
+    "prim": "/World/Conveyor/ConveyorTrack_04",
+    "min": [
+     -6.1659,
+     4.96,
+     0.0
+    ],
+    "max": [
+     -4.0438,
+     6.4736,
+     0.5832
+    ],
+    "center": [
+     -5.1049,
+     5.7168,
+     0.2916
+    ],
+    "yaw_deg": 180.0,
+    "outside_default_prim": false
+   },
+   "shelf": {
+    "prim": "/World/Environment/hospital/SM_SideTable_02a_77",
+    "min": [
+     -5.4379,
+     4.758,
+     0.0
+    ],
+    "max": [
+     -4.9789,
+     5.1792,
+     0.3655
+    ],
+    "center": [
+     -5.2084,
+     4.9686,
+     0.1828
+    ],
+    "yaw_deg": 0.0,
+    "outside_default_prim": false
+   }
+  },
+  "A3": {
+   "track": {
+    "prim": "/World/Conveyor/ConveyorTrack_09",
+    "min": [
+     -3.167,
+     4.96,
+     0.0
+    ],
+    "max": [
+     -1.0449,
+     6.4736,
+     0.5832
+    ],
+    "center": [
+     -2.1059,
+     5.7168,
+     0.2916
+    ],
+    "yaw_deg": 180.0,
+    "outside_default_prim": false
+   },
+   "shelf": {
+    "prim": "/World/Environment/hospital/SM_SideTable_02a_79",
+    "min": [
+     -2.441,
+     4.758,
+     0.0
+    ],
+    "max": [
+     -1.982,
+     5.1792,
+     0.3655
+    ],
+    "center": [
+     -2.2115,
+     4.9686,
+     0.1828
+    ],
+    "yaw_deg": 0.0,
+    "outside_default_prim": false
+   }
+  },
+  "A4": {
+   "track": {
+    "prim": "/World/Conveyor/ConveyorTrack_10",
+    "min": [
+     0.4509,
+     4.95,
+     0.0
+    ],
+    "max": [
+     1.0264,
+     5.45,
+     0.5832
+    ],
+    "center": [
+     0.7386,
+     5.2,
+     0.2916
+    ],
+    "yaw_deg": 90.0,
+    "outside_default_prim": false
+   },
+   "shelf": {
+    "prim": "/World/Environment/hospital/SM_SideTable_02a_78",
+    "min": [
+     0.5008,
+     4.758,
+     0.0
+    ],
+    "max": [
+     0.9598,
+     5.1792,
+     0.3655
+    ],
+    "center": [
+     0.7303,
+     4.9686,
+     0.1828
+    ],
+    "yaw_deg": 0.0,
+    "outside_default_prim": false
+   }
+  }
+ },
+ "embedded_robot": null
+}

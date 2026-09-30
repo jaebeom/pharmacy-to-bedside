@@ -1,0 +1,9 @@
+# UR5 points the hand camera at <zone>/tag and waits for a tag read.
+# Contract v1 section 2.3, interfaces v1.1. Timeout 30 s sim, one retry.
+uint8 kind                   # TagRead.KIND_PATIENT / KIND_STATION / KIND_POUCH
+string zone_id               # zone whose tag is scanned, such as bed_a1 or station_a
+---
+string tag_id                # QR payload that was read; empty when unreadable
+uint8 status                 # TagRead.STATUS_OK / STATUS_UNREADABLE
+---
+string phase                 # phase name for progress logging

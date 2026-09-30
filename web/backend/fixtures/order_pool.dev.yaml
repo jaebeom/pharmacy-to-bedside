@@ -1,0 +1,15 @@
+# **개발 전용.** origin/main 에 없는 합성 주문이다 — 프론트가 묶음 고르기 UI 를 넉넉히
+# 시험하려고 둔 것이고, 실물에서는 orchestrator 가 전부 거부한다.
+#   python -m app.main --mock --allow-commands --order-pool fixtures/order_pool.dev.yaml
+#
+# bed_a2·bed_b1·bed_b2 는 zones.yaml 에 없다 — 실물이면 goto_rejected 로 끝난다(API.md §7.2).
+version: 1
+orders:
+  - {order_id: ord-0001, patient_id: "1001", item_id: drug-amox, bed: bed_a1}
+  - {order_id: ord-0002, patient_id: "1002", item_id: drug-ibu,  bed: bed_a2, mode: urgent}
+  - {order_id: ord-0003, patient_id: "1003", item_id: drug-amox, bed: bed_b1}
+  - {order_id: ord-0004, patient_id: "1004", item_id: drug-ibu,  bed: bed_b2}
+  - {order_id: ord-9001, patient_id: "9001", item_id: drug-amox, bed: bed_a1}
+  - {order_id: ord-9002, patient_id: "9002", item_id: drug-ibu,  bed: bed_a1}
+  - {order_id: ord-9003, patient_id: "9003", item_id: drug-amox, bed: bed_a1}
+  - {order_id: ord-9004, patient_id: "9004", item_id: drug-ibu,  bed: bed_a1, mode: urgent}

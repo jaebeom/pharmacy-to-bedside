@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 설계 결정
+    url: https://github.com/jaebeom/pharmacy-to-bedside/tree/main/docs/adr
+    about: 되돌리기 어려운 결정은 ADR 로 남깁니다

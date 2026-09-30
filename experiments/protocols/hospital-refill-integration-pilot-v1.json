@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "protocol_id": "hospital-refill-integration-pilot-v1",
+  "status": "frozen",
+  "phase": "pilot",
+  "created_at": "2026-09-22T07:03:50Z",
+  "frozen_at": "2026-09-22T07:03:50Z",
+  "purpose": "병원 #484/#485 지형에서 기존 m0609_arm + scene_v2 ROS 경로를 실행하는 탐색 pilot. 실물 파지 인증이나 배송 acceptance가 아니다. 시행 하나는 새 Isaac/arm 프로세스에서 원통 보충 goal을 최대 3개 순차 요청한 배치. seed=835258728, 9개 원통 칸에서 기존 CellPicker가 선택하며 재스폰 지연 600 sim s로 이미 사용한 칸의 중복을 막는다. Refill success, stage의 동일 칸 grasp attached 및 target=round release, 홈 복귀를 모두 만족한 goal만 성공으로 센다. 거리 기반 attach이며 마찰 파지 성공이라고 해석하지 않는다. 한 goal이 실패/거절/240 wall s 시간초과면 다음 goal을 보내지 않고 기록/중지한다. 배치 succeeded는 3/3 성공일 때만, 실패 결과/거절은 failed, 시한 초과는 timeout, 사용자 중단은 aborted. 요청 전 /clock 발행자 하나와 시계 단조 증가를 확인한다. ROS_DOMAIN_ID와 모든 파라미터·소스 SHA·지형/자산 해시·명령·선택 seed/draw/셀·실패/개입을 원본에 남긴다. 제어기와 clearance 0.01 m, rail speed 0.8 m/s, acceleration 1.0 m/s2는 완화하지 않는다. first_feasible 또는 preferred_first 선택값을 원본에 명시하고 서로의 결과를 합산하지 않는다. 앞선 02~07 진단 실행은 이 protocol 이전이므로 소급 적용하지 않는다.",
+  "sample_plan": {
+    "seeds": [
+      835258728
+    ],
+    "repetitions_per_seed": 1
+  },
+  "timeout": {
+    "seconds": 900,
+    "clock": "monotonic",
+    "policy": "record_timeout"
+  },
+  "metrics": [
+    {
+      "name": "refill_success",
+      "unit": "ratio",
+      "description": "액션 성공+동일 칸 파지/round 해제+홈 복귀를 함께 확인한 비율.",
+      "denominator": "수락된 goal 전체. 실패 포함.",
+      "aggregation": "ratio",
+      "clock": "none",
+      "missing_policy": "record_missing"
+    },
+    {
+      "name": "grasp_attached",
+      "unit": "count",
+      "description": "stage가 기록한 서로 다른 셀의 거리 기반 attach 수.",
+      "denominator": "수락된 goal 전체.",
+      "aggregation": "count",
+      "clock": "none",
+      "missing_policy": "record_missing"
+    },
+    {
+      "name": "rail_peak_speed",
+      "unit": "m/s",
+      "description": "rail/joint_states velocity 세 축 절댓값의 최댓값. 제안 상한 설정과 실제 속도는 구분한다.",
+      "denominator": "실행 중 수신한 유효 rail JointState 표본.",
+      "aggregation": "max",
+      "clock": "simulation",
+      "missing_policy": "record_missing"
+    }
+  ]
+}

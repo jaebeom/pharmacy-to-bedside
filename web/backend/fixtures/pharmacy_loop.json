@@ -1,0 +1,868 @@
+{
+  "name": "pharmacy_loop",
+  "description": "조제실 한 바퀴(pharmacy_only) + 보충 + 리셋 1회 + 리셋 뒤 새 요청",
+  "start_epoch": 1,
+  "duration_sim_s": 85.8,
+  "notes": [
+    "REQUEST_ACCEPTED.detail: req-0001 은 PR #104 형식 JSON, req-0002 는 빈 문자열.",
+    "주문 ID 는 order_pool.yaml 원문과 같다 (ord-0001·ord-0002). 재생 뒤 ord-0003·ord-0004 가 미사용으로 남는다.",
+    "/rosout WARN·ERROR 를 6줄 섞었다 — /api/logs 탭을 실데이터로 볼 수 있게.",
+    "리셋은 타임라인을 Stop 하지 않아 sim_s 가 되감기지 않는다. 세대 구분은 epoch."
+  ],
+  "frames": [
+    {
+      "t": 0.0,
+      "kind": "dispenser",
+      "data": {
+        "stamp": 0.0,
+        "paused_item_ids": [],
+        "queue_length": 0,
+        "belt_occupied": false,
+        "slots": [
+          {
+            "item_id": "drug-ibu",
+            "slot": 0,
+            "lot_id": "L-2409",
+            "expiry": "2027-03-01",
+            "count": 3,
+            "active": true
+          },
+          {
+            "item_id": "drug-acet",
+            "slot": 1,
+            "lot_id": "L-2411",
+            "expiry": "2027-06-30",
+            "count": 7,
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "t": 0.0,
+      "kind": "belt",
+      "data": {
+        "stamp": 0.0,
+        "occupied": false,
+        "at_end": false,
+        "order_id": ""
+      }
+    },
+    {
+      "t": 0.0,
+      "kind": "signal",
+      "data": {
+        "key": "arm_at_home",
+        "value": true,
+        "stamp": 0.0
+      }
+    },
+    {
+      "t": 0.0,
+      "kind": "signal",
+      "data": {
+        "key": "base_stopped",
+        "value": true,
+        "stamp": 0.0
+      }
+    },
+    {
+      "t": 0.0,
+      "kind": "signal",
+      "data": {
+        "key": "gripper_holding",
+        "value": false,
+        "stamp": 0.0
+      }
+    },
+    {
+      "t": 0.0,
+      "kind": "signal",
+      "data": {
+        "key": "m0609_at_home",
+        "value": true,
+        "stamp": 0.0
+      }
+    },
+    {
+      "t": 2.0,
+      "kind": "event",
+      "data": {
+        "name": "REQUEST_ACCEPTED",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "",
+        "epoch": 1,
+        "detail": "{\"mode\":0,\"destination_id\":\"station_a\",\"orders\":[{\"order_id\":\"ord-0001\",\"patient_id\":\"1001\",\"item_id\":\"drug-amox\"}]}",
+        "stamp": 2.0
+      }
+    },
+    {
+      "t": 2.0,
+      "kind": "order",
+      "data": {
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "state": 0,
+        "reason": "",
+        "stamp": 2.0
+      }
+    },
+    {
+      "t": 4.5,
+      "kind": "event",
+      "data": {
+        "name": "AMR_DOCKED_LOAD",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "amr_1",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 4.5
+      }
+    },
+    {
+      "t": 4.5,
+      "kind": "order",
+      "data": {
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "state": 1,
+        "reason": "",
+        "stamp": 4.5
+      }
+    },
+    {
+      "t": 4.5,
+      "kind": "signal",
+      "data": {
+        "key": "base_stopped",
+        "value": true,
+        "stamp": 4.5
+      }
+    },
+    {
+      "t": 7.0,
+      "kind": "event",
+      "data": {
+        "name": "DISPENSED",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "dispenser",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 7.0
+      }
+    },
+    {
+      "t": 7.0,
+      "kind": "dispenser",
+      "data": {
+        "stamp": 7.0,
+        "paused_item_ids": [],
+        "queue_length": 0,
+        "belt_occupied": true,
+        "slots": [
+          {
+            "item_id": "drug-ibu",
+            "slot": 0,
+            "lot_id": "L-2409",
+            "expiry": "2027-03-01",
+            "count": 2,
+            "active": true
+          },
+          {
+            "item_id": "drug-acet",
+            "slot": 1,
+            "lot_id": "L-2411",
+            "expiry": "2027-06-30",
+            "count": 7,
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "t": 7.0,
+      "kind": "belt",
+      "data": {
+        "stamp": 7.0,
+        "occupied": true,
+        "at_end": false,
+        "order_id": "ord-0001"
+      }
+    },
+    {
+      "t": 10.5,
+      "kind": "event",
+      "data": {
+        "name": "POUCH_AT_END",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "dispenser",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 10.5
+      }
+    },
+    {
+      "t": 10.5,
+      "kind": "belt",
+      "data": {
+        "stamp": 10.5,
+        "occupied": true,
+        "at_end": true,
+        "order_id": "ord-0001"
+      }
+    },
+    {
+      "t": 11.5,
+      "kind": "event",
+      "data": {
+        "name": "PICK_ATTEMPT",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "amr_1",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 11.5
+      }
+    },
+    {
+      "t": 11.5,
+      "kind": "signal",
+      "data": {
+        "key": "arm_at_home",
+        "value": false,
+        "stamp": 11.5
+      }
+    },
+    {
+      "t": 13.0,
+      "kind": "event",
+      "data": {
+        "name": "POUCH_PICKED",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "amr_1",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 13.0
+      }
+    },
+    {
+      "t": 13.0,
+      "kind": "signal",
+      "data": {
+        "key": "gripper_holding",
+        "value": true,
+        "stamp": 13.0
+      }
+    },
+    {
+      "t": 13.0,
+      "kind": "belt",
+      "data": {
+        "stamp": 13.0,
+        "occupied": false,
+        "at_end": false,
+        "order_id": ""
+      }
+    },
+    {
+      "t": 15.0,
+      "kind": "event",
+      "data": {
+        "name": "POUCH_LOADED",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "amr_1",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 15.0
+      }
+    },
+    {
+      "t": 15.0,
+      "kind": "signal",
+      "data": {
+        "key": "gripper_holding",
+        "value": false,
+        "stamp": 15.0
+      }
+    },
+    {
+      "t": 15.5,
+      "kind": "event",
+      "data": {
+        "name": "LOAD_DONE",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "amr_1",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 15.5
+      }
+    },
+    {
+      "t": 17.0,
+      "kind": "event",
+      "data": {
+        "name": "ARM_HOME",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "amr_1",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 17.0
+      }
+    },
+    {
+      "t": 17.0,
+      "kind": "signal",
+      "data": {
+        "key": "arm_at_home",
+        "value": true,
+        "stamp": 17.0
+      }
+    },
+    {
+      "t": 18.0,
+      "kind": "order",
+      "data": {
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "state": 11,
+        "reason": "pharmacy_only",
+        "stamp": 18.0
+      }
+    },
+    {
+      "t": 18.0,
+      "kind": "event",
+      "data": {
+        "name": "ORDER_DONE",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "amr_1",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 18.0
+      }
+    },
+    {
+      "t": 20.0,
+      "kind": "event",
+      "data": {
+        "name": "DOCKED",
+        "request_id": "req-0001",
+        "order_id": "ord-0001",
+        "robot_id": "amr_1",
+        "epoch": 1,
+        "detail": "",
+        "stamp": 20.0
+      }
+    },
+    {
+      "t": 26.0,
+      "kind": "event",
+      "data": {
+        "name": "DISPENSER_PAUSED",
+        "request_id": "",
+        "order_id": "",
+        "robot_id": "dispenser",
+        "epoch": 1,
+        "detail": "drug-ibu",
+        "stamp": 26.0
+      }
+    },
+    {
+      "t": 26.0,
+      "kind": "dispenser",
+      "data": {
+        "stamp": 26.0,
+        "paused_item_ids": [
+          "drug-ibu"
+        ],
+        "queue_length": 1,
+        "belt_occupied": false,
+        "slots": [
+          {
+            "item_id": "drug-ibu",
+            "slot": 0,
+            "lot_id": "L-2409",
+            "expiry": "2027-03-01",
+            "count": 0,
+            "active": false
+          },
+          {
+            "item_id": "drug-acet",
+            "slot": 1,
+            "lot_id": "L-2411",
+            "expiry": "2027-06-30",
+            "count": 7,
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "t": 26.0,
+      "kind": "log",
+      "data": {
+        "level": "warn",
+        "level_value": 30,
+        "node": "orchestrator",
+        "message": "Dispense rejected: belt_occupied, retry 1/3",
+        "stamp": 26.0
+      }
+    },
+    {
+      "t": 26.5,
+      "kind": "event",
+      "data": {
+        "name": "REFILL_REQUESTED",
+        "request_id": "",
+        "order_id": "",
+        "robot_id": "dispenser",
+        "epoch": 1,
+        "detail": "drug-ibu",
+        "stamp": 26.5
+      }
+    },
+    {
+      "t": 26.6,
+      "kind": "log",
+      "data": {
+        "level": "warn",
+        "level_value": 30,
+        "node": "isaac_adapter",
+        "message": "unknown dispense message pool_exhausted",
+        "stamp": 26.6
+      }
+    },
+    {
+      "t": 28.0,
+      "kind": "signal",
+      "data": {
+        "key": "m0609_at_home",
+        "value": false,
+        "stamp": 28.0
+      }
+    },
+    {
+      "t": 48.0,
+      "kind": "log",
+      "data": {
+        "level": "warn",
+        "level_value": 30,
+        "node": "m0609_arm",
+        "message": "waypoint timeout after 12.0 s, re-planning",
+        "stamp": 48.0
+      }
+    },
+    {
+      "t": 54.5,
+      "kind": "event",
+      "data": {
+        "name": "REFILL_DONE",
+        "request_id": "",
+        "order_id": "",
+        "robot_id": "m0609",
+        "epoch": 1,
+        "detail": "drug-ibu slot a",
+        "stamp": 54.5
+      }
+    },
+    {
+      "t": 56.0,
+      "kind": "signal",
+      "data": {
+        "key": "m0609_at_home",
+        "value": true,
+        "stamp": 56.0
+      }
+    },
+    {
+      "t": 56.5,
+      "kind": "event",
+      "data": {
+        "name": "DISPENSER_RESUMED",
+        "request_id": "",
+        "order_id": "",
+        "robot_id": "dispenser",
+        "epoch": 1,
+        "detail": "drug-ibu",
+        "stamp": 56.5
+      }
+    },
+    {
+      "t": 56.5,
+      "kind": "dispenser",
+      "data": {
+        "stamp": 56.5,
+        "paused_item_ids": [],
+        "queue_length": 0,
+        "belt_occupied": false,
+        "slots": [
+          {
+            "item_id": "drug-ibu",
+            "slot": 0,
+            "lot_id": "L-2409",
+            "expiry": "2027-03-01",
+            "count": 12,
+            "active": true
+          },
+          {
+            "item_id": "drug-acet",
+            "slot": 1,
+            "lot_id": "L-2411",
+            "expiry": "2027-06-30",
+            "count": 7,
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "t": 60.5,
+      "kind": "log",
+      "data": {
+        "level": "error",
+        "level_value": 40,
+        "node": "orchestrator",
+        "message": "deliver goal rejected: request_id 'req-0001' already used",
+        "stamp": 60.5
+      }
+    },
+    {
+      "t": 61.0,
+      "kind": "log",
+      "data": {
+        "level": "warn",
+        "level_value": 30,
+        "node": "m0609_arm",
+        "message": "waypoint timeout after 8.0 s, re-planning",
+        "stamp": 61.0
+      }
+    },
+    {
+      "t": 62.0,
+      "kind": "event",
+      "data": {
+        "name": "RESET_BEGIN",
+        "request_id": "",
+        "order_id": "",
+        "robot_id": "",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 62.0
+      }
+    },
+    {
+      "t": 62.1,
+      "kind": "log",
+      "data": {
+        "level": "warn",
+        "level_value": 30,
+        "node": "event_logger",
+        "message": "run closed mid-trip by reset, epoch -> 2",
+        "stamp": 62.1
+      }
+    },
+    {
+      "t": 64.0,
+      "kind": "event",
+      "data": {
+        "name": "RESET_DONE",
+        "request_id": "",
+        "order_id": "",
+        "robot_id": "",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 64.0
+      }
+    },
+    {
+      "t": 67.5,
+      "kind": "event",
+      "data": {
+        "name": "REQUEST_ACCEPTED",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 67.5
+      }
+    },
+    {
+      "t": 67.5,
+      "kind": "order",
+      "data": {
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "state": 0,
+        "reason": "",
+        "stamp": 67.5
+      }
+    },
+    {
+      "t": 70.0,
+      "kind": "event",
+      "data": {
+        "name": "AMR_DOCKED_LOAD",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "amr_1",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 70.0
+      }
+    },
+    {
+      "t": 70.0,
+      "kind": "order",
+      "data": {
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "state": 1,
+        "reason": "",
+        "stamp": 70.0
+      }
+    },
+    {
+      "t": 72.5,
+      "kind": "event",
+      "data": {
+        "name": "DISPENSED",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "dispenser",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 72.5
+      }
+    },
+    {
+      "t": 72.5,
+      "kind": "dispenser",
+      "data": {
+        "stamp": 72.5,
+        "paused_item_ids": [],
+        "queue_length": 0,
+        "belt_occupied": true,
+        "slots": [
+          {
+            "item_id": "drug-ibu",
+            "slot": 0,
+            "lot_id": "L-2409",
+            "expiry": "2027-03-01",
+            "count": 11,
+            "active": true
+          },
+          {
+            "item_id": "drug-acet",
+            "slot": 1,
+            "lot_id": "L-2411",
+            "expiry": "2027-06-30",
+            "count": 7,
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "t": 72.5,
+      "kind": "belt",
+      "data": {
+        "stamp": 72.5,
+        "occupied": true,
+        "at_end": false,
+        "order_id": "ord-0002"
+      }
+    },
+    {
+      "t": 76.0,
+      "kind": "event",
+      "data": {
+        "name": "POUCH_AT_END",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "dispenser",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 76.0
+      }
+    },
+    {
+      "t": 76.0,
+      "kind": "belt",
+      "data": {
+        "stamp": 76.0,
+        "occupied": true,
+        "at_end": true,
+        "order_id": "ord-0002"
+      }
+    },
+    {
+      "t": 77.0,
+      "kind": "event",
+      "data": {
+        "name": "PICK_ATTEMPT",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "amr_1",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 77.0
+      }
+    },
+    {
+      "t": 77.0,
+      "kind": "signal",
+      "data": {
+        "key": "arm_at_home",
+        "value": false,
+        "stamp": 77.0
+      }
+    },
+    {
+      "t": 78.5,
+      "kind": "event",
+      "data": {
+        "name": "POUCH_PICKED",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "amr_1",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 78.5
+      }
+    },
+    {
+      "t": 78.5,
+      "kind": "signal",
+      "data": {
+        "key": "gripper_holding",
+        "value": true,
+        "stamp": 78.5
+      }
+    },
+    {
+      "t": 78.5,
+      "kind": "belt",
+      "data": {
+        "stamp": 78.5,
+        "occupied": false,
+        "at_end": false,
+        "order_id": ""
+      }
+    },
+    {
+      "t": 80.5,
+      "kind": "event",
+      "data": {
+        "name": "POUCH_LOADED",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "amr_1",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 80.5
+      }
+    },
+    {
+      "t": 80.5,
+      "kind": "signal",
+      "data": {
+        "key": "gripper_holding",
+        "value": false,
+        "stamp": 80.5
+      }
+    },
+    {
+      "t": 81.0,
+      "kind": "event",
+      "data": {
+        "name": "LOAD_DONE",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "amr_1",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 81.0
+      }
+    },
+    {
+      "t": 82.5,
+      "kind": "event",
+      "data": {
+        "name": "ARM_HOME",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "amr_1",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 82.5
+      }
+    },
+    {
+      "t": 82.5,
+      "kind": "signal",
+      "data": {
+        "key": "arm_at_home",
+        "value": true,
+        "stamp": 82.5
+      }
+    },
+    {
+      "t": 83.5,
+      "kind": "order",
+      "data": {
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "state": 11,
+        "reason": "pharmacy_only",
+        "stamp": 83.5
+      }
+    },
+    {
+      "t": 83.5,
+      "kind": "event",
+      "data": {
+        "name": "ORDER_DONE",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "amr_1",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 83.5
+      }
+    },
+    {
+      "t": 85.5,
+      "kind": "event",
+      "data": {
+        "name": "DOCKED",
+        "request_id": "req-0002",
+        "order_id": "ord-0002",
+        "robot_id": "amr_1",
+        "epoch": 2,
+        "detail": "",
+        "stamp": 85.5
+      }
+    },
+    {
+      "t": 85.8,
+      "kind": "log",
+      "data": {
+        "level": "error",
+        "level_value": 40,
+        "node": "fleet",
+        "message": "GoToZone rejected: zone 'bed_b2' not in zones.yaml",
+        "stamp": 85.8
+      }
+    }
+  ]
+}

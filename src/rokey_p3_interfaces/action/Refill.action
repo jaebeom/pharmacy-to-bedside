@@ -1,0 +1,8 @@
+# M0609 picks a canister from the shelf and installs it into an empty dispenser slot.
+string item_id
+uint8 slot                   # DispenserSlot.SLOT_A / SLOT_B
+---
+bool success
+string lot_id                # lot of the installed canister
+---
+string phase

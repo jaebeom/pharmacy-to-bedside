@@ -1,0 +1,235 @@
+{
+ "_source": "master02 ~/markle_tmp/m2-hospital-conveyor-probe-06/conveyor-observations.jsonl (실습38 probe06, 씬을 루트로 연 회차, 봉투가 움직이던 sim_s 11.25 한 줄). 맥마클2 추출 json sha256 363dd0faca0aa1db96921e7c7fe39e96aded8d274846596af16becfefc3e20ad. 값은 그 줄의 physxSurfaceVelocity:surfaceVelocity / surfaceAngularVelocity 원문(로컬 축). 측정값을 옮긴 것이고 설계값이 아니다.",
+ "_why": "참조로 불러온 씬 아래에서는 컨베이어 OmniGraph 가 돌지 않아 선속도가 0 이었다(9/23 참조 탐침 01, #240). HospitalConveyorProbe 의 surface_velocities 로 직접 쓴다.",
+ "_terminal": "끝 롤러 ConveyorTrack_02/Rollers_01 은 측정값 그대로 돈다. 봉투 앞 끝이 출구에서 0.15 m 안에 들면 스테이지가 그 몸체만 표면 속도 0 으로 잡고(HospitalConveyor.hold_terminal) 다음 배출에서 놓는다(작전 결정 9/23 (다)). c482ac0 에서 늘 0 으로 두자 봉투가 입구(y 5.9075)에 섰고, 39fc30b 에서 늘 돌리자 출구 밖으로 밀렸다.",
+ "surface_velocities": {
+  "/World/Conveyor/ConveyorTrack/Rollers": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_01/Rollers": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_02/Rollers": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_02/Rollers_01": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_02/Sorter/Sorter_physics": {
+   "linear": [
+    -2.220446049250313e-16,
+    1.0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_03/Rollers": {
+   "linear": [
+    0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_04/Rollers": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_04/Rollers_01": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_04/Sorter/Sorter_physics": {
+   "linear": [
+    -1.0,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_05/Rollers": {
+   "linear": [
+    0,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    18.5
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_06/Belt": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_07/Rollers": {
+   "linear": [
+    0,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    -18.5
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_08/Rollers": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_09/Rollers": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_09/Rollers_01": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_09/Sorter/Sorter_physics": {
+   "linear": [
+    -2.220446049250313e-16,
+    1.0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_10/Rollers": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_12/Belt": {
+   "linear": [
+    -0.25,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  },
+  "/World/Conveyor/ConveyorTrack_12/BeltRamp": {
+   "linear": [
+    -0.5,
+    0,
+    0
+   ],
+   "angular": [
+    0,
+    0,
+    0
+   ]
+  }
+ }
+}

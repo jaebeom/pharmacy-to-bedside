@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "run_id": "20260925T062100Z-master02-4c6b7fe1",
+  "created_at": "2026-09-25T06:21:00Z",
+  "code": {
+    "commit": "0b1319b053166cdd0dca39aae3c40bd41b0f407f",
+    "dirty": false
+  },
+  "host_id": "master02",
+  "environment": {
+    "versions": {
+      "os": "Ubuntu 24.04.4 LTS kernel 6.14.0-27-generic",
+      "ros": "jazzy",
+      "isaac_sim": "5.1.0-rc.19+release.26219.9c81211b.gl",
+      "rmw": "rmw_fastrtps_cpp",
+      "gpu_driver": "580.173.02",
+      "cuda": "13.0"
+    },
+    "fingerprints": {
+      "config": {
+        "sha256": "edcf16c1551cb877ab2ab39c5e842a473deed7e8e8fb6875f1ad41ff556c79b4"
+      },
+      "scene": {
+        "sha256": "ce4c955d7cb061a11791b9aab57eb836d75d5a3adfdf86b485b5fccca1a1e100"
+      },
+      "model": {
+        "not_applicable": "학습 모델을 쓰지 않았다. 판독은 OpenCV QR, 집기 좌표는 시뮬 센서다."
+      },
+      "dataset": {
+        "not_applicable": "학습 · 평가 데이터셋을 쓰지 않았다."
+      }
+    }
+  },
+  "clocks": {
+    "duration": "simulation",
+    "timeout": "monotonic"
+  },
+  "seed": 7,
+  "repetition_index": 11,
+  "protocol": {
+    "path": "experiments/protocols/hospital-full-acceptance-v1.json",
+    "sha256": "6cbd564a73388ba930ba3f72a38470e16ba4cf7a65eefde0b15f4af8854b286a"
+  },
+  "phase": "acceptance",
+  "outcome": "succeeded",
+  "artifacts": [
+    {
+      "uri": "sha256/1b7c7d6e1a833a479b484248f156a501b853cd279356c24c0867bbe72725917b/env.sh",
+      "sha256": "1b7c7d6e1a833a479b484248f156a501b853cd279356c24c0867bbe72725917b",
+      "size_bytes": 1505
+    },
+    {
+      "uri": "sha256/dd91891dfa5d275e2c14d123e67572f443c43620d2cb28ae092afbc10268960a/up.console",
+      "sha256": "dd91891dfa5d275e2c14d123e67572f443c43620d2cb28ae092afbc10268960a",
+      "size_bytes": 2439
+    },
+    {
+      "uri": "sha256/dbfb11e4bc3b186d577b62348f360354f4185e9d0724b450c972d793d5a6cef7/orders.log",
+      "sha256": "dbfb11e4bc3b186d577b62348f360354f4185e9d0724b450c972d793d5a6cef7",
+      "size_bytes": 1902
+    },
+    {
+      "uri": "sha256/4eec0bedf85995585021796ad21ab9654335a14d23479a11cdae1d0127ebf676/dryrun.log",
+      "sha256": "4eec0bedf85995585021796ad21ab9654335a14d23479a11cdae1d0127ebf676",
+      "size_bytes": 670
+    },
+    {
+      "uri": "sha256/f7162db507dcd4e93619f1a1b7b61b7140e6da1b744496d8e83b7767e949d4b4/clip-1.mkv",
+      "sha256": "f7162db507dcd4e93619f1a1b7b61b7140e6da1b744496d8e83b7767e949d4b4",
+      "size_bytes": 1182023287
+    },
+    {
+      "uri": "sha256/faca3b77b32ece89e5a26ae2825e079c43195684c74c332f6594b85e18f61c2b/gpu.csv",
+      "sha256": "faca3b77b32ece89e5a26ae2825e079c43195684c74c332f6594b85e18f61c2b",
+      "size_bytes": 509799
+    },
+    {
+      "uri": "sha256/d1256da93ecac7b4edb962e3952243d9c9c5d070dfae3e02eb3cbcedea8d6c80/top.txt",
+      "sha256": "d1256da93ecac7b4edb962e3952243d9c9c5d070dfae3e02eb3cbcedea8d6c80",
+      "size_bytes": 59072824
+    },
+    {
+      "uri": "sha256/2a76b092060dbdfd4c37d4361874a956b4eb497ca81513d475dad0b2571a2b09/logs/20260925-133916-arm.log",
+      "sha256": "2a76b092060dbdfd4c37d4361874a956b4eb497ca81513d475dad0b2571a2b09",
+      "size_bytes": 18172
+    },
+    {
+      "uri": "sha256/67130d7a423e86cdb7edf2dce3cc3b5386f401ec99252ed8c1dc4889e846d35c/logs/20260925-133916-kit.log",
+      "sha256": "67130d7a423e86cdb7edf2dce3cc3b5386f401ec99252ed8c1dc4889e846d35c",
+      "size_bytes": 18790459
+    },
+    {
+      "uri": "sha256/da0e62091aff011d3fbb065606cc7383992edd26b866fe441266d50903bc09c9/logs/20260925-133916-nav.log",
+      "sha256": "da0e62091aff011d3fbb065606cc7383992edd26b866fe441266d50903bc09c9",
+      "size_bytes": 475462
+    },
+    {
+      "uri": "sha256/0eee4e41e40673f8c669b60accc112753cfc4c3efa3816709c279d876fb79030/logs/20260925-133916-stack.log",
+      "sha256": "0eee4e41e40673f8c669b60accc112753cfc4c3efa3816709c279d876fb79030",
+      "size_bytes": 114549
+    },
+    {
+      "uri": "sha256/40d13a0ea99239d00eeab6f67ac520cdaa7e7c4008e777745f97149a846cee66/logs/20260925-133916-stage.log",
+      "sha256": "40d13a0ea99239d00eeab6f67ac520cdaa7e7c4008e777745f97149a846cee66",
+      "size_bytes": 1249277
+    },
+    {
+      "uri": "sha256/0407c9c8e819b2d065191d39c6fb52b614ced8f419cf814346d65d4a7de0b53c/logs/20260925-133916-tree.txt",
+      "sha256": "0407c9c8e819b2d065191d39c6fb52b614ced8f419cf814346d65d4a7de0b53c",
+      "size_bytes": 125
+    },
+    {
+      "uri": "sha256/871f73f85cb6bbdfcfbbbd51cbc0f6abb11c6f647ef9a6ce2c24a8a62c4ceaf5/logs/20260925-133916-web.log",
+      "sha256": "871f73f85cb6bbdfcfbbbd51cbc0f6abb11c6f647ef9a6ce2c24a8a62c4ceaf5",
+      "size_bytes": 1213637
+    }
+  ],
+  "metrics": [
+    {
+      "name": "attempt_success",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_workcell_ready",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_refill_both",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_container_qr",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "pouch_to_end_s",
+      "value": 33.5,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_pouch_at_end",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_pick_in_slot",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "scene_delivered_docked",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "amr_touch_count",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_margin_lines",
+      "value": 891,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_full_speed_lines",
+      "value": 119,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_unknown_lines",
+      "value": 20,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "boot_check_pass",
+      "value": 1,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "orders10_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "orders_beds_all_delivered",
+      "value": 10,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "orders10_multipc_delivered",
+      "value": null,
+      "unit": "count",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "record_fps_min",
+      "value": 30.0,
+      "unit": "fps",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_drop_ratio_max",
+      "value": 0.0,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "record_corrupt_sum",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "unplanned_intervention_count",
+      "value": 0,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "avoidance_encounters",
+      "value": 33,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "governor_limit_lines_during_encounters",
+      "value": 157,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "vision_detect_rate",
+      "value": 0.6,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "vision_latency_ms",
+      "value": 0.0,
+      "unit": "ms",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "fresh_clone_step_wall_s",
+      "value": null,
+      "unit": "s",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "fresh_clone_asset_sha_ok",
+      "value": null,
+      "unit": "ratio",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "rtf",
+      "value": 0.412,
+      "unit": "ratio",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "attempt_wall_s",
+      "value": 6068.535,
+      "unit": "s",
+      "sample_count": 1,
+      "missing_count": 0
+    },
+    {
+      "name": "reset_dock_pose_error_m",
+      "value": null,
+      "unit": "m",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "reset_arm_park_error_rad",
+      "value": null,
+      "unit": "rad",
+      "sample_count": 0,
+      "missing_count": 1
+    },
+    {
+      "name": "pouch_spawn_records",
+      "value": 10,
+      "unit": "count",
+      "sample_count": 1,
+      "missing_count": 0
+    }
+  ],
+  "notes": "campaign 2 · attempt 11 · 원문 #240 5827879036. 원본은 master02 ~/markle_tmp/m2-c2-a11-beds10-0b1319b 다(호스트 IsaacSim07). SHA256SUMS 파일의 sha256 은 04ba2c81306f50958bc7206ce71f695aacc3a2ef111b955adc201940e72f4cbc 다. artifacts 에는 크기(ls -l)와 전체 sha256 이 함께 보고된 파일만 넣었다. config 지문은 release 트리의 deployment.json, scene 지문은 master02 워크셀 준비 base.usda 다. created_at 은 ls 의 분 단위 시각(SHA256SUMS 15:21 KST)에서 초를 0 으로 둔 값이다. 녹화는 웹 창을 포함한 전체 화면 1파일이다. metrics 는 tools/aggregate_runs.py(#709 b38b74b) --attempt 11 --json 출력 그대로다. 원문: P3_STAGE_ARGS=\"--traffic-dummies 0\"(더미 OFF · 보행자 ON)로 돌았다. protocol 은 골든 STAGE_ARGS 비움 · 회피 요소 기본 ON 이다 — 이 차이의 적격 여부는 마1검증 판정에 맡긴다. 명령은 --profile default --batch \"\"(D1–D10 1인 9 + 긴급 1 = 10건)로, campaign 1 attempt 11 과 같은 사유다(#576 5826038405, 마1검증 #716 판정)."
+}

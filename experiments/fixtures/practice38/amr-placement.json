@@ -1,0 +1,16 @@
+{
+  "asset_sha256": "908061d3b9627baa5bb6880acfa8b341d5b322d31e016f639f1fff2e40f85f3e",
+  "prim": "/World/ReviewAmr",
+  "start_xy": [
+    -7.15,
+    4.5
+  ],
+  "count": 1,
+  "mount_local": [
+    -0.35,
+    0.0,
+    0.15
+  ],
+  "physics": "OFF",
+  "ros": "OFF"
+}

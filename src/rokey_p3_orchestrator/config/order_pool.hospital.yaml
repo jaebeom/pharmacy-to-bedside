@@ -1,0 +1,24 @@
+# 병원 월드(zones.hospital.yaml) 합성 주문 풀 — 침상 10개(PDF D1–D10 = bed_a1–a4·bed_b1–b6)에 하나씩.
+# 형식·규칙은 order_pool.yaml 과 같다(계약 7절: order_id = 봉투 QR 내용, 환자 인식표 = pt-<patient_id>).
+# 빈월드·조제실 월드는 order_pool.yaml 을 그대로 쓴다. 병원 전체 시나리오(#527)에서 P3_ORDER_POOL 로 고른다.
+# 뒤 세 건(재범 9/25 03:3x: 병동 주문 → B, 병실 주문 → C, 병상 주문 → D)은 침상이 아니라 테이블이다 —
+#   ord-0011 → station_b(간호스테이션 B 테이블), ord-0012 → station_c·ord-0013 → station_d(병실 C1·C2 테이블).
+#   그 자리의 인식표는 스테이션 st-<zone> 이다(구역 파일의 kind station). 10건 기본 계획은 침상 열 건만 쓴다.
+# 숫자로만 된 ID 는 따옴표로 감싼다.
+
+version: 1
+
+orders:
+  - {order_id: ord-0001, patient_id: "2001", item_id: drug-amox, bed: bed_a1}
+  - {order_id: ord-0002, patient_id: "2002", item_id: drug-ibu, bed: bed_a2, mode: urgent}
+  - {order_id: ord-0003, patient_id: "2003", item_id: drug-amox, bed: bed_a3}
+  - {order_id: ord-0004, patient_id: "2004", item_id: drug-ibu, bed: bed_a4}
+  - {order_id: ord-0005, patient_id: "2005", item_id: drug-amox, bed: bed_b1}
+  - {order_id: ord-0006, patient_id: "2006", item_id: drug-ibu, bed: bed_b2}
+  - {order_id: ord-0007, patient_id: "2007", item_id: drug-amox, bed: bed_b3}
+  - {order_id: ord-0008, patient_id: "2008", item_id: drug-ibu, bed: bed_b4}
+  - {order_id: ord-0009, patient_id: "2009", item_id: drug-amox, bed: bed_b5}
+  - {order_id: ord-0010, patient_id: "2010", item_id: drug-ibu, bed: bed_b6}
+  - {order_id: ord-0011, patient_id: "2011", item_id: drug-amox, bed: station_b}
+  - {order_id: ord-0012, patient_id: "2012", item_id: drug-ibu, bed: station_c}
+  - {order_id: ord-0013, patient_id: "2013", item_id: drug-amox, bed: station_d}

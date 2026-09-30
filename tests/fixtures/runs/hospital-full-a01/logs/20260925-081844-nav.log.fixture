@@ -1,0 +1,6 @@
+[speed_governor-8] [INFO] [1790291958.918614708] [amr_1.speed_governor]: speed limit 50%=0.50 m/s (여유 모름, 받은 코스트맵 0장)
+[speed_governor-8] [INFO] [1790292200.000000000] [amr_1.speed_governor]: speed limit 100%=1.00 m/s (여유 ≥1.80 m, 받은 코스트맵 12장)
+[speed_governor-8] [INFO] [1790292210.000000000] [amr_1.speed_governor]: speed limit 50%=0.50 m/s (여유 모름(창에 장애물 0), 받은 코스트맵 13장)
+[speed_governor-8] [INFO] [1790292225.000000000] [amr_1.speed_governor]: speed limit 50%=0.50 m/s (여유 0.64 m, 받은 코스트맵 14장)
+[speed_governor-8] [INFO] [1790292260.000000000] [amr_1.speed_governor]: speed limit 76%=0.76 m/s (여유 0.76 m, 받은 코스트맵 15장)
+[speed_governor-8] [INFO] [1790292360.000000000] [amr_1.speed_governor]: speed limit 53%=0.53 m/s (여유 0.53 m, 받은 코스트맵 20장)

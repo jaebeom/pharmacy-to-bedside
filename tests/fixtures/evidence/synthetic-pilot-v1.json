@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "protocol_id": "synthetic-pilot-v1",
+  "status": "frozen",
+  "phase": "pilot",
+  "created_at": "2000-01-01T00:00:00Z",
+  "frozen_at": "2000-01-01T00:00:01Z",
+  "purpose": "SYNTHETIC TEST FIXTURE ONLY. Not a simulator or project measurement.",
+  "sample_plan": {
+    "seeds": [
+      0,
+      1
+    ],
+    "repetitions_per_seed": 2
+  },
+  "timeout": {
+    "seconds": 60,
+    "clock": "monotonic",
+    "policy": "record_timeout"
+  },
+  "metrics": [
+    {
+      "name": "cycle_seconds",
+      "unit": "s",
+      "description": "Synthetic duration for validation tests.",
+      "denominator": "One initiated synthetic cycle; timed out or missing cycles remain recorded.",
+      "aggregation": "single",
+      "clock": "simulation",
+      "missing_policy": "record_missing"
+    }
+  ]
+}

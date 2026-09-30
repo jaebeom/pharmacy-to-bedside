@@ -1,0 +1,5 @@
+# Reset between runs. Scenario step 4 "reset scope". Barrier order is defined in the contract.
+uint32 epoch                 # new epoch; permissions and events from older epochs become invalid
+---
+bool ok
+string message

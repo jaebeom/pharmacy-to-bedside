@@ -1,0 +1,12 @@
+# 실물·mock 공통. rclpy 는 여기 없다 — /opt/ros/jazzy 에서 오므로
+# venv 는 반드시 `python3 -m venv --system-site-packages .venv` 로 만든다.
+fastapi==0.115.6
+uvicorn==0.34.0
+# WS /ws 에 필수. 없으면 uvicorn 이 업그레이드를 거절해 /ws 가 404 로 보인다.
+# (TestClient 는 자체 구현을 써서 이게 없어도 테스트는 통과한다 — 속지 말 것.)
+websockets==17.1
+# order_pool.yaml 파싱. ROS 2 가 이미 들고 있지만 mock 전용 기계를 위해 명시한다.
+pyyaml>=6.0
+# 개발·테스트
+pytest==7.4.4
+httpx==0.28.1

@@ -1,0 +1,1 @@
+2026-09-25T08:27:22+0900 record_qa: fps=29.50 frames=11500 dur=389.9s wall=394.0s drop=117 corrupt=0 disk=820GB — OK

@@ -1,0 +1,25 @@
+{
+  "sha": "1e6e1d87db47949a7123d1640d7d53703b908c94",
+  "command": [
+    "/home/rokey/isaacsim/python.sh",
+    "sim/standalone/hospital_workcell_demo.py",
+    "--base-usd",
+    "/home/rokey/markle_tmp/m2-pr484-test/hospital-pr484-resolved.usda",
+    "--robot-usd",
+    "/home/rokey/cobot3_ws/isaacpjt/M0609/Collected_m0609_gripper/m0609_gripper.usd",
+    "--output",
+    "/home/rokey/markle_tmp/pr500-l3-shutdown-20260923/terminal/output",
+    "--amr-combined",
+    "/home/rokey/assets-from-master01/hospital_custome-20260921/hopital_custome/Collected_hopital_custome/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Clearpath/RidgebackUr/ridgeback_ur5.usd",
+    "--amr-start",
+    "-7.15",
+    "4.50",
+    "--view",
+    "loading",
+    "--conveyor-probe",
+    "/home/rokey/markle_tmp/pr500-l3-shutdown-20260923/terminal/input.local.json"
+  ],
+  "start_utc": "2026-09-23T01:54:59Z",
+  "config_sha256": "03bb18f2f8225098944014c790b971d1b5a1a5cb7ef8a2cab057f7e25fd46464",
+  "scope": "diagnostic L3 only; robots fixed; no ROS"
+}

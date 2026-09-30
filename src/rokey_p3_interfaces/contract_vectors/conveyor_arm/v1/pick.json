@@ -1,0 +1,53 @@
+{
+  "boundary": "pick",
+  "contract": "docs/architecture/delivery-contract-v1.md 11.1 + 5절 팔 동작 @ dc172d1",
+  "actor": "at_end_vectors: 벨트 backend(정착 판정). permit_cases: 피킹 허가를 보는 arm·orchestrator",
+  "params": {"settle_speed": 0.01, "settle_time_s": 0.3, "note": "시험용 값. 합격선이 아니다(BeltModel 기본값과 같다)"},
+  "at_end_vectors": [
+    {"id": "P01", "clause": "11.1", "title": "STOP 뒤 정착 시간을 채워야 at_end", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": false}},
+      {"t": 2.2, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": false}},
+      {"t": 2.35, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": true}}
+    ]},
+    {"id": "P02", "clause": "11.1", "title": "정착 중 다시 움직이면 정착 시간을 처음부터", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": 0.0}},
+      {"t": 2.2, "pouch": {"at": "end", "speed": 0.05}, "expect": {"at_end": false}},
+      {"t": 2.4, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": false}},
+      {"t": 2.75, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": true}}
+    ]},
+    {"id": "P03", "clause": "11.1", "title": "at_end 는 래치: 정착 뒤 다시 움직여도 true", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": 0.0}},
+      {"t": 2.35, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": true}},
+      {"t": 2.5, "pouch": {"at": "end", "speed": 0.2}, "expect": {"at_end": true, "occupied": true}}
+    ]},
+    {"id": "P04", "clause": "11.1", "title": "STOP 뒤에도 봉투가 계속 움직이면 at_end 없음, 점유 유지", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": 0.05}},
+      {"t": 10.0, "pouch": {"at": "end", "speed": 0.05}, "expect": {"at_end": false, "occupied": true}}
+    ]},
+    {"id": "P05", "clause": "11.1", "title": "속도 미수신: 현재 기본값은 0 으로 세어 at_end", "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": null}},
+      {"t": 2.35, "pouch": {"at": "end", "speed": null}, "expect": {"at_end": true}}
+    ]},
+    {"id": "P06", "clause": "11.1", "title": "속도 미수신: opt-in 이면 정착 표본이 아니고 타이머 초기화", "options": {"speed_missing_resets_settle": true}, "steps": [
+      {"t": 0.0, "dispense": {"request_id": "r001-0001", "order_id": "ord-0001"}},
+      {"t": 2.0, "pouch": {"at": "end", "speed": 0.0}},
+      {"t": 2.2, "pouch": {"at": "end", "speed": null}, "expect": {"at_end": false}},
+      {"t": 2.4, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": false}},
+      {"t": 2.75, "pouch": {"at": "end", "speed": 0.0}, "expect": {"at_end": true}}
+    ]}
+  ],
+  "permit_cases": [
+    {"id": "K01", "clause": "5", "title": "base 정지·at_end·주문 일치면 허가", "input": {"base_stopped": true, "belt": {"at_end": true, "order_id": "ord-0001"}, "goal_order_id": "ord-0001"}, "expect": {"allowed": true}},
+    {"id": "K02", "clause": "5", "title": "base/stopped unknown 은 허가가 아님", "input": {"base_stopped": null, "belt": {"at_end": true, "order_id": "ord-0001"}, "goal_order_id": "ord-0001"}, "expect": {"allowed": false}},
+    {"id": "K03", "clause": "5", "title": "base 가 움직이면 금지", "input": {"base_stopped": false, "belt": {"at_end": true, "order_id": "ord-0001"}, "goal_order_id": "ord-0001"}, "expect": {"allowed": false}},
+    {"id": "K04", "clause": "2.1", "title": "벨트 unknown(1.0 s 무수신)은 픽 금지", "input": {"base_stopped": true, "belt": null, "goal_order_id": "ord-0001"}, "expect": {"allowed": false}},
+    {"id": "K05", "clause": "11.1", "title": "at_end 전(정착 전)은 금지", "input": {"base_stopped": true, "belt": {"at_end": false, "order_id": "ord-0001"}, "goal_order_id": "ord-0001"}, "expect": {"allowed": false}},
+    {"id": "K06", "clause": "5", "title": "벨트 끝 봉투가 다른 주문이면 금지", "input": {"base_stopped": true, "belt": {"at_end": true, "order_id": "ord-0009"}, "goal_order_id": "ord-0001"}, "expect": {"allowed": false}},
+    {"id": "K07", "clause": "5", "title": "goal 주문이 비면 금지", "input": {"base_stopped": true, "belt": {"at_end": true, "order_id": ""}, "goal_order_id": ""}, "expect": {"allowed": false}}
+  ]
+}

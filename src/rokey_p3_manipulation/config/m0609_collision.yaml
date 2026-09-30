@@ -1,0 +1,39 @@
+# M0609 링크 collision 형상의 bounding box(링크 좌표계, m). rokey_p3_manipulation.clearance 가 월드 OBB 로 놓아 쓴다.
+# 출처: 마클2 9/18, master02 자산 /home/rokey/cobot3_ws/isaacpjt/M0609/Collected_m0609_gripper/m0609_gripper.usd
+#   (sha256 b4879c8319851a23828c562dc9dc4f5018ddfcbfde9b082c6ce5547eff19ebeb). collision 은
+#   SubUSDs/m0609_isaac_sim_physics.usd (d994eea76d23a5cfc4c78a6c307fe1e1600d9cc7f0bb2be11b87070421e6dbd3) 에서 온다.
+#   UsdPhysics.CollisionAPI prim(…/collisions/<이름>/Scene, physics:approximation=convexHull, 로컬 translate 0)마다
+#   BBoxCache(Default, ['default','proxy','render','guide'], useExtentsHint=False).ComputeRelativeBound(prim, link)
+#   의 aligned range. 원문 master02 ~/markle_tmp/m0609_colliders.txt, 스크립트 ~/markle_tmp/usd_colliders.py.
+# convexHull 의 bbox 라 형상보다 크거나 같다.
+# 링크 좌표계 확인(마클2 9/18): 자산에 저작된 관절 0 자세의 링크 pose 가 m0609_kinematics FK(관절 0)와 위치 0.05 mm,
+# 회전 0.5° 안에서 같다(0.5° 는 URDF rpy 1.571 반올림).
+tcp_offset: [0.0, 0.0, 0.19671]      # link_6 좌표. Simu 9/18, 스테이지 잡힘 판정과 같은 값
+boxes:
+  - {link: base_link, name: MF0609_0_0, min: [-0.1152, -0.3397, -0.0452], max: [0.0912, 0.0912, 0.0520]}
+  - {link: link_1, name: MF0609_1_0, min: [-0.0700, -0.0681, -0.0819], max: [0.0700, 0.0871, 0.1105]}
+  - {link: link_2, name: MF0609_2_0, min: [-0.0684, -0.0692, 0.0819], max: [0.1078, 0.0692, 0.2742]}
+  - {link: link_2, name: MF0609_2_1, min: [0.0865, -0.0526, 0.1092], max: [0.3331, 0.0474, 0.2092]}
+  - {link: link_2, name: MF0609_2_2, min: [0.3042, -0.0692, 0.0820], max: [0.4788, 0.0692, 0.2733]}
+  - {link: link_3, name: MF0609_3_0, min: [-0.0653, -0.0842, -0.0535], max: [0.0652, 0.0963, 0.0809]}
+  - {link: link_4, name: MF0609_4_0, min: [-0.0503, -0.0493, -0.2833], max: [0.0503, 0.1960, -0.0701]}
+  - {link: link_4, name: MF0609_4_1, min: [-0.0540, 0.0799, -0.0701], max: [0.0540, 0.2429, 0.0538]}
+  - {link: link_5, name: MF0609_5_0, min: [-0.0531, -0.0622, -0.0532], max: [0.0531, 0.1110, 0.0789]}
+  - {link: link_6, name: MF0609_6_0, min: [-0.0446, -0.0449, -0.0577], max: [0.0446, 0.0455, 0.0001]}
+  # onrobot RG2(FT) collision prim 9개. link_6 기준 ComputeRelativeBound(마클2 9/18, 같은 자산, onrobot_rg2_physics.usd
+  # 983bea8b…, 스크립트 ~/markle_tmp/usd_link6.py, 원문 ~/markle_tmp/m0609_link6_poses.txt). 자산에 저작된 손가락 자세
+  # 그대로다: 손가락 관절 state 전부 0, finger_joint 범위 0-67.6° 라 0 = 최대 열림으로 본다(가설, RG2 URDF 관례).
+  # 모든 단계에 이 열린 자세를 쓴다. 잡고 있는 동안(손가락 닫힘)은 knuckle·finger 폭을 과하게 잡는다(보수적).
+  # 손가락 끝 z 최대 0.1967 = TCP 오프셋과 같다. 원문 ~/markle_tmp/m0609_rg2_link6.txt(스크립트 usd_rg2.py).
+  - {link: link_6, name: rg2_quick_changer, min: [-0.0400, -0.0400, -0.0026], max: [0.0400, 0.0400, 0.0135]}
+  - {link: link_6, name: rg2_angle_bracket, min: [-0.0428, -0.0428, 0.0023], max: [0.0428, 0.0427, 0.0673]}
+  - {link: link_6, name: rg2_gripper_body, min: [-0.0487, -0.0322, 0.0263], max: [0.0487, 0.0192, 0.1455]}
+  - {link: link_6, name: rg2_right_outer_knuckle, min: [-0.0760, -0.0141, 0.0909], max: [0.0028, 0.0143, 0.1702]}
+  - {link: link_6, name: rg2_right_inner_finger, min: [-0.0732, -0.0150, 0.1364], max: [-0.0498, 0.0156, 0.1967]}
+  - {link: link_6, name: rg2_left_inner_knuckle, min: [0.0008, -0.0120, 0.1165], max: [0.0656, 0.0122, 0.1808]}
+  - {link: link_6, name: rg2_left_outer_knuckle, min: [-0.0028, -0.0141, 0.0909], max: [0.0760, 0.0143, 0.1702]}
+  - {link: link_6, name: rg2_left_inner_finger, min: [0.0498, -0.0150, 0.1364], max: [0.0732, 0.0156, 0.1967]}
+  - {link: link_6, name: rg2_right_inner_knuckle, min: [-0.0656, -0.0120, 0.1165], max: [-0.0008, 0.0122, 0.1808]}
+  # 잡은 캐니스터(TCP 좌표계, 공구 +z 가 잡는 쪽 = 월드 아래). 캐니스터 0.06×0.06×0.12(layout.py canister_size),
+  # 윗면에서 0.05 아래를 잡는다(grip_depth) → 공구 z -0.05(윗면)..+0.07(바닥).
+  - {link: canister, name: canister, min: [-0.03, -0.03, -0.05], max: [0.03, 0.03, 0.07]}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P3 관제 · 설정</title>
+<link rel="stylesheet" href="css/nurse.css">
+</head>
+<body class="nurse">
+
+<header class="n-top">
+  <div class="n-brand">
+    <span class="n-brand-mark">P3</span>
+    <span class="n-brand-name">약 배송</span>
+  </div>
+  <nav class="n-nav" id="nav"></nav>
+  <div class="n-spacer"></div>
+  <span class="n-conn" id="conn"><span class="n-conn-dot"></span><span id="conn-text">연결 중…</span></span>
+</header>
+
+<main class="s-main">
+  <section class="n-card" aria-labelledby="look-title">
+    <h2 id="look-title">화면 <span class="n-sub">이 브라우저에만 저장됩니다</span></h2>
+    <div class="s-row">
+      <span class="s-key">밝기</span>
+      <div class="n-seg" id="pref-theme"></div>
+    </div>
+    <div class="s-row">
+      <span class="s-key">글자 크기</span>
+      <div class="n-seg" id="pref-size"></div>
+    </div>
+    <p class="s-hint" id="pref-note">간호사·설정 화면에 적용됩니다. 개발자 화면은 발표 배치를 지키려고 바꾸지 않습니다.</p>
+  </section>
+
+  <section class="n-card" aria-labelledby="conn-title">
+    <h2 id="conn-title">서버 연결 <span class="n-sub">읽기 전용</span></h2>
+    <div id="server"></div>
+  </section>
+
+  <section class="n-card" aria-labelledby="world-title">
+    <h2 id="world-title">병원 구성 <span class="n-sub">서버가 읽은 파일 · 읽기 전용</span></h2>
+    <div id="world"></div>
+  </section>
+
+  <section class="n-card" aria-labelledby="links-title">
+    <h2 id="links-title">바로 가기</h2>
+    <div class="s-actions" id="links"></div>
+  </section>
+</main>
+
+<script type="module" src="js/settings.js"></script>
+</body>
+</html>

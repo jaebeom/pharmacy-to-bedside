@@ -1,0 +1,14 @@
+{"detail": "", "epoch": 0, "name": "REFILL_DONE", "order_id": "", "request_id": "", "robot_id": "x", "stale": true, "stamp": 38.0167}
+{"detail": "", "epoch": 1, "name": "DISPENSER_RESUMED", "order_id": "", "request_id": "", "robot_id": "x", "stale": false, "stamp": 45.98}
+{"detail": "", "epoch": 1, "name": "REQUEST_ACCEPTED", "order_id": "ord-0001", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 68.0}
+{"detail": "", "epoch": 1, "name": "REFILL_REQUESTED", "order_id": "", "request_id": "", "robot_id": "x", "stale": false, "stamp": 98.0}
+{"detail": "", "epoch": 1, "name": "DISPENSED", "order_id": "ord-0001", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 98.0}
+{"detail": "", "epoch": 1, "name": "REFILL_DONE", "order_id": "", "request_id": "", "robot_id": "x", "stale": false, "stamp": 134.0}
+{"detail": "", "epoch": 1, "name": "POUCH_AT_END", "order_id": "ord-0001", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 132.6}
+{"detail": "", "epoch": 1, "name": "POUCH_PICKED", "order_id": "ord-0001", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 146.0}
+{"detail": "", "epoch": 1, "name": "POUCH_LOADED", "order_id": "ord-0001", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 163.0}
+{"detail": "", "epoch": 1, "name": "DEPARTED", "order_id": "ord-0001", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 165.0}
+{"detail": "", "epoch": 1, "name": "ARRIVED", "order_id": "", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 215.0}
+{"detail": "", "epoch": 1, "name": "ORDER_DONE", "order_id": "ord-0001", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 224.0}
+{"detail": "", "epoch": 1, "name": "RETURNED", "order_id": "", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 226.0}
+{"detail": "", "epoch": 1, "name": "DOCKED", "order_id": "", "request_id": "web-m1-9501", "robot_id": "x", "stale": false, "stamp": 290.0}

@@ -1,0 +1,37 @@
+[
+  {
+    "path": "/home/rokey/markle_tmp/m2-hospital-pick3-01/plan.json",
+    "bytes": 256,
+    "sha256": "5044ba51c20ea042da9cf3e451498509ca8c7565c0820c6e167101eb485846e1"
+  },
+  {
+    "path": "/home/rokey/markle_tmp/m2-hospital-pick3-01/events.jsonl",
+    "bytes": 879484,
+    "sha256": "af3f09042e0c3e20644d1366ad8bd7d19c907867d60fcb75ebcbeff2f6f64110"
+  },
+  {
+    "path": "/home/rokey/markle_tmp/m2-hospital-pick3-01/summary.json",
+    "bytes": 498,
+    "sha256": "5e0c767cb7b475b5fed85ce4e767f07078f3bb6c66d06fa2a84a76c7f4cedfea"
+  },
+  {
+    "path": "/home/rokey/markle_tmp/m2-hospital-pick3-01/trial.mkv",
+    "bytes": 67292309,
+    "sha256": "667d25b373aa8f690b43572572fa0e96188cb75aa6ebad94a9c5b1dbacce63b1"
+  },
+  {
+    "path": "/home/rokey/markle_tmp/m2-hospital-pick3-01/ready.png",
+    "bytes": 485654,
+    "sha256": "11adb45eb3f8b3ed7209f48a4531997e9c958333d417b8a1d265a99d91a3509c"
+  },
+  {
+    "path": "/home/rokey/markle_tmp/m2-pr484-test/amr-before.json",
+    "bytes": 844,
+    "sha256": "c911c8c3c9aee675ebd3c70df9c82c16318619f2f081d50abcf9f8bc67b0455f"
+  },
+  {
+    "path": "/home/rokey/markle_tmp/m2-pr484-test/amr-corrected.json",
+    "bytes": 886,
+    "sha256": "b78fcd3226e6285e7fe127e99c48d1fa8702f02afc844b58f28f08dc186c5667"
+  }
+]

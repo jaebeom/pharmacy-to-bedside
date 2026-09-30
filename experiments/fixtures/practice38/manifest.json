@@ -1,0 +1,62 @@
+{
+  "purpose": "Practice38 historical measured input fixture; NOT production defaults or successful integrated run",
+  "copied_at": "2026-09-23",
+  "authorization": "User explicitly requested all position/settings values in Git on 2026-09-23",
+  "files": {
+    "stock-mixed-1350.json": {
+      "source_master02": "/home/rokey/markle_tmp/m2-original-intakes-practice-01/stock-all-tiers-mixed.local.json",
+      "sha256": "44b67fd631ea7d59def7ab555b015a189b82f26da09244bc9c0486ec5f9c6447",
+      "bytes": 625037
+    },
+    "planning-inventory-1350.json": {
+      "source_master02": "/home/rokey/markle_tmp/m2-original-intakes-practice-01/stock-inventory.local.json",
+      "sha256": "337ae3d2e0b8b4d4763212e360d903e01cf057cbaf3bc469506e0d14ffb14fb5",
+      "bytes": 734049
+    },
+    "workcell-18-reference.json": {
+      "source_master02": "/home/rokey/markle_tmp/m2-original-intakes-practice-01/workcell.local.json",
+      "sha256": "8e8d30dc94c19aada8f1b725574e80a781be16a8c51dee781dc36246df5448e9",
+      "bytes": 73164
+    },
+    "shelf-boards.json": {
+      "source_master02": "/home/rokey/markle_tmp/m2-original-intakes-practice-01/shelf-boards.json",
+      "sha256": "10595b06e552929882317da5775e6bdd0a97f9641bfb4ceb292373ff217ead66",
+      "bytes": 12508
+    },
+    "probe-receiver.json": {
+      "source_master02": "/home/rokey/markle_tmp/pr500-l3-20260923/receiver/input.local.json",
+      "sha256": "06d1cc0011549aa975b51091e335628a576b212de8e440a6e66db848a56e1e7d",
+      "bytes": 887
+    },
+    "probe-terminal.json": {
+      "source_master02": "/home/rokey/markle_tmp/pr500-l3-shutdown-20260923/terminal/input.local.json",
+      "sha256": "03bb18f2f8225098944014c790b971d1b5a1a5cb7ef8a2cab057f7e25fd46464",
+      "bytes": 573
+    },
+    "receiver-start.json": {
+      "source_master02": "/home/rokey/markle_tmp/pr500-l3-20260923/receiver/start.json",
+      "sha256": "1d30212f7454f38444787c2476d96ceb77bc5ad5add64d1b31df7dd4ea569378",
+      "bytes": 1044
+    },
+    "terminal-start.json": {
+      "source_master02": "/home/rokey/markle_tmp/pr500-l3-shutdown-20260923/terminal/start.json",
+      "sha256": "2a1fadcb3359f564205a69fd76ecefb9f59f9d972fc7f57aa9ec02486da41c0d",
+      "bytes": 1062
+    },
+    "dispenser-placement.json": {
+      "source_master02": "/home/rokey/markle_tmp/pr500-l3-shutdown-20260923/terminal/output/dispenser-placement.json",
+      "sha256": "1abe550cb43c6337da05b8398316df4954688feb39aa3c72d01ab100bd7b8011",
+      "bytes": 418
+    },
+    "amr-placement.json": {
+      "source_master02": "/home/rokey/markle_tmp/pr500-l3-shutdown-20260923/terminal/output/amr-placement.json",
+      "sha256": "d8f65fca1059029037220578ae641666ac8add16404ae72d40e38a608908fe45",
+      "bytes": 262
+    },
+    "hospital-pr484-resolved.usda": {
+      "source_master02": "/home/rokey/markle_tmp/m2-pr484-test/hospital-pr484-resolved.usda",
+      "sha256": "2561206773f8d0496930dbe7d6525c79c9103efcaa18d485e7bf290d4b25116c",
+      "bytes": 387589
+    }
+  }
+}

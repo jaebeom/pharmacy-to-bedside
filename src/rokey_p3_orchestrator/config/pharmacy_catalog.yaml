@@ -1,0 +1,113 @@
+# 약 DB 시드. QR·DB·카메라 계약(docs/architecture/qr-db-camera-contract-v1.md) 2절.
+# orchestrator 가 시작할 때 이 파일과 dispenser.yaml·order_pool.yaml 을 읽어 sqlite 표를 채운다.
+# 값은 전부 합성 데이터다. 실제 약품 정보가 아니다.
+#
+# containers 의 로트가 dispenser.yaml 에 있으면 약품·유통기한·수량·위치는 dispenser.yaml 이 정한다.
+# 여기에는 cn- ID 와 입고일만 적는다. 두 곳에 같은 값을 적지 않는다.
+# dispenser.yaml 에 없는 약통(회수품 등)만 item_id·expiry·count·location·status 를 여기 적는다.
+
+version: 1
+
+# 만료 판정 기준일. 벽시계를 쓰지 않는다. 노드 파라미터 today 가 있으면 그 값이 이긴다.
+today: "2026-09-23"
+
+drugs:
+  drug-amox: {name: 아목시실린 캡슐, ingredient: amoxicillin, strength: 500 mg, form: capsule,
+              storage: 실온 1-30 °C, high_risk: false}
+  drug-ibu: {name: 이부프로펜 정, ingredient: ibuprofen, strength: 200 mg, form: tablet,
+             storage: 실온 1-30 °C, high_risk: false}
+
+containers:
+  - {container_id: cn-0001, lot_id: lot-amox-01, received: "2026-03-02"}
+  - {container_id: cn-0002, lot_id: lot-amox-02, received: "2026-06-01"}
+  - {container_id: cn-0003, lot_id: lot-ibu-01, received: "2026-03-02"}
+  - {container_id: cn-0004, lot_id: lot-ibu-02, received: "2026-06-01"}
+  - {container_id: cn-0005, lot_id: lot-amox-03, received: "2026-09-01"}
+  - {container_id: cn-0006, lot_id: lot-amox-04, received: "2026-09-01"}
+  - {container_id: cn-0007, lot_id: lot-ibu-03, received: "2026-09-01"}
+  - {container_id: cn-0008, lot_id: lot-ibu-04, received: "2026-09-01"}
+  # 장착 거부 시험용. dispenser.yaml 에 없고, 유통기한이 지났다.
+  - {container_id: cn-0009, lot_id: lot-amox-00, received: "2025-01-10", item_id: drug-amox,
+     expiry: "2026-06-30", count: 5, location: quarantine, status: standby}
+
+# 조제실 선반 16칸의 약통(QR·DB·카메라 계약 2.2, 작전 결정 9/23). 스테이지 scene v2 의 칸 ID 그대로다(layout_v2.shelves).
+# 원통형 = drug-amox, 모듈형 = drug-ibu. M0609 가 잡기 직전 이 ID 의 QR 을 읽고 orchestrator 가 장착 여부를 정한다.
+# floor_right/r0c1 은 만료다: 팔 v2_seed 7 이 원통형에서 처음 고르는 칸이라(계산) 첫 보충에서 거부 → 다른 칸 보충이 나온다.
+# 로트·유통기한은 합성값이고 재고 모듈(dispenser.yaml 의 shelf)과 따로다(FEFO 는 그대로).
+  - {container_id: cn-0101, lot_id: lot-amox-s101, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:floor_left/r0c0", status: standby}
+  - {container_id: cn-0102, lot_id: lot-amox-s102, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:floor_left/r0c1", status: standby}
+  - {container_id: cn-0103, lot_id: lot-amox-s103, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:floor_left/r1c0", status: standby}
+  - {container_id: cn-0104, lot_id: lot-amox-s104, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:floor_left/r1c1", status: standby}
+  - {container_id: cn-0105, lot_id: lot-amox-s105, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:floor_right/r0c0", status: standby}
+  - {container_id: cn-0106, lot_id: lot-amox-s106, received: "2026-09-01", item_id: drug-amox, expiry: "2026-06-30", count: 5,
+     location: "shelf:floor_right/r0c1", status: standby}
+  - {container_id: cn-0107, lot_id: lot-amox-s107, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:floor_right/r1c0", status: standby}
+  - {container_id: cn-0108, lot_id: lot-amox-s108, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:floor_right/r1c1", status: standby}
+  - {container_id: cn-0109, lot_id: lot-ibu-s109, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:upper_left/r0c0", status: standby}
+  - {container_id: cn-0110, lot_id: lot-ibu-s110, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:upper_left/r0c1", status: standby}
+  - {container_id: cn-0111, lot_id: lot-ibu-s111, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:upper_left/r1c0", status: standby}
+  - {container_id: cn-0112, lot_id: lot-ibu-s112, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:upper_left/r1c1", status: standby}
+  - {container_id: cn-0113, lot_id: lot-ibu-s113, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:upper_right/r0c0", status: standby}
+  - {container_id: cn-0114, lot_id: lot-ibu-s114, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:upper_right/r0c1", status: standby}
+  - {container_id: cn-0115, lot_id: lot-ibu-s115, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:upper_right/r1c0", status: standby}
+  - {container_id: cn-0116, lot_id: lot-ibu-s116, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:upper_right/r1c1", status: standby}
+
+# 병원 M0609 워크셀 18칸(--workcell-layout, prepare_workcell_integration.py: 선반 67–75 × 원통 r0c0·모듈 r0c1).
+# 재범 9/23: 병원 약통에도 QR. shelf_72/r0c0 은 만료다: 팔 v2_seed 7 이 원통형에서 처음 고르는 칸이라(계산)
+# 첫 보충에서 거부 → 다른 칸 보충이 나온다. 로트·유통기한은 합성값이다.
+  - {container_id: cn-0201, lot_id: lot-amox-w201, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_67/r0c0", status: standby}
+  - {container_id: cn-0202, lot_id: lot-ibu-w202, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_67/r0c1", status: standby}
+  - {container_id: cn-0203, lot_id: lot-amox-w203, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_68/r0c0", status: standby}
+  - {container_id: cn-0204, lot_id: lot-ibu-w204, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_68/r0c1", status: standby}
+  - {container_id: cn-0205, lot_id: lot-amox-w205, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_69/r0c0", status: standby}
+  - {container_id: cn-0206, lot_id: lot-ibu-w206, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_69/r0c1", status: standby}
+  - {container_id: cn-0207, lot_id: lot-amox-w207, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_70/r0c0", status: standby}
+  - {container_id: cn-0208, lot_id: lot-ibu-w208, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_70/r0c1", status: standby}
+  - {container_id: cn-0209, lot_id: lot-amox-w209, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_71/r0c0", status: standby}
+  - {container_id: cn-0210, lot_id: lot-ibu-w210, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_71/r0c1", status: standby}
+  - {container_id: cn-0211, lot_id: lot-amox-w211, received: "2026-09-01", item_id: drug-amox, expiry: "2026-06-30", count: 5,
+     location: "shelf:shelf_72/r0c0", status: standby}
+  - {container_id: cn-0212, lot_id: lot-ibu-w212, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_72/r0c1", status: standby}
+  - {container_id: cn-0213, lot_id: lot-amox-w213, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_73/r0c0", status: standby}
+  - {container_id: cn-0214, lot_id: lot-ibu-w214, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_73/r0c1", status: standby}
+  - {container_id: cn-0215, lot_id: lot-amox-w215, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_74/r0c0", status: standby}
+  - {container_id: cn-0216, lot_id: lot-ibu-w216, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_74/r0c1", status: standby}
+  - {container_id: cn-0217, lot_id: lot-amox-w217, received: "2026-09-01", item_id: drug-amox, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_75/r0c0", status: standby}
+  - {container_id: cn-0218, lot_id: lot-ibu-w218, received: "2026-09-01", item_id: drug-ibu, expiry: "2028-06-30", count: 5,
+     location: "shelf:shelf_75/r0c1", status: standby}
+
+# 모듈 = 사각 알약통(계약 1절). 어느 흐름에서 쓰는지는 아직 정하지 않았다.
+modules:
+  - {module_id: md-0001, item_id: drug-amox, count: 7, source_container: cn-0001, location: pharmacy}
+  - {module_id: md-0002, item_id: drug-ibu, count: 7, source_container: cn-0003, location: pharmacy}

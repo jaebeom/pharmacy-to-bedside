@@ -1,0 +1,97 @@
+# ---------- inbox: 팀 공유 자료 ----------
+# 검토 가능한 문서·이미지 형식만 추적한다. 오피스 파일, 압축파일, 클론한 저장소,
+# 그 밖의 바이너리는 무시한다 — PDF 나 텍스트로 변환해서 올린다.
+inbox/**
+!inbox/**/
+!inbox/**/*.md
+!inbox/**/*.txt
+!inbox/**/*.pdf
+!inbox/**/*.csv
+!inbox/**/*.png
+!inbox/**/*.jpg
+!inbox/**/*.jpeg
+!inbox/**/*.gif
+!inbox/**/*.svg
+!inbox/**/.gitkeep
+# 참고 코드(#543): reference/ 아래는 형식을 가리지 않고 추적한다. 크기·raw·zip 규칙은 그대로다.
+!inbox/**/reference/**
+# 자료로 복사한 ROS 패키지를 colcon 이 빌드 대상으로 잡지 않게 한다.
+!inbox/COLCON_IGNORE
+
+# 데이터셋·가중치 파일 자체는 저장소에 넣지 않는다. 원본은 마스터 PC 에 두고
+# 저장소에는 신원(sha256)만 남긴다. 원본을 git add -f로 우회하지 않는다.
+inbox/**/*.zip
+
+# 센서 덤프는 디스크에 둔다.
+/inbox/dumps/
+
+# ---------- docs/reference: 받아서 읽는 자료 ----------
+# 샘플 패키지, 튜토리얼 코드, USD 씬처럼 통째로 받은 자료는 원본이 따로 있으므로
+# 추적하지 않는다. 팀이 함께 읽어야 하는 Markdown 문서만 통과시킨다.
+docs/reference/**
+!docs/reference/*/
+!docs/reference/**/*.md
+# 여기 복사된 ROS 패키지를 colcon 이 빌드 대상으로 잡지 않게 한다.
+!docs/reference/COLCON_IGNORE
+
+# ---------- 현장 전용 설정 ----------
+# 실제 호스트 주소·보정값·계정처럼 PC마다 다른 값. 비밀 없는 예시는 별도 리뷰한다.
+config/local/**
+!config/local/README.md
+*.local.yaml
+*.local.json
+
+# ---------- ROS 2 / colcon ----------
+build/
+install/
+log/
+*.mcap
+
+# ---------- Isaac Sim / Omniverse ----------
+# 씬과 자산(.usd / .usda / .usdc)은 추적한다 — 저장소만 클론해서 실행할 수 있어야
+# 한다. 여기서 막는 것은 캐시·백업·런타임 산출물뿐이다.
+*.usd.bak
+*.usda.bak
+*.nv-usd*
+.cache/
+OmniCache/
+.nvidia-omniverse/
+.local/share/ov/
+sim/outputs/
+# 팀 자산 ZIP 의 material/ 을 여기 푼다(병원 씬이 ../material/etc/… 로 조제기를 찾는다). 자산은 Git 에 넣지 않는다.
+sim/material/
+*.tmp
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# ---------- 편집기·OS ----------
+.DS_Store
+.idea/
+.vscode/
+
+# Claude Code 로컬 worktree·설정 (공유 대상 아님)
+.claude/
+.worktrees/
+
+# ---------- Raw artifacts / credentials ----------
+/artifacts/
+/data/
+.env
+.env.*
+!.env.example
+*.bag
+*.db3
+*.pt
+*.pth
+*.onnx
+
+# Host-resolved hospital scene; regenerate from the tracked portable template.
+/sim/scenes/hospital_runtime.usda
+# 공개 저장소에 넣지 않는 조제기 모델(라이선스 미확인). 로컬에 두고 쓴다.
+src/rokey_p3_description/models/dispenser/dispenser.usdc

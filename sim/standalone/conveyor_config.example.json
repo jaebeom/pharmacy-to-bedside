@@ -1,0 +1,11 @@
+{
+  "junction_2": {
+    "reroute_attribute": "/World/Conveyor/ConveyorTrack_02/Sorter/ActionGraph/reroute.inputs:value"
+  },
+  "junction_4": {
+    "reroute_attribute": "/World/Conveyor/ConveyorTrack_04/Sorter/ActionGraph/reroute.inputs:value"
+  },
+  "junction_9": {
+    "reroute_attribute": "/World/Conveyor/ConveyorTrack_09/Sorter/ActionGraph/reroute.inputs:value"
+  }
+}

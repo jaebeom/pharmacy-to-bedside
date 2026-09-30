@@ -1,0 +1,35 @@
+# attempt 16 새 clone 재현 — 시작 2026-09-25 10:05:31
+
+### clone 10:05:31
+```
+git clone https://github.com/jaebeom/ROKEY_P3_A3.git && cd ROKEY_P3_A3 && git checkout --detach 64e5ab7 && git rev-parse --short=12 HEAD && git status --porcelain | wc -l
+```
+끝 10:05:35 exit=0 — 마지막 줄: 0
+
+### build 10:05:35
+```
+source /opt/ros/jazzy/setup.bash && colcon build --symlink-install --event-handlers console_direct+
+```
+끝 10:05:53 exit=0 — 마지막 줄: Summary: 7 packages finished [17.5s]
+
+### venv 10:05:53
+```
+cd web/backend && python3 -m venv --system-site-packages .venv && . .venv/bin/activate && pip install -r requirements.txt && deactivate && cd -
+```
+끝 10:05:57 exit=0 — 마지막 줄: /home/rokey/g8c/ROKEY_P3_A3
+
+### assets 10:05:57
+```
+gh release download assets/hospital-20260918 -R jaebeom/ROKEY_P3_A3 -D sim/outputs && (cd sim/outputs && sha256sum -c ../scenes/hospital_assets.sha256) && unzip -q -o sim/outputs/hospital-custom-assets-20260918.zip material/etc/* -d sim && ls -la 'sim/material/etc/Automatic+Blister+Packing+Machine+(DPB-80)/model.usd'
+```
+끝 10:05:59 exit=0 — 마지막 줄: -rw-rw-r-- 1 rokey rokey 231588 Sep 18 09:53 sim/material/etc/Automatic+Blister+Packing+Machine+(DPB-80)/model.usd
+
+### prep 10:05:59
+```
+~/isaacsim/python.sh /home/rokey/g8c/ROKEY_P3_A3/sim/standalone/prepare_workcell_integration.py --base-usd /home/rokey/g8c/ROKEY_P3_A3/sim/scenes/hospital_navigationv1.usda --dispenser-usd /home/rokey/g8c/ROKEY_P3_A3/src/rokey_p3_description/models/dispenser/dispenser.usdc --output /home/rokey/g8c/m2-hospital-base-64e5ab7
+```
+끝 10:06:09 exit=0 — 마지막 줄: [9.053s] Simulation App Shutting Down
+준비 끝 10:06:09 — tree 64e5ab7ae1cdd325896ee6d8bb3c91f89c5f2971 porcelain 0
+
+### 기동 10:06:09 (촬영 구성, 경로만 새 clone — m1-single 사본 g16bin)
+m1-single 끝 10:16:31 rc=0
